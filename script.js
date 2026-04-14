@@ -13,7 +13,7 @@ if (navToggle && navLinks) {
 // ── Active page ──
 (function () {
   const page = window.location.pathname.split('/').pop() || 'index.html';
-  const map = { 'index.html': 'Home', 'academics.html': 'Academics', 'students.html': 'Students', 'personal.html': 'Personal' };
+  const map = { 'index.html': 'Home', 'academics.html': 'Academics', 'students.html': 'Students', 'blog.html': 'Blog', 'personal.html': 'Personal' };
   const label = map[page];
   if (!label) return;
   document.querySelectorAll('.nav-links a').forEach(a => { if (a.textContent.trim() === label) a.classList.add('active'); });
