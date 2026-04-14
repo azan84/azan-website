@@ -14,14 +14,16 @@ body {
 /* ===== VIDEO BANNER ===== */
 .video-banner {
   position: relative;
-  width: 100%;
+  width: 100vw;
   overflow: hidden;
   margin-top: 70px; /* offset for fixed navbar */
 }
 .video-banner video {
   display: block;
-  width: 100%;
+  width: 100vw;
+  min-width: 100vw;
   height: auto;
+  object-fit: cover;
 }
 .video-banner-overlay {
   position: absolute;
