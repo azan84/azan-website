@@ -33,6 +33,6 @@ function handleContactSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector('.form-submit');
   btn.textContent = 'Message Sent!';
-  btn.style.background = 'linear-gradient(135deg, #F5A623, #c48a1a)';
+  btn.style.background = 'linear-gradient(145deg, #5BBFB5, #4aa89f)';
   setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; e.target.reset(); }, 2500);
 }
