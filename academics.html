@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="styles.css?v=5" />
 </head>
 <body class="has-tokens">
 
@@ -56,6 +56,42 @@
       <div class="underline-accent"></div>
     </div>
   </div>
+
+  <!-- ===== RESEARCH SHOWCASE (CFD-DEM simulation) ===== -->
+  <section class="sim-showcase" id="simulation">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-subtitle">Featured Simulation</p>
+        <h2 class="section-title">CFD&ndash;DEM Fluidized Bed Dynamics</h2>
+        <div class="underline-accent"></div>
+      </div>
+
+      <figure class="sim-figure clay reveal">
+        <div class="sim-media">
+          <img
+            src="animation_full.gif"
+            alt="CFD-DEM coupled simulation of a fluidized bed: left panel shows CFD pressure field with DEM particles; right panel shows void fraction computed from DEM particle positions."
+            loading="lazy"
+            decoding="async"
+            class="sim-gif"
+          />
+          <span class="sim-badge"><span class="sim-dot"></span>Coupled CFD&ndash;DEM</span>
+        </div>
+
+        <figcaption class="sim-caption">
+          <p class="sim-desc">
+            Two-panel visualisation of a coupled Computational Fluid Dynamics &amp; Discrete Element Method (<b>CFD&ndash;DEM</b>) simulation of a gas&ndash;solid fluidized bed. <b>Left:</b> static gas pressure field overlaid with DEM particle positions. <b>Right:</b> void fraction &epsilon; computed from the particle distribution, with particles coloured by vertical velocity magnitude |v<sub>z</sub>|. Phases <em>A &rarr; B &rarr; C</em> trace the bed through DEM initialisation, gas injection, and fully fluidized regime.
+          </p>
+          <ul class="sim-meta">
+            <li><span class="k">Domain</span><span class="v">80&nbsp;&times;&nbsp;160&nbsp;mm</span></li>
+            <li><span class="k">Particles</span><span class="v">~2000</span></li>
+            <li><span class="k">|v<sub>z</sub>|<sub>max</sub></span><span class="v">0.60&nbsp;m/s</span></li>
+            <li><span class="k">Frames</span><span class="v">70</span></li>
+          </ul>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
 
   <!-- ===== PUBLICATIONS ===== -->
   <section class="publications" id="publications">
