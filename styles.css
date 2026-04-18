@@ -1221,3 +1221,310 @@ body.has-tokens :focus-visible {
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* ============================================================
+   STAGE C — Shared upgrades across all pages (under body.has-tokens)
+   ============================================================ */
+
+/* ---------- Scroll-progress bar (top of viewport) ---------- */
+body.has-tokens .nav-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  z-index: calc(var(--z-cursor) - 1);
+  transform-origin: 0 50%;
+  transition: width 90ms linear;
+  pointer-events: none;
+}
+
+/* ---------- Nav-inner: group right-side items (nav-links + theme-toggle + hamburger) ---------- */
+body.has-tokens .nav-inner {
+  gap: 0.5rem;
+}
+body.has-tokens .nav-inner > .nav-brand { margin-right: auto; }
+
+/* ---------- Tokenized navbar (layers on top of claymorphism navbar) ---------- */
+body.has-tokens .navbar {
+  background: rgba(250, 250, 247, 0.72);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid rgba(15, 20, 25, 0.06);
+  box-shadow: none;
+}
+body.has-tokens .navbar.scrolled {
+  background: rgba(250, 250, 247, 0.92);
+  border-bottom-color: rgba(15, 20, 25, 0.10);
+  box-shadow: 0 6px 24px -18px rgba(15, 20, 25, 0.25);
+}
+:root[data-theme="dark"] body.has-tokens .navbar {
+  background: rgba(14, 16, 19, 0.72);
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+:root[data-theme="dark"] body.has-tokens .navbar.scrolled {
+  background: rgba(14, 16, 19, 0.92);
+}
+
+body.has-tokens .nav-brand {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+body.has-tokens .nav-brand span {
+  font-style: italic;
+  color: var(--accent-1);
+}
+
+body.has-tokens .nav-links {
+  position: relative;
+  gap: 0.15rem;
+  padding: 0.35rem;
+  border-radius: var(--radius-pill);
+  background: transparent;
+}
+body.has-tokens .nav-links > li > a {
+  position: relative;
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-sm);
+  letter-spacing: -0.005em;
+  color: var(--ink-3);
+  border-radius: var(--radius-pill);
+  transition: color var(--dur-fast) var(--ease-out-expo);
+  z-index: 1;
+}
+body.has-tokens .nav-links > li > a:hover,
+body.has-tokens .nav-links > li > a.active {
+  color: var(--ink);
+  background: transparent;  /* the .nav-pill below is the indicator */
+}
+body.has-tokens .nav-links > li > a.active::after { display: none; }
+
+/* The sliding pill indicator */
+body.has-tokens .nav-pill {
+  position: absolute;
+  top: 0.35rem;
+  left: 0;
+  height: calc(100% - 0.7rem);
+  width: 0;
+  background: rgba(10, 77, 110, 0.08);
+  border: 1px solid rgba(10, 77, 110, 0.12);
+  border-radius: var(--radius-pill);
+  z-index: 0;
+  transition:
+    transform 380ms var(--ease-out-expo),
+    width     380ms var(--ease-out-expo),
+    opacity   220ms var(--ease-out-expo);
+  opacity: 0;
+  pointer-events: none;
+}
+body.has-tokens .nav-pill.ready { opacity: 1; }
+:root[data-theme="dark"] body.has-tokens .nav-pill {
+  background: rgba(136, 200, 230, 0.10);
+  border-color: rgba(136, 200, 230, 0.18);
+}
+
+/* ---------- Theme toggle button ---------- */
+body.has-tokens .theme-toggle {
+  --sz: 38px;
+  width: var(--sz); height: var(--sz);
+  display: inline-grid;
+  place-items: center;
+  margin-left: 0.5rem;
+  border: 1px solid rgba(15, 20, 25, 0.12);
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) var(--ease-out-expo),
+    background var(--dur-fast) var(--ease-out-expo),
+    border-color var(--dur-fast) var(--ease-out-expo),
+    transform 220ms var(--ease-out-expo);
+}
+body.has-tokens .theme-toggle:hover {
+  color: var(--accent-1);
+  border-color: rgba(10, 77, 110, 0.3);
+  background: rgba(10, 77, 110, 0.06);
+}
+body.has-tokens .theme-toggle:active { transform: scale(0.94); }
+body.has-tokens .theme-toggle svg { width: 18px; height: 18px; }
+body.has-tokens .theme-toggle .sun  { display: none; }
+body.has-tokens .theme-toggle .moon { display: block; }
+:root[data-theme="dark"] body.has-tokens .theme-toggle {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--ink-3);
+}
+:root[data-theme="dark"] body.has-tokens .theme-toggle .sun  { display: block; }
+:root[data-theme="dark"] body.has-tokens .theme-toggle .moon { display: none;  }
+
+/* View-transition for theme swap (Chrome/Edge) */
+@supports (view-transition-name: root) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 520ms;
+    animation-timing-function: var(--ease-out-expo);
+  }
+  ::view-transition-old(root) { animation-name: fade-out; }
+  ::view-transition-new(root) { animation-name: fade-in;  }
+  @keyframes fade-out { to   { opacity: 0; } }
+  @keyframes fade-in  { from { opacity: 0; } }
+}
+
+/* ---------- Page banner v2 (applied to all non-home pages) ---------- */
+body.has-tokens .page-banner.page-banner-v2 {
+  position: relative;
+  padding: clamp(5rem, 3rem + 8vw, 9rem) 0 clamp(3rem, 2rem + 4vw, 5rem);
+  background:
+    radial-gradient(1100px 520px at 50% -10%, rgba(255, 240, 210, 0.45), transparent 65%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-elev) 100%);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(15, 20, 25, 0.06);
+}
+body.has-tokens .page-banner.page-banner-v2 .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+body.has-tokens .page-banner.page-banner-v2 h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 1.8rem + 3.2vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 0.75rem;
+}
+body.has-tokens .page-banner.page-banner-v2 .banner-desc {
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  color: var(--ink-3);
+  max-width: 54ch;
+  margin: 0 auto;
+  letter-spacing: -0.005em;
+}
+body.has-tokens .page-banner.page-banner-v2 .underline-accent {
+  margin: 1.25rem auto 0;
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  border-radius: 2px;
+  opacity: 0.9;
+}
+
+/* ---------- Section header tokenization (section-header inside has-tokens) ---------- */
+body.has-tokens .section-header .section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+body.has-tokens .section-header .section-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-1);
+  opacity: 0.85;
+}
+body.has-tokens .section-header .underline-accent {
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  opacity: 0.9;
+}
+
+/* ---------- Drop-cap (long-form article) ---------- */
+body.has-tokens .blog-article-content.drop-cap > p:first-of-type {
+  font-size: var(--fs-lg);
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+body.has-tokens .blog-article-content.drop-cap > p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 4.8em;
+  float: left;
+  line-height: 0.85;
+  padding: 0.12em 0.12em 0 0;
+  margin: 0.06em 0.08em 0 0;
+  color: var(--accent-1);
+  font-style: italic;
+}
+body.has-tokens .blog-article-content {
+  font-family: var(--font-body);
+  color: var(--ink-2);
+}
+body.has-tokens .blog-article-content p {
+  font-size: var(--fs-md);
+  line-height: 1.75;
+  margin: 0 0 1.25em;
+  max-width: 68ch;
+}
+
+/* ---------- Tokenized form controls (contact form) ---------- */
+body.has-tokens .contact-form input,
+body.has-tokens .contact-form textarea,
+body.has-tokens .contact-form select {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--ink);
+  background: var(--bg-elev);
+  border: 1px solid rgba(15, 20, 25, 0.12);
+  border-radius: var(--radius-md);
+  padding: 0.7rem 0.9rem;
+  transition: border-color var(--dur-fast) var(--ease-out-expo),
+              box-shadow   var(--dur-fast) var(--ease-out-expo),
+              background   var(--dur-fast) var(--ease-out-expo);
+}
+body.has-tokens .contact-form input:focus,
+body.has-tokens .contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 3px rgba(10, 77, 110, 0.15);
+  background: var(--bg);
+}
+body.has-tokens .contact-form .form-submit {
+  font-family: var(--font-body);
+  font-weight: 600;
+  background: var(--ink);
+  color: var(--bg);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.4rem;
+  transition: transform 180ms var(--ease-out-expo),
+              background var(--dur-fast) var(--ease-out-expo);
+}
+body.has-tokens .contact-form .form-submit:hover {
+  background: var(--accent-1);
+  border-color: var(--accent-1);
+  transform: translateY(-1px);
+}
+
+/* ---------- Footer tokenization ---------- */
+body.has-tokens .footer {
+  background: var(--bg-sunk);
+  color: var(--ink-4);
+  border-top: 1px solid rgba(15, 20, 25, 0.06);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+}
+body.has-tokens .footer p { color: var(--ink-4); }
+
+/* ---------- Responsive: hide theme toggle on narrowest mobile (nav space) ---------- */
+@media (max-width: 520px) {
+  body.has-tokens .theme-toggle { --sz: 34px; margin-left: 0.25rem; }
+  body.has-tokens .nav-progress { height: 1.5px; }
+}
+
+/* ---------- Reduced motion for Stage-C additions ---------- */
+@media (prefers-reduced-motion: reduce) {
+  body.has-tokens .nav-progress,
+  body.has-tokens .nav-pill,
+  body.has-tokens .theme-toggle {
+    transition: none !important;
+  }
+}
