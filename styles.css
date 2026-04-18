@@ -1514,10 +1514,130 @@ body.has-tokens .footer {
 }
 body.has-tokens .footer p { color: var(--ink-4); }
 
-/* ---------- Responsive: hide theme toggle on narrowest mobile (nav space) ---------- */
+/* ---------- Responsive: restore mobile drawer under has-tokens ----------
+   The has-tokens .nav-links rule sets position:relative (for the pill),
+   which breaks the original @(max-width:768px) fixed off-canvas drawer.
+   This block re-applies the drawer specifically for tokenized pages. */
+@media (max-width: 768px) {
+  body.has-tokens .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+    flex-direction: column;
+    padding: 5rem 1.5rem 2rem;
+    gap: 0.5rem;
+    background: rgba(250, 250, 247, 0.98);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: -4px 0 20px rgba(15, 20, 25, 0.06);
+    border-radius: 0;
+    transition: right 0.35s var(--ease-out-expo);
+    z-index: calc(var(--z-cursor) - 2);
+  }
+  :root[data-theme="dark"] body.has-tokens .nav-links {
+    background: rgba(14, 16, 19, 0.98);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.4);
+  }
+  body.has-tokens .nav-links.open { right: 0; }
+  body.has-tokens .nav-links > li > a {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: var(--fs-md);
+  }
+  /* Hide the sliding pill on mobile — the drawer has no use for it */
+  body.has-tokens .nav-pill { display: none; }
+}
+
+/* ---------- Responsive: ultra-narrow tweaks ---------- */
 @media (max-width: 520px) {
   body.has-tokens .theme-toggle { --sz: 34px; margin-left: 0.25rem; }
   body.has-tokens .nav-progress { height: 1.5px; }
+}
+
+/* ---------- Dark-mode section background bridging ----------
+   The pre-existing claymorphism sections hardcode cream #FFF8F0.
+   When data-theme=dark, remap those section backgrounds + surfaces
+   to the token scale so the whole page shifts coherently. */
+:root[data-theme="dark"] body.has-tokens {
+  background: var(--bg);
+  color: var(--ink);
+}
+:root[data-theme="dark"] body.has-tokens .about,
+:root[data-theme="dark"] body.has-tokens .research,
+:root[data-theme="dark"] body.has-tokens .publications,
+:root[data-theme="dark"] body.has-tokens .grants,
+:root[data-theme="dark"] body.has-tokens .supervision,
+:root[data-theme="dark"] body.has-tokens .courses,
+:root[data-theme="dark"] body.has-tokens .quick-links,
+:root[data-theme="dark"] body.has-tokens .gallery,
+:root[data-theme="dark"] body.has-tokens .contact,
+:root[data-theme="dark"] body.has-tokens .blog,
+:root[data-theme="dark"] body.has-tokens .blog-article {
+  background: var(--bg);
+  color: var(--ink-2);
+}
+:root[data-theme="dark"] body.has-tokens .page-banner {
+  background: var(--bg-elev);
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+/* Claymorphism cards need lifted surface + adjusted shadow in dark mode */
+:root[data-theme="dark"] body.has-tokens .clay {
+  background: var(--bg-elev);
+  color: var(--ink-2);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 10px 30px -18px rgba(0, 0, 0, 0.65),
+    0 2px 8px -4px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+:root[data-theme="dark"] body.has-tokens .clay:hover {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 16px 40px -16px rgba(0, 0, 0, 0.7),
+    0 3px 10px -4px rgba(0, 0, 0, 0.5);
+}
+:root[data-theme="dark"] body.has-tokens .clay h3,
+:root[data-theme="dark"] body.has-tokens .clay h4 {
+  color: var(--ink);
+}
+:root[data-theme="dark"] body.has-tokens .clay p,
+:root[data-theme="dark"] body.has-tokens .clay li,
+:root[data-theme="dark"] body.has-tokens .clay span {
+  color: var(--ink-3);
+}
+/* Keyword / filter pills in dark */
+:root[data-theme="dark"] body.has-tokens .keyword-tag,
+:root[data-theme="dark"] body.has-tokens .pub-filter-btn,
+:root[data-theme="dark"] body.has-tokens .year-badge,
+:root[data-theme="dark"] body.has-tokens .sponsor-badge {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--ink-2);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+:root[data-theme="dark"] body.has-tokens .pub-search,
+:root[data-theme="dark"] body.has-tokens .search-box input,
+:root[data-theme="dark"] body.has-tokens input,
+:root[data-theme="dark"] body.has-tokens textarea {
+  background: var(--bg-elev);
+  color: var(--ink);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+/* Flow-divider paths brighten in dark */
+:root[data-theme="dark"] body.has-tokens .flow-divider { background: var(--bg); }
+:root[data-theme="dark"] body.has-tokens .flow-divider .wline {
+  stroke: rgba(136, 200, 230, 0.35);
+}
+:root[data-theme="dark"] body.has-tokens .flow-divider .wline.amber {
+  stroke: rgba(252, 211, 77, 0.35);
+}
+/* About education list */
+:root[data-theme="dark"] body.has-tokens .edu-item p { color: var(--ink-2); }
+:root[data-theme="dark"] body.has-tokens .edu-uni      { color: var(--ink-3); }
+/* Blog-card hover in dark */
+:root[data-theme="dark"] body.has-tokens .blog-card:hover .blog-card-title {
+  color: var(--accent-1);
 }
 
 /* ---------- Reduced motion for Stage-C additions ---------- */
