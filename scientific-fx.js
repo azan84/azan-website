@@ -9,6 +9,10 @@
   const PREFERS_REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ---------- 1. HERO FLOW-FIELD CANVAS ----------
+  // Curl-noise streamlines around a virtual cylinder (wake-like).
+  // Theme-aware: on LIGHT bg we use ocean-ink trails on a warm cream wash;
+  // on DARK bg we use cyan-teal trails on a deep navy wash. Inspired by
+  // distill.pub / stripe / openai research pages.
   function initFlowField(){
     if(PREFERS_REDUCED) return;
     const canvas = document.getElementById('flowCanvas');
@@ -19,28 +23,60 @@
 
     let W = 0, H = 0;
     let particles = [];
-    const COUNT = isMobile ? 55 : 140;
+    const COUNT = isMobile ? 45 : 130;
+
+    // Theme palette (refreshed on theme change)
+    let palette = {
+      fade:   'rgba(250, 250, 247, 0.055)',  // warm cream trail fade for light
+      ink:    [10, 77, 110],                 // ocean #0a4d6e
+      accent: [217, 119, 6],                 // amber #d97706
+      sage:   [107, 155, 107]                // sage #6b9b6b
+    };
+    function refreshPalette(){
+      const theme = document.documentElement.dataset.theme
+        || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      if(theme === 'dark'){
+        palette = {
+          fade:   'rgba(10, 14, 20, 0.075)',
+          ink:    [110, 200, 230],           // cool cyan
+          accent: [245, 166, 35],             // brighter amber for dark
+          sage:   [140, 200, 140]
+        };
+      } else {
+        palette = {
+          fade:   'rgba(250, 250, 247, 0.055)',
+          ink:    [10, 77, 110],
+          accent: [217, 119, 6],
+          sage:   [107, 155, 107]
+        };
+      }
+    }
+    refreshPalette();
+    // Observe theme-attribute changes (triggered by the theme toggle)
+    const themeObserver = new MutationObserver(refreshPalette);
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    // Also listen to OS-level dark mode switch
+    try {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', refreshPalette);
+    } catch(_) {}
 
     function resize(){
       const r = canvas.getBoundingClientRect();
       W = r.width; H = r.height;
       canvas.width = W * DPR;
       canvas.height = H * DPR;
+      ctx.setTransform(1,0,0,1,0,0);
       ctx.scale(DPR, DPR);
     }
     resize();
-    window.addEventListener('resize', ()=>{
-      ctx.setTransform(1,0,0,1,0,0);
-      resize();
-    }, { passive: true });
+    window.addEventListener('resize', resize, { passive: true });
 
-    // Simple pseudo-curl-noise: smooth, swirly field around a virtual cylinder
+    // Pseudo-curl-noise: smooth, swirly field around a virtual cylinder
     function field(x, y, t){
-      // cylinder located slightly right of center: simulates wake
+      // Cylinder slightly right of center — simulates wake shedding
       const cx = W * 0.72, cy = H * 0.55;
       const dx = x - cx, dy = y - cy;
       const r = Math.sqrt(dx*dx + dy*dy) + 1e-3;
-      // swirl around the "cylinder" + a global mean flow to the right
       const swirl = 80 / (r * 0.06 + 1);
       const ang = Math.atan2(dy, dx);
       const vx =  Math.cos(ang + Math.PI/2) * swirl * 0.018 + 0.55
@@ -51,29 +87,40 @@
     }
 
     function spawn(p){
-      p.x = Math.random() * -50;         // spawn left of canvas
+      p.x = Math.random() * -50;              // spawn left of canvas
       p.y = Math.random() * H;
       p.life = 0;
       p.maxLife = 240 + Math.random() * 260;
-      p.w = 0.6 + Math.random() * 1.1;
-      p.hueShift = Math.random() < 0.12 ? 1 : 0;  // ~12% amber accents
+      p.w = 0.5 + Math.random() * 1.1;
+      const r = Math.random();
+      p.hue = r < 0.08 ? 'accent' : (r < 0.14 ? 'sage' : 'ink');
     }
     for(let i=0; i<COUNT; i++){
       const p = {};
       spawn(p);
-      p.life = Math.random() * p.maxLife;   // stagger starts
+      p.life = Math.random() * p.maxLife;     // stagger starts
       particles.push(p);
     }
 
     let t = 0;
     let running = true;
-    document.addEventListener('visibilitychange', ()=>{ running = !document.hidden; if(running) loop(); });
+    // Pause when offscreen / tab hidden to save CPU
+    let inView = true;
+    const io = ('IntersectionObserver' in window) && new IntersectionObserver((entries)=>{
+      inView = entries[0].isIntersecting;
+      if(inView && running) loop();
+    }, { threshold: 0.01 });
+    if(io) io.observe(canvas);
+    document.addEventListener('visibilitychange', ()=>{
+      running = !document.hidden;
+      if(running && inView) loop();
+    });
 
     function loop(){
-      if(!running) return;
+      if(!running || !inView) return;
       t += 0.016;
-      // Trail fade (additive darkening so strokes leave soft trails)
-      ctx.fillStyle = 'rgba(8, 12, 24, 0.09)';
+      // Warm/dark wash so strokes leave soft trails
+      ctx.fillStyle = palette.fade;
       ctx.fillRect(0, 0, W, H);
 
       ctx.lineCap = 'round';
@@ -82,11 +129,11 @@
         const nx = p.x + vx;
         const ny = p.y + vy;
 
-        // Stroke a tiny segment
         const alpha = Math.min(1, p.life / 40) * (1 - p.life / p.maxLife);
-        ctx.strokeStyle = p.hueShift
-          ? `rgba(245, 166, 35, ${alpha * 0.55})`   // amber accent
-          : `rgba(91, 191, 181, ${alpha * 0.55})`;  // teal (matches #5BBFB5)
+        const rgb = palette[p.hue];
+        // Brighten slightly for the rarer accent hues
+        const k = p.hue === 'ink' ? 0.48 : 0.72;
+        ctx.strokeStyle = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha * k})`;
         ctx.lineWidth = p.w;
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
