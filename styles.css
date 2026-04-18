@@ -376,6 +376,140 @@ section { padding: 5rem 1.5rem; }
 .quick-card h3 { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.35rem; }
 .quick-card p { font-size: 0.82rem; color: #888; }
 
+/* ===== RESEARCH SHOWCASE (CFD-DEM simulation) ===== */
+.sim-showcase {
+  padding: var(--space-9, 5rem) 0;
+  background: var(--bg, #fafaf7);
+  position: relative;
+}
+:root[data-theme="dark"] body.has-tokens .sim-showcase { background: var(--bg); }
+
+.sim-figure {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: var(--space-6, 2rem);
+  align-items: center;
+  padding: var(--space-5, 1.5rem);
+  border-radius: var(--radius-lg, 24px);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.sim-media {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #f4f1ea; /* matches matplotlib cream before GIF loads */
+  box-shadow:
+    0 1px 0 rgba(15, 20, 25, 0.04) inset,
+    0 10px 40px -12px rgba(15, 20, 25, 0.18),
+    0 2px 6px -2px rgba(15, 20, 25, 0.08);
+  aspect-ratio: 16 / 10;
+}
+:root[data-theme="dark"] body.has-tokens .sim-media {
+  background: #15181c;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 12px 48px -14px rgba(0, 0, 0, 0.6);
+}
+
+.sim-gif {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.sim-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 6px 12px 6px 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  color: var(--ink, #0f1419);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  border: 1px solid rgba(15, 20, 25, 0.08);
+}
+:root[data-theme="dark"] body.has-tokens .sim-badge {
+  color: var(--ink);
+  background: rgba(21, 24, 28, 0.72);
+  border-color: rgba(230, 232, 235, 0.12);
+}
+.sim-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent-1, #0a4d6e);
+  box-shadow: 0 0 0 0 rgba(10, 77, 110, 0.55);
+  animation: simPulse 2.1s ease-in-out infinite;
+}
+@keyframes simPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(10, 77, 110, 0.55); }
+  70%  { box-shadow: 0 0 0 8px rgba(10, 77, 110, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(10, 77, 110, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sim-dot { animation: none; }
+}
+
+.sim-caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 1rem);
+  color: var(--ink-2, #475569);
+  font-family: var(--font-body, 'Inter Tight', sans-serif);
+}
+.sim-desc {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  margin: 0;
+  color: var(--ink-2, #475569);
+}
+.sim-desc b { color: var(--ink, #0f1419); font-weight: 600; }
+.sim-desc em { color: var(--accent-1, #0a4d6e); font-style: italic; }
+
+.sim-meta {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  padding-top: var(--space-4, 1rem);
+  border-top: 1px solid var(--hairline, rgba(15, 20, 25, 0.08));
+}
+.sim-meta li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.78rem;
+}
+.sim-meta .k {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.66rem;
+  color: var(--ink-3, #64748b);
+}
+.sim-meta .v {
+  color: var(--ink, #0f1419);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .sim-figure { grid-template-columns: 1fr; gap: var(--space-5, 1.5rem); }
+  .sim-media { aspect-ratio: 16 / 11; }
+}
+
 /* ===== PUBLICATIONS ===== */
 .publications { background: #FFF8F0; }
 .pub-controls { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center; }
