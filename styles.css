@@ -417,3 +417,186 @@ section { padding: 5rem 1.5rem; }
   .pub-search { width: 100%; }
   .quick-grid { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================
+   SCIENTIFIC FX — flow field, glyphs, card micro-animations
+   ========================================================== */
+
+/* Hero flow-field canvas sits under everything */
+.hero { position: relative; }
+.flow-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.75;
+  mask-image: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.25) 90%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.25) 90%);
+}
+.hero-grid { z-index: 2; }
+
+/* Floating glyph layer */
+.glyph-layer {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.sci-glyph {
+  position: absolute;
+  opacity: 0.12;
+  color: #5BBFB5;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  animation: glyphDrift 22s ease-in-out infinite;
+}
+.sci-glyph.amber { color: #F5A623; opacity: 0.1; }
+.sci-glyph svg { display: block; width: 100%; height: 100%; }
+
+.sci-glyph.g1 { top: 12%; left: 6%;   width: 70px;  height: 70px;  animation-duration: 24s; animation-delay: -3s; }
+.sci-glyph.g2 { top: 22%; right: 8%;  width: 90px;  height: 90px;  animation-duration: 28s; animation-delay: -8s; }
+.sci-glyph.g3 { bottom: 18%; left: 10%; width: 60px; height: 60px; animation-duration: 20s; animation-delay: -14s; }
+.sci-glyph.g4 { top: 58%; right: 18%; width: 80px;  height: 80px;  animation-duration: 26s; animation-delay: -5s; }
+.sci-glyph.g5 { top: 8%;  left: 45%;  width: 50px;  height: 50px;  animation-duration: 18s; animation-delay: -11s; }
+.sci-glyph.g6 { bottom: 10%; right: 35%; width: 65px; height: 65px; animation-duration: 22s; animation-delay: -2s; }
+
+@keyframes glyphDrift {
+  0%,100% { transform: translate3d(0,0,0) rotate(0deg); }
+  33%     { transform: translate3d(10px,-14px,0) rotate(6deg); }
+  66%     { transform: translate3d(-12px,8px,0) rotate(-6deg); }
+}
+@media (max-width: 768px) {
+  .sci-glyph.g5, .sci-glyph.g6 { display: none; }
+  .flow-canvas { opacity: 0.5; }
+}
+
+/* ==========================================================
+   RESEARCH CARD MICRO-ANIMATIONS (play on hover/focus)
+   ========================================================== */
+.research-card { position: relative; overflow: hidden; }
+.research-card::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at var(--mx,50%) var(--my,50%),
+      rgba(91,191,181,0.10) 0%, transparent 45%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.research-card:hover::after { opacity: 1; }
+
+.research-icon { position: relative; overflow: visible; }
+.research-icon svg { transition: transform 0.35s ease; }
+
+/* gear spin — CFD card */
+.research-card .fx-spin {
+  transform-origin: 50% 50%;
+  animation: fxSpin 6s linear infinite;
+  animation-play-state: paused;
+}
+.research-card.fx-play .fx-spin { animation-play-state: running; }
+@keyframes fxSpin { to { transform: rotate(360deg); } }
+
+/* streamlines flow — jet card */
+.research-card .fx-dash {
+  stroke-dasharray: 6 6;
+  animation: fxDash 1.4s linear infinite;
+  animation-play-state: paused;
+}
+.research-card.fx-play .fx-dash { animation-play-state: running; }
+@keyframes fxDash { to { stroke-dashoffset: -48; } }
+
+/* MHD field pulse */
+.research-card .fx-pulse {
+  transform-origin: center;
+  animation: fxPulse 1.8s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.research-card.fx-play .fx-pulse { animation-play-state: running; }
+@keyframes fxPulse {
+  0%,100% { transform: scale(1);   opacity: 1; }
+  50%     { transform: scale(1.12); opacity: 0.65; }
+}
+
+/* oscillating wave — flow stability card */
+.research-card .fx-wave {
+  animation: fxWave 2s ease-in-out infinite;
+  animation-play-state: paused;
+}
+.research-card.fx-play .fx-wave { animation-play-state: running; }
+@keyframes fxWave {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-3px); }
+}
+
+/* vortex rotation — wake card */
+.research-card .fx-vortex {
+  transform-origin: 50% 50%;
+  animation: fxSpin 4s linear infinite;
+  animation-play-state: paused;
+}
+.research-card.fx-play .fx-vortex { animation-play-state: running; }
+
+/* instrument ping — passive control / shield card */
+.research-card .fx-ping {
+  transform-origin: center;
+  animation: fxPing 2s ease-out infinite;
+  animation-play-state: paused;
+}
+.research-card.fx-play .fx-ping { animation-play-state: running; }
+@keyframes fxPing {
+  0%   { transform: scale(0.9); opacity: 0.9; }
+  70%  { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* Floating card lift on hover (works for research & quick cards) */
+.research-card, .quick-card {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.research-card:hover, .quick-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(91, 191, 181, 0.14), 0 0 0 1px rgba(91,191,181,0.14) inset;
+}
+
+/* ==========================================================
+   SECTION FLOW-WAVE DIVIDER
+   ========================================================== */
+.flow-divider {
+  display: block;
+  width: 100%; height: 60px;
+  margin: 0; padding: 0;
+  background: transparent;
+  pointer-events: none;
+}
+.flow-divider svg { width: 100%; height: 100%; display: block; }
+.flow-divider .wline {
+  fill: none;
+  stroke: rgba(91, 191, 181, 0.22);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 8;
+  animation: flowLine 18s linear infinite;
+}
+.flow-divider .wline.amber { stroke: rgba(245, 166, 35, 0.16); animation-duration: 26s; animation-direction: reverse; }
+@keyframes flowLine { to { stroke-dashoffset: -240; } }
+
+/* ==========================================================
+   PREFERS-REDUCED-MOTION — kill everything
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .sci-glyph, .research-card .fx-spin, .research-card .fx-dash,
+  .research-card .fx-pulse, .research-card .fx-wave, .research-card .fx-vortex,
+  .research-card .fx-ping, .flow-divider .wline {
+    animation: none !important;
+  }
+  .flow-canvas { display: none; }
+  .research-card:hover, .quick-card:hover { transform: none; }
+}
+
+/* Make page-banner able to host glyph layer (inner pages) */
+.page-banner { position: relative; overflow: hidden; }
+.page-banner .glyph-layer { opacity: 0.65; }
+.page-banner .sci-glyph { opacity: 0.08; }
+.page-banner .container { position: relative; z-index: 2; }
