@@ -1,3 +1,184 @@
+/* ============================================================
+   DESIGN TOKENS — single source of truth
+   Hierarchy: tokens → primitives → components → sections → pages
+   Stage A: defines the palette/type/space/motion system the rest
+   of the site will migrate onto incrementally.
+   ============================================================ */
+:root {
+  /* --- Surfaces (light mode) --- */
+  --bg:            #fafaf7;
+  --bg-elev:       #ffffff;
+  --bg-sunk:       #f2f1ea;
+  --bg-warm:       #fbf7ef;
+
+  /* --- Ink --- */
+  --ink:           #0f1419;
+  --ink-2:         #3a4048;
+  --ink-3:         #6a7078;
+  --ink-4:         #9ca3ab;
+  --hairline:      rgba(15, 20, 25, 0.08);
+  --hairline-strong: rgba(15, 20, 25, 0.14);
+
+  /* --- Accent 1: Ocean / steel blue (engineering precision) --- */
+  --a1-50:  #eff6fa;
+  --a1-100: #d9e9f1;
+  --a1-200: #b6d4e3;
+  --a1-300: #86b4cc;
+  --a1-400: #548eb0;
+  --a1-500: #2e7395;
+  --a1-600: #1f5c7b;
+  --a1-700: #174862;
+  --a1-800: #0a4d6e;
+  --a1-900: #0a3048;
+  --a1-950: #05192a;
+  --accent-1:       var(--a1-800);
+  --accent-1-soft:  rgba(10, 77, 110, 0.08);
+
+  /* --- Accent 2: Burnt amber (energy / CTA / warmth) --- */
+  --a2-50:  #fdf6ed;
+  --a2-100: #faeacf;
+  --a2-200: #f5d196;
+  --a2-300: #efb15e;
+  --a2-400: #e89137;
+  --a2-500: #d2761c;
+  --a2-600: #c26a12;
+  --a2-700: #994f10;
+  --a2-800: #783f12;
+  --a2-900: #5f3410;
+  --a2-950: #331a06;
+  --accent-2:       var(--a2-600);
+  --accent-2-soft:  rgba(194, 106, 18, 0.10);
+
+  /* --- Accent 3: Sage (organic / microalgae / research) --- */
+  --a3-50:  #f2f7f1;
+  --a3-100: #e0ecdd;
+  --a3-200: #c2d8bc;
+  --a3-300: #9bbd93;
+  --a3-400: #79a271;
+  --a3-500: #5a8559;
+  --a3-600: #466d46;
+  --a3-700: #3a5739;
+  --a3-800: #314630;
+  --a3-900: #293b29;
+  --a3-950: #141e14;
+  --accent-3:       var(--a3-500);
+  --accent-3-soft:  rgba(90, 133, 89, 0.10);
+
+  /* --- Spotlight (antigravity cursor glow) --- */
+  --spot:          rgba(255, 240, 210, 0.55);
+  --spot-outer:    rgba(255, 240, 210, 0);
+
+  /* --- Typography --- */
+  --font-display: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+  --font-body:    'Inter Tight', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+  --fs-xs:    clamp(0.75rem, 0.7rem + 0.2vw, 0.8rem);
+  --fs-sm:    clamp(0.875rem, 0.85rem + 0.2vw, 0.95rem);
+  --fs-base:  clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
+  --fs-lg:    clamp(1.2rem, 1.1rem + 0.5vw, 1.4rem);
+  --fs-h3:    clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --fs-h2:    clamp(2rem, 1.6rem + 2vw, 3rem);
+  --fs-h1:    clamp(3rem, 2rem + 5vw, 6rem);
+
+  --lh-tight:  1.05;
+  --lh-snug:   1.25;
+  --lh-body:   1.55;
+  --lh-loose:  1.75;
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-mono:   -0.01em;
+
+  /* --- Spacing scale --- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* --- Radius --- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* --- Shadow --- */
+  --shadow-sm: 0 1px 2px rgba(15, 20, 25, 0.04);
+  --shadow-md: 0 4px 12px -4px rgba(15, 20, 25, 0.08);
+  --shadow-lg: 0 20px 40px -16px rgba(15, 20, 25, 0.12);
+  --shadow-accent: 0 20px 40px -16px var(--accent-1-soft);
+
+  /* --- Motion --- */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-in-out:   cubic-bezier(0.7, 0, 0.3, 1);
+  --dur-fast:   150ms;
+  --dur-base:   250ms;
+  --dur-slow:   450ms;
+  --dur-glacial: 900ms;
+
+  /* --- Layout --- */
+  --container: 1200px;
+  --container-narrow: 780px;
+  --z-base: 0;
+  --z-elev: 10;
+  --z-nav: 100;
+  --z-cursor: 9999;
+  --z-modal: 1000;
+}
+
+:root[data-theme="dark"] {
+  --bg:            #0e1013;
+  --bg-elev:       #15181c;
+  --bg-sunk:       #0a0c0f;
+  --bg-warm:       #16130e;
+  --ink:           #e6e8eb;
+  --ink-2:         #b4b8bf;
+  --ink-3:         #7a8089;
+  --ink-4:         #5a5f66;
+  --hairline:      rgba(230, 232, 235, 0.08);
+  --hairline-strong: rgba(230, 232, 235, 0.14);
+  --accent-1:      var(--a1-300);
+  --accent-1-soft: rgba(134, 180, 204, 0.12);
+  --accent-2:      var(--a2-400);
+  --accent-2-soft: rgba(232, 145, 55, 0.14);
+  --accent-3:      var(--a3-400);
+  --accent-3-soft: rgba(121, 162, 113, 0.14);
+  --spot:          rgba(255, 220, 170, 0.10);
+  --spot-outer:    rgba(255, 220, 170, 0);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 12px -4px rgba(0,0,0,0.5);
+  --shadow-lg: 0 20px 40px -16px rgba(0,0,0,0.6);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg:            #0e1013;
+    --bg-elev:       #15181c;
+    --bg-sunk:       #0a0c0f;
+    --bg-warm:       #16130e;
+    --ink:           #e6e8eb;
+    --ink-2:         #b4b8bf;
+    --ink-3:         #7a8089;
+    --ink-4:         #5a5f66;
+    --hairline:      rgba(230, 232, 235, 0.08);
+    --hairline-strong: rgba(230, 232, 235, 0.14);
+    --accent-1:      var(--a1-300);
+    --accent-1-soft: rgba(134, 180, 204, 0.12);
+    --accent-2:      var(--a2-400);
+    --accent-2-soft: rgba(232, 145, 55, 0.14);
+    --accent-3:      var(--a3-400);
+    --accent-3-soft: rgba(121, 162, 113, 0.14);
+    --spot:          rgba(255, 220, 170, 0.10);
+    --spot-outer:    rgba(255, 220, 170, 0);
+  }
+}
+
 /* ===== DR. AZAN SAPARDI — LIGHT CLAYMORPHISM THEME ===== */
 /* Typography: Inter + Playfair Display | Colors: Cream + Teal + Coral */
 
@@ -600,3 +781,443 @@ section { padding: 5rem 1.5rem; }
 .page-banner .glyph-layer { opacity: 0.65; }
 .page-banner .sci-glyph { opacity: 0.08; }
 .page-banner .container { position: relative; z-index: 2; }
+
+/* ============================================================
+   STAGE B — Editorial hero + antigravity spotlight + particles + cursor
+   Overrides the older .hero block above by cascade order.
+   ============================================================ */
+
+/* ---------- Body baseline for new design (incremental) ---------- */
+body.has-tokens {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-feature-settings: "ss01", "cv11";
+  letter-spacing: -0.005em;
+}
+
+/* ---------- Hero (editorial light) ---------- */
+.hero.hero-v2 {
+  position: relative;
+  overflow: hidden;
+  min-height: min(100vh, 920px);
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--space-9) + 40px);
+  padding-bottom: var(--space-9);
+  background:
+    radial-gradient(ellipse 1200px 600px at 20% 10%, rgba(255, 240, 210, 0.35), transparent 60%),
+    radial-gradient(ellipse 900px 500px at 85% 90%, rgba(10, 77, 110, 0.04), transparent 60%),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+/* Spotlight: radial brightening that follows the cursor.
+   On LIGHT bg we use soft-light + warm cream → reads as a sunbeam. */
+.hero.hero-v2::before {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    520px circle at var(--mouse-x, 50%) var(--mouse-y, 35%),
+    var(--spot) 0%,
+    var(--spot-outer) 55%
+  );
+  mix-blend-mode: soft-light;
+  transition: opacity var(--dur-slow) var(--ease-out-expo);
+  will-change: background;
+}
+html.no-antigravity .hero.hero-v2::before { opacity: 0.35; }
+
+/* Additional quieter accent-1 glow that also tracks cursor */
+.hero.hero-v2::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    800px circle at var(--mouse-x, 50%) var(--mouse-y, 35%),
+    rgba(10, 77, 110, 0.06) 0%,
+    transparent 45%
+  );
+  opacity: 0.9;
+  mix-blend-mode: multiply;
+}
+
+/* Hero content wrapper sits above glow layers */
+.hero.hero-v2 .hero-inner {
+  position: relative;
+  z-index: 4;
+  max-width: var(--container);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: center;
+}
+
+/* ---------- Editorial content ---------- */
+.hero.hero-v2 .hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.hero.hero-v2 .hero-eyebrow::before {
+  content: "";
+  width: 24px; height: 1px;
+  background: var(--ink-3);
+}
+
+.hero.hero-v2 h1.hero-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--ink);
+  margin: 0 0 var(--space-4) 0;
+  position: relative;
+}
+.hero.hero-v2 h1.hero-display .italicize {
+  font-style: italic;
+  color: var(--accent-1);
+}
+.hero.hero-v2 .hero-display-rule {
+  display: block;
+  margin-top: var(--space-3);
+  width: 100%;
+  max-width: 420px;
+  height: 1px;
+  background: currentColor;
+  color: var(--hairline-strong);
+  transform-origin: left;
+  transform: scaleX(0);
+  animation: heroRuleIn 900ms var(--ease-out-expo) 400ms forwards;
+}
+@keyframes heroRuleIn { to { transform: scaleX(1); } }
+
+.hero.hero-v2 .hero-subhead {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  letter-spacing: var(--tracking-mono);
+  margin-bottom: var(--space-5);
+}
+.hero.hero-v2 .hero-subhead .sep { color: var(--accent-2); padding: 0 .35em; }
+
+.hero.hero-v2 .hero-bio {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-body);
+  color: var(--ink-2);
+  max-width: 54ch;
+  margin-bottom: var(--space-6);
+}
+.hero.hero-v2 .hero-bio b {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* Keyword tags — thin outlined chips (no pill gradient) */
+.hero.hero-v2 .hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+.hero.hero-v2 .hero-chip {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.03em;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--hairline-strong);
+  color: var(--ink-2);
+  background: transparent;
+  transition: border-color var(--dur-base) var(--ease-out-expo),
+              color var(--dur-base) var(--ease-out-expo),
+              background var(--dur-base) var(--ease-out-expo);
+}
+.hero.hero-v2 .hero-chip:hover {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+  background: var(--accent-1-soft);
+}
+
+/* Stat row — mono numbers + thin progress arc */
+.hero.hero-v2 .hero-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--hairline);
+}
+.hero.hero-v2 .hero-stat {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.hero.hero-v2 .hero-stat .hs-n {
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 1.9rem);
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  display: block;
+}
+.hero.hero-v2 .hero-stat .hs-l {
+  display: block;
+  margin-top: var(--space-2);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ---------- Photo: organic blob clip-path ---------- */
+.hero.hero-v2 .hero-portrait {
+  position: relative;
+  aspect-ratio: 1 / 1.05;
+  width: 100%;
+  max-width: 440px;
+  margin-left: auto;
+}
+.hero.hero-v2 .hero-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Organic blob, deliberately imperfect so it doesn't feel geometric */
+  clip-path: path('M 220,10 C 330,20 420,100 430,210 C 440,320 390,395 290,420 C 200,442 90,410 40,320 C -5,240 20,130 90,60 C 140,15 180,5 220,10 Z');
+  -webkit-clip-path: path('M 220,10 C 330,20 420,100 430,210 C 440,320 390,395 290,420 C 200,442 90,410 40,320 C -5,240 20,130 90,60 C 140,15 180,5 220,10 Z');
+  animation: portraitMorph 16s var(--ease-in-out) infinite alternate;
+  filter: saturate(0.95) contrast(1.02);
+}
+@keyframes portraitMorph {
+  0%   { transform: translateY(0) rotate(-0.6deg); }
+  50%  { transform: translateY(-8px) rotate(0.4deg); }
+  100% { transform: translateY(0) rotate(-0.2deg); }
+}
+.hero.hero-v2 .hero-portrait::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--accent-2-soft), transparent 60%);
+  z-index: -1;
+  filter: blur(24px);
+}
+
+/* Signature annotation floating beside portrait */
+.hero.hero-v2 .hero-sig {
+  position: absolute;
+  bottom: -4px;
+  left: -8px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--bg-elev);
+  padding: 4px 10px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.hero.hero-v2 .hero-sig b { color: var(--ink); font-weight: 500; }
+
+/* ---------- Particle layer (weightless drift) ---------- */
+.hero.hero-v2 .particle-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+.hero.hero-v2 .particle {
+  position: absolute;
+  opacity: 0;
+  color: var(--accent-1);
+  animation: partFadeIn 1400ms var(--ease-out-expo) forwards,
+             partDrift 22s var(--ease-in-out) infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+.hero.hero-v2 .particle.amber { color: var(--accent-2); }
+.hero.hero-v2 .particle.sage  { color: var(--accent-3); }
+.hero.hero-v2 .particle svg { width: 100%; height: 100%; display: block; }
+
+/* Antigravity parallax: each particle shifts by (mouse - 50%) * weight.
+   Because .particle has its own drift animation, we wrap the translate
+   onto a CSS variable read by the drift keyframes too. */
+.hero.hero-v2 .particle {
+  --mx-shift: calc((var(--mouse-x, 50%) - 50%) * var(--w, 0.04));
+  --my-shift: calc((var(--mouse-y, 50%) - 50%) * var(--w, 0.04));
+  transition: transform 650ms var(--ease-out-expo);
+}
+
+/* Position + weight per particle */
+.hero.hero-v2 .p1  { top:  8%; left:  6%; width: 56px; height: 56px; --w: 0.045; animation-delay: -2s,  -3s; }
+.hero.hero-v2 .p2  { top: 18%; left: 42%; width: 44px; height: 44px; --w: 0.065; animation-delay: -1s,  -9s; }
+.hero.hero-v2 .p3  { top: 12%; right: 8%; width: 64px; height: 64px; --w: 0.030; animation-delay: -3s, -13s; }
+.hero.hero-v2 .p4  { top: 46%; left:  3%; width: 40px; height: 40px; --w: 0.075; animation-delay: -4s,  -5s; }
+.hero.hero-v2 .p5  { top: 70%; left: 22%; width: 54px; height: 54px; --w: 0.050; animation-delay: -5s, -11s; }
+.hero.hero-v2 .p6  { top: 80%; left: 48%; width: 36px; height: 36px; --w: 0.035; animation-delay: -6s, -14s; }
+.hero.hero-v2 .p7  { top: 36%; right: 30%; width: 72px; height: 48px; --w: 0.060; animation-delay: -2s, -7s; }
+.hero.hero-v2 .p8  { top: 72%; right: 18%; width: 42px; height: 42px; --w: 0.040; animation-delay: -4s, -16s; }
+.hero.hero-v2 .p9  { top: 28%; right: 46%; width: 50px; height: 50px; --w: 0.055; animation-delay: -1s, -4s;  }
+.hero.hero-v2 .p10 { top: 58%; left: 54%; width: 32px; height: 32px; --w: 0.020; animation-delay: -3s,  -8s; }
+.hero.hero-v2 .p11 { top: 12%; left: 72%; width: 60px; height: 60px; --w: 0.070; animation-delay: -5s, -10s; }
+.hero.hero-v2 .p12 { top: 88%; left: 10%; width: 38px; height: 38px; --w: 0.030; animation-delay: -6s, -12s; }
+.hero.hero-v2 .p13 { top: 40%; right: 4%; width: 48px; height: 48px; --w: 0.050; animation-delay: -2s, -15s; }
+.hero.hero-v2 .p14 { top: 62%; left: 40%; width: 34px; height: 34px; --w: 0.025; animation-delay: -3s,  -6s; }
+
+@keyframes partFadeIn {
+  to { opacity: var(--op, 0.14); }
+}
+.hero.hero-v2 .particle.amber { --op: 0.20; }
+.hero.hero-v2 .particle.sage  { --op: 0.16; }
+
+@keyframes partDrift {
+  0%, 100% {
+    transform: translate3d(
+      calc(var(--mx-shift)),
+      calc(var(--my-shift)),
+      0
+    ) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(
+      calc(var(--mx-shift) + 10px),
+      calc(var(--my-shift) - 14px),
+      0
+    ) rotate(4deg);
+  }
+  66% {
+    transform: translate3d(
+      calc(var(--mx-shift) - 12px),
+      calc(var(--my-shift) + 8px),
+      0
+    ) rotate(-4deg);
+  }
+}
+
+/* ---------- Custom cursor (dot + ring) ---------- */
+/* Hide default cursor only when antigravity is live on a fine pointer */
+html.ag-cursor-on,
+html.ag-cursor-on * { cursor: none !important; }
+
+.ag-cursor-dot,
+.ag-cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 200ms var(--ease-out-expo);
+}
+html.ag-cursor-on .ag-cursor-dot,
+html.ag-cursor-on .ag-cursor-ring { opacity: 1; }
+
+.ag-cursor-dot {
+  width: 6px; height: 6px;
+  background: var(--ink);
+  border-radius: 50%;
+}
+.ag-cursor-ring {
+  width: 32px; height: 32px;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  transition: opacity 200ms, width 300ms var(--ease-out-expo),
+              height 300ms var(--ease-out-expo),
+              border-color 250ms, background 250ms;
+}
+
+/* Ring: link/button hover — expand + fill amber */
+html.ag-cursor-on .ag-cursor-ring[data-mode="link"] {
+  width: 48px; height: 48px;
+  border-color: var(--accent-2);
+  background: var(--accent-2-soft);
+  transform-origin: center;
+}
+html.ag-cursor-on .ag-cursor-ring[data-mode="link"] ~ .ag-cursor-dot { opacity: 0; }
+
+/* Ring over text — thin I-beam */
+html.ag-cursor-on .ag-cursor-ring[data-mode="text"] {
+  width: 2px; height: 22px;
+  border: none;
+  background: var(--accent-1);
+  border-radius: 1px;
+  margin-left: 15px; margin-top: 5px;
+}
+html.ag-cursor-on .ag-cursor-ring[data-mode="text"] ~ .ag-cursor-dot { opacity: 0; }
+
+/* Fallback cursor on unsupported contexts */
+html.no-antigravity .ag-cursor-dot,
+html.no-antigravity .ag-cursor-ring { display: none; }
+
+/* ---------- Responsive / reduce-motion ---------- */
+@media (max-width: 900px) {
+  .hero.hero-v2 .hero-inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    text-align: left;
+  }
+  .hero.hero-v2 .hero-portrait {
+    order: -1;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .hero.hero-v2 .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+  .hero.hero-v2 .particle-field { opacity: 0.6; }
+}
+@media (max-width: 520px) {
+  .hero.hero-v2 .hero-stats { grid-template-columns: repeat(3, 1fr); }
+  .hero.hero-v2 .hero-stat:nth-child(4),
+  .hero.hero-v2 .hero-stat:nth-child(5) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero.hero-v2 .particle { animation: none !important; opacity: 0.14 !important; }
+  .hero.hero-v2 .hero-portrait img { animation: none !important; }
+  .hero.hero-v2 .hero-display-rule { animation: none !important; transform: scaleX(1); }
+  .ag-cursor-dot, .ag-cursor-ring { display: none !important; }
+  html.ag-cursor-on, html.ag-cursor-on * { cursor: auto !important; }
+}
+
+/* ---------- Navbar adjustment for new hero ---------- */
+body.has-tokens .navbar {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--hairline);
+}
+body.has-tokens .nav-brand { font-family: var(--font-display); font-weight: 500; }
+body.has-tokens .nav-brand span { color: var(--accent-1); }
+body.has-tokens .nav-links a { font-family: var(--font-body); color: var(--ink-2); }
+body.has-tokens .nav-links a:hover,
+body.has-tokens .nav-links a.active {
+  background: var(--accent-1-soft);
+  color: var(--accent-1);
+}
+
+/* ---------- Focus ring upgrade ---------- */
+body.has-tokens :focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
