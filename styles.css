@@ -1132,8 +1132,8 @@ html.no-antigravity .hero.hero-v2::before { opacity: 0.35; }
   height: 100%;
   object-fit: cover;
   /* Organic blob, deliberately imperfect so it doesn't feel geometric */
-  clip-path: path('M 220,10 C 330,20 420,100 430,210 C 440,320 390,395 290,420 C 200,442 90,410 40,320 C -5,240 20,130 90,60 C 140,15 180,5 220,10 Z');
-  -webkit-clip-path: path('M 220,10 C 330,20 420,100 430,210 C 440,320 390,395 290,420 C 200,442 90,410 40,320 C -5,240 20,130 90,60 C 140,15 180,5 220,10 Z');
+  clip-path: path('M 110,5 C 165,10 210,50 215,105 C 220,160 195,198 145,210 C 100,221 45,205 20,160 C -2.5,120 10,65 45,30 C 70,7.5 90,2.5 110,5 Z');
+  -webkit-clip-path: path('M 110,5 C 165,10 210,50 215,105 C 220,160 195,198 145,210 C 100,221 45,205 20,160 C -2.5,120 10,65 45,30 C 70,7.5 90,2.5 110,5 Z');
   animation: portraitMorph 16s var(--ease-in-out) infinite alternate;
   filter: saturate(0.95) contrast(1.02);
 }
