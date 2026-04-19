@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body class="has-tokens">
 
@@ -59,15 +59,16 @@
     </div>
   </div>
 
-  <!-- ===== RESEARCH SHOWCASE (CFD-DEM simulation) ===== -->
+  <!-- ===== RESEARCH SHOWCASE (simulations) ===== -->
   <section class="sim-showcase" id="simulation">
     <div class="container">
       <div class="section-header reveal">
-        <p class="section-subtitle">Featured Simulation</p>
-        <h2 class="section-title">CFD&ndash;DEM Fluidized Bed Dynamics</h2>
+        <p class="section-subtitle">Featured Simulations</p>
+        <h2 class="section-title">Computational Research in Action</h2>
         <div class="underline-accent"></div>
       </div>
 
+      <!-- Simulation 1: CFD-DEM Fluidized Bed -->
       <figure class="sim-figure clay reveal">
         <div class="sim-media">
           <img
@@ -81,6 +82,7 @@
         </div>
 
         <figcaption class="sim-caption">
+          <h3 style="margin:0 0 0.4rem;font-size:1.05rem;font-weight:600;color:var(--ink)">CFD&ndash;DEM Fluidized Bed Dynamics</h3>
           <p class="sim-desc">
             Two-panel visualisation of a coupled Computational Fluid Dynamics &amp; Discrete Element Method (<b>CFD&ndash;DEM</b>) simulation of a gas&ndash;solid fluidized bed. <b>Left:</b> static gas pressure field overlaid with DEM particle positions. <b>Right:</b> void fraction &epsilon; computed from the particle distribution, with particles coloured by vertical velocity magnitude |v<sub>z</sub>|. Phases <em>A &rarr; B &rarr; C</em> trace the bed through DEM initialisation, gas injection, and fully fluidized regime.
           </p>
@@ -92,6 +94,39 @@
           </ul>
         </figcaption>
       </figure>
+
+      <!-- Simulation 2: VOF Dam Break -->
+      <figure class="sim-figure clay reveal">
+        <div class="sim-media">
+          <video
+            class="sim-gif"
+            controls
+            muted
+            loop
+            preload="metadata"
+            playsinline
+            aria-label="VOF dam-break simulation: water column collapses and propagates along a horizontal channel"
+          >
+            <source src="dam_break_custom_1080p.mp4" type="video/mp4" />
+            Your browser does not support HTML5 video.
+          </video>
+          <span class="sim-badge"><span class="sim-dot amber"></span>VOF Dam Break</span>
+        </div>
+
+        <figcaption class="sim-caption">
+          <h3 style="margin:0 0 0.4rem;font-size:1.05rem;font-weight:600;color:var(--ink)">Dam Break — Free-Surface Flow</h3>
+          <p class="sim-desc">
+            High-resolution simulation of a <b>dam-break</b> event using the <b>Volume of Fluid (VOF)</b> method to capture the sharp air–water interface. The water column instantaneously released propagates along a horizontal channel, exhibiting <em>bore formation</em>, wave run-up, and complex splash dynamics. Results validate against classical Ritter and Martin &amp; Moyce analytical benchmarks.
+          </p>
+          <ul class="sim-meta">
+            <li><span class="k">Resolution</span><span class="v">1080p</span></li>
+            <li><span class="k">Method</span><span class="v">VOF</span></li>
+            <li><span class="k">Fluid</span><span class="v">Water / Air</span></li>
+            <li><span class="k">Interface</span><span class="v">Free-surface</span></li>
+          </ul>
+        </figcaption>
+      </figure>
+
     </div>
   </section>
 

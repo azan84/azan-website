@@ -505,6 +505,32 @@ section { padding: 5rem 1.5rem; }
   font-weight: 500;
 }
 
+/* Second (and beyond) sim-figure cards get top separation */
+.sim-showcase .sim-figure + .sim-figure {
+  margin-top: var(--space-7, 3rem);
+}
+
+/* HTML5 video inside sim-media */
+video.sim-gif {
+  background: #000;
+  cursor: pointer;
+}
+
+/* Amber variant badge dot for VOF / dam-break */
+.sim-dot.amber {
+  background: var(--accent-2, #c26a12);
+  box-shadow: 0 0 0 0 rgba(194, 106, 18, 0.55);
+  animation: simPulseAmber 2.1s ease-in-out infinite;
+}
+@keyframes simPulseAmber {
+  0%   { box-shadow: 0 0 0 0   rgba(194, 106, 18, 0.55); }
+  70%  { box-shadow: 0 0 0 8px rgba(194, 106, 18, 0); }
+  100% { box-shadow: 0 0 0 0   rgba(194, 106, 18, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sim-dot.amber { animation: none; }
+}
+
 @media (max-width: 900px) {
   .sim-figure { grid-template-columns: 1fr; gap: var(--space-5, 1.5rem); }
   .sim-media { aspect-ratio: 16 / 11; }
