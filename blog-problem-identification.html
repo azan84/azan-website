@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="assets/images/Icon.png" />
+  <link rel="apple-touch-icon" href="assets/images/Icon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stop Solving the Wrong Problem | Dr. Mohd Azan Bin Mohammed Sapardi</title>
+  <meta name="description" content="Most people fix symptoms, not problems. A guide to problem identification, root cause analysis, and the 5 Whys technique — with everyday examples." />
+  <link rel="canonical" href="https://azan.biomechemical.com/blog-problem-identification.html" />
+  <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0e1013" media="(prefers-color-scheme: dark)" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Stop Solving the Wrong Problem — Dr. Mohd Azan Bin Mohammed Sapardi" />
+  <meta property="og:description" content="Most people fix symptoms, not problems. A guide to problem identification, root cause analysis, and the 5 Whys technique." />
+  <meta property="og:url" content="https://azan.biomechemical.com/blog-problem-identification.html" />
+  <meta property="og:image" content="https://azan.biomechemical.com/portrait_sapardi.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=4" />
+  <style>
+    /* ── Blog-specific extras ── */
+    .blog-callout {
+      border-left: 3px solid var(--accent-1, #c06b12);
+      padding: 1rem 1.25rem;
+      margin: 1.75rem 0;
+      background: var(--surface-2, rgba(255,255,255,0.04));
+      border-radius: 0 8px 8px 0;
+    }
+    .blog-callout p { margin: 0; font-style: italic; }
+
+    .five-whys-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.75rem 0;
+      font-size: 0.92rem;
+    }
+    .five-whys-table th,
+    .five-whys-table td {
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--border, rgba(0,0,0,0.12));
+      text-align: left;
+      vertical-align: top;
+    }
+    .five-whys-table th {
+      background: var(--accent-1, #c06b12);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .five-whys-table tr:nth-child(even) td {
+      background: var(--surface-2, rgba(0,0,0,0.03));
+    }
+    .five-whys-table td:first-child {
+      font-weight: 600;
+      white-space: nowrap;
+      color: var(--accent-1, #c06b12);
+    }
+
+    .problem-vs-symptom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.75rem 0;
+    }
+    @media (max-width: 600px) {
+      .problem-vs-symptom { grid-template-columns: 1fr; }
+    }
+    .pvs-box {
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      border: 1px solid var(--border, rgba(0,0,0,0.1));
+    }
+    .pvs-box h4 {
+      margin: 0 0 0.6rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .pvs-box.symptom { background: rgba(220, 60, 60, 0.07); }
+    .pvs-box.symptom h4 { color: #c84040; }
+    .pvs-box.root    { background: rgba(30, 160, 100, 0.07); }
+    .pvs-box.root h4 { color: #1a9060; }
+    .pvs-box ul { margin: 0; padding-left: 1.1rem; }
+    .pvs-box ul li { margin-bottom: 0.35rem; font-size: 0.93rem; }
+
+    .framework-steps {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+      margin: 1.75rem 0;
+    }
+    .framework-steps li {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: flex-start;
+    }
+    .framework-steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--accent-1, #c06b12);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .framework-steps li div strong { display: block; margin-bottom: 0.2rem; }
+
+    .fishbone-visual {
+      margin: 1.75rem 0;
+      padding: 1.25rem;
+      background: var(--surface-2, rgba(0,0,0,0.03));
+      border-radius: 10px;
+      border: 1px solid var(--border, rgba(0,0,0,0.1));
+      overflow-x: auto;
+    }
+    .fishbone-visual svg { display: block; margin: 0 auto; max-width: 100%; }
+  </style>
+</head>
+<body class="has-tokens">
+
+  <div class="nav-progress" aria-hidden="true"></div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Dr. <span>Azan</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="academics.html">Academics</a></li>
+        <li><a href="students.html">Students</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="personal.html">Personal</a></li>
+      </ul>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+        <svg class="sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE BANNER ===== -->
+  <section class="page-banner page-banner-v2">
+    <div class="glyph-layer" id="glyphLayer" aria-hidden="true">
+      <span class="sci-glyph g1 amber" data-depth="1.2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 12 m 0 -8 a 8 8 0 1 1 -8 8"/><path d="M12 12 m 0 -5 a 5 5 0 1 1 -5 5"/></svg></span>
+      <span class="sci-glyph g2" data-depth="0.8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></span>
+      <span class="sci-glyph g3" data-depth="1.6"><svg viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 12 Q 8 2, 14 12 T 26 12 T 38 12 T 46 12"/></svg></span>
+      <span class="sci-glyph g4" data-depth="1.0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L 20 7.5 L 20 16.5 L 12 21 L 4 16.5 L 4 7.5 Z"/><circle cx="12" cy="12" r="1.2"/></svg></span>
+    </div>
+    <div class="container">
+      <p class="banner-desc"><a href="blog.html" style="color:var(--accent-1);text-decoration:none;">&larr; Back to Blog</a></p>
+      <h1>Stop Solving the Wrong Problem</h1>
+      <p class="banner-desc">April 2026 &nbsp;&middot;&nbsp; Problem Identification &amp; Root Cause Analysis</p>
+      <div class="underline-accent"></div>
+    </div>
+  </section>
+
+  <!-- ===== ARTICLE ===== -->
+  <section class="blog-article">
+    <div class="container">
+      <article class="blog-article-content clay reveal drop-cap">
+
+        <p>Imagine this: your car battery goes dead one morning. You call a tow truck, get the battery replaced, and drive away feeling like you have solved the problem. Two weeks later, the same thing happens again. And again. After the third replacement, your mechanic finally looks deeper and discovers the real culprit&mdash;a faulty alternator that was slowly draining every new battery you installed. You were not solving a problem. You were repeatedly treating a symptom.</p>
+
+        <p>This is one of the most common and expensive mistakes humans make&mdash;in everyday life, in business, and especially in engineering. We rush to fix what is visible and painful without ever pausing to ask: <em>what is actually causing this?</em> Problem identification, done properly, is the discipline of slowing down long enough to find the right answer to that question before you start spending time, money, and effort on solutions.</p>
+
+        <h2>What Is a Problem, Really?</h2>
+
+        <p>In engineering and design, a <strong>problem</strong> is defined as the gap between the current state and the desired state. It is not simply &ldquo;something is broken.&rdquo; It is the measurable, specific difference between where you are and where you need to be.</p>
+
+        <p>A common trap is confusing a <em>symptom</em> with the <em>problem itself</em>. Symptoms are the observable effects of an underlying cause. They are what you see, hear, or feel. The actual problem is buried deeper. Consider these examples:</p>
+
+        <div class="problem-vs-symptom">
+          <div class="pvs-box symptom">
+            <h4>Symptom (what you see)</h4>
+            <ul>
+              <li>Car battery keeps dying</li>
+              <li>Students scoring poorly on exams</li>
+              <li>A pipe is leaking water</li>
+              <li>Factory production line stops frequently</li>
+            </ul>
+          </div>
+          <div class="pvs-box root">
+            <h4>Root Cause (the real problem)</h4>
+            <ul>
+              <li>Faulty alternator draining the battery</li>
+              <li>Confusing teaching method, not student laziness</li>
+              <li>Corrosion from unfiltered sediment in the water supply</li>
+              <li>Inadequate lubrication schedule causing bearing wear</li>
+            </ul>
+          </div>
+        </div>
+
+        <p>If you only ever address the symptom column, you are on a treadmill&mdash;busy, exhausted, and going nowhere.</p>
+
+        <h2>The Power of Asking &ldquo;Why?&rdquo; Five Times</h2>
+
+        <p>One of the most elegant and widely used tools in problem identification is the <strong>5 Whys</strong> technique, developed by Sakichi Toyoda and made famous by the Toyota Production System. The concept is beautifully simple: when you encounter a problem, you ask &ldquo;Why did this happen?&rdquo; and then&mdash;critically&mdash;you ask <em>why again</em> for the answer you just received. You keep going until you reach the root cause. Most of the time, five iterations is enough.</p>
+
+        <p>Let us walk through a real-world example. Say you are a maintenance engineer at a manufacturing plant, and one of your machines has just broken down on the production floor.</p>
+
+        <table class="five-whys-table">
+          <thead>
+            <tr>
+              <th>Why #</th>
+              <th>Question</th>
+              <th>Answer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Why 1</td>
+              <td>Why did the machine break down?</td>
+              <td>Because a bearing seized up.</td>
+            </tr>
+            <tr>
+              <td>Why 2</td>
+              <td>Why did the bearing seize up?</td>
+              <td>Because it was not lubricated properly.</td>
+            </tr>
+            <tr>
+              <td>Why 3</td>
+              <td>Why was it not lubricated properly?</td>
+              <td>Because the technician skipped that step during maintenance.</td>
+            </tr>
+            <tr>
+              <td>Why 4</td>
+              <td>Why did the technician skip the step?</td>
+              <td>Because the maintenance checklist was incomplete and did not include it.</td>
+            </tr>
+            <tr>
+              <td>Why 5</td>
+              <td>Why was the checklist incomplete?</td>
+              <td>Because the standard operating procedure was never updated after the machine was upgraded two years ago.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Look at where we started versus where we ended. If you had simply replaced the bearing and re-lubricated it (fixing the symptom), the machine would have seized again within months. The <em>real</em> fix is updating the standard operating procedure&mdash;a systemic, permanent solution. That is the difference between a firefighter and an engineer.</p>
+
+        <div class="blog-callout">
+          <p>The 5 Whys are not always exactly five. Sometimes you find the root cause at the third why. Other times, a complex problem might need seven or eight iterations. The number is a guide, not a rule. The principle is: <em>keep digging until you hit something actionable and fundamental.</em></p>
+        </div>
+
+        <h2>The Fishbone Diagram: When One Why Leads to Many</h2>
+
+        <p>The 5 Whys works beautifully for problems with a single chain of cause and effect. But many real-world problems are more like a tangled web&mdash;several different contributing causes all feeding into the same nasty outcome. This is where the <strong>Fishbone Diagram</strong> (also called an Ishikawa Diagram, after its inventor, Professor Kaoru Ishikawa) comes in.</p>
+
+        <p>The structure looks like the skeleton of a fish. The <em>head</em> of the fish is your problem statement. The <em>spine</em> runs horizontally toward it, and branching off the spine like ribs are the major cause categories. The most common categories in an engineering context are:</p>
+
+        <div class="fishbone-visual">
+          <svg viewBox="0 0 700 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Fishbone (Ishikawa) diagram showing cause categories leading to a problem effect">
+            <!-- spine -->
+            <line x1="80" y1="150" x2="580" y2="150" stroke="currentColor" stroke-width="2.5"/>
+            <!-- head / effect box -->
+            <rect x="580" y="120" width="110" height="60" rx="8" fill="var(--accent-1,#c06b12)" opacity="0.15" stroke="var(--accent-1,#c06b12)" stroke-width="1.5"/>
+            <text x="635" y="148" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent-1,#c06b12)">EFFECT</text>
+            <text x="635" y="163" text-anchor="middle" font-size="10" fill="var(--accent-1,#c06b12)">(Problem)</text>
+
+            <!-- Top bones -->
+            <!-- Bone 1: Machine -->
+            <line x1="160" y1="150" x2="210" y2="90" stroke="currentColor" stroke-width="1.8"/>
+            <text x="195" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor">Machine</text>
+            <line x1="180" y1="120" x2="210" y2="100" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <text x="215" y="97" font-size="9" fill="currentColor" opacity="0.8">Worn parts</text>
+            <line x1="195" y1="107" x2="221" y2="112" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <text x="225" y="111" font-size="9" fill="currentColor" opacity="0.8">Calibration</text>
+
+            <!-- Bone 2: Method -->
+            <line x1="310" y1="150" x2="360" y2="80" stroke="currentColor" stroke-width="1.8"/>
+            <text x="348" y="68" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor">Method</text>
+            <line x1="330" y1="117" x2="355" y2="97" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <text x="359" y="95" font-size="9" fill="currentColor" opacity="0.8">SOP gaps</text>
+            <line x1="348" y1="103" x2="369" y2="111" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <text x="373" y="110" font-size="9" fill="currentColor" opacity="0.8">Training</text>
+
+            <!-- Bone 3: Material -->
+            <line x1="460" y1="150" x2="510" y2="90" stroke="currentColor" stroke-width="1.8"/>
+            <text x="497" y="78" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor">Material</text>
+            <line x1="476" y1="120" x2="505" y2="100" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <text x="509" y="97" font-size="9" fill="currentColor" opacity="0.8">Quality</text>
+
+            <!-- Bottom bones -->
+            <!-- Bone 4: Manpower -->
+            <line x1="160" y1="150" x2="210" y2="210" stroke="currentColor" stroke-width="1.8"/>
+            <text x="192" y="232" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor">Manpower</text>
+            <line x1="178" y1="180" x2="207" y2="200" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <text x="211" y="200" font-size="9" fill="currentColor" opacity="0.8">Skill gap</text>
+            <line x1="192" y1="196" x2="218" y2="190" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <text x="222" y="190" font-size="9" fill="currentColor" opacity="0.8">Fatigue</text>
+
+            <!-- Bone 5: Environment -->
+            <line x1="310" y1="150" x2="360" y2="220" stroke="currentColor" stroke-width="1.8"/>
+            <text x="347" y="240" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor">Environment</text>
+            <line x1="330" y1="183" x2="355" y2="203" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <text x="359" y="202" font-size="9" fill="currentColor" opacity="0.8">Temperature</text>
+
+            <!-- Bone 6: Measurement -->
+            <line x1="460" y1="150" x2="510" y2="210" stroke="currentColor" stroke-width="1.8"/>
+            <text x="496" y="230" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor">Measurement</text>
+            <line x1="478" y1="180" x2="505" y2="200" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <text x="509" y="199" font-size="9" fill="currentColor" opacity="0.8">Sensor error</text>
+
+            <!-- tail cap -->
+            <circle cx="80" cy="150" r="5" fill="currentColor" opacity="0.3"/>
+          </svg>
+        </div>
+
+        <p>Each branch forces you to think systematically about <em>all</em> the possible contributors to a problem, rather than jumping to the most obvious one. It is a remarkably effective team exercise because it externalises assumptions&mdash;things one person takes for granted might be exactly what another person identifies as the real issue.</p>
+
+        <h2>Writing a Problem Statement That Actually Means Something</h2>
+
+        <p>Once you have identified your root cause, you need to articulate it clearly. A good <strong>problem statement</strong> is the foundation on which your entire design or research project is built. It must be specific, verifiable, and honest about the gap it describes. A weak problem statement produces vague solutions. A precise one guides every decision that follows.</p>
+
+        <p>A useful framework is to build your problem statement around five anchoring questions:</p>
+
+        <ol class="framework-steps">
+          <li>
+            <div>
+              <strong>Who is affected?</strong>
+              Identify the people, systems, or processes experiencing the problem. Not just &ldquo;users,&rdquo; but specifically which users, under which conditions.
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>What is the problem?</strong>
+              State the gap. What is happening that should not be, or what is not happening that should be? Quantify it whenever possible.
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>When does it occur?</strong>
+              Is the problem constant or intermittent? Under what conditions does it appear? Timing often reveals causation.
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Where does it happen?</strong>
+              Is it localized to a specific machine, process, location, or system component? Boundary conditions matter enormously in engineering.
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Why does it matter?</strong>
+              Quantify the impact. What are the costs&mdash;in downtime, safety risk, money, efficiency loss&mdash;if this problem is left unsolved? This is what justifies the investment in a solution.
+            </div>
+          </li>
+        </ol>
+
+        <p>Compare these two problem statements for the same situation:</p>
+
+        <div class="blog-callout">
+          <p><strong>Weak:</strong> &ldquo;The cooling system is not working well and causes problems.&rdquo;</p>
+        </div>
+
+        <div class="blog-callout">
+          <p><strong>Strong:</strong> &ldquo;The heat exchanger in Unit 3 of the cooling loop loses 18% of its rated thermal efficiency during peak summer operation (ambient &gt; 35&deg;C), causing the downstream compressor to overheat and trip the safety interlock, resulting in an average of 4.2 hours of unplanned downtime per week and an estimated RM 12,000 in lost production monthly.&rdquo;</p>
+        </div>
+
+        <p>Both describe the same cooling system. But only the second one gives an engineer&mdash;or a grant reviewer&mdash;enough to actually do something about it.</p>
+
+        <h2>Why Engineers Must Do This First</h2>
+
+        <p>In engineering design, this is not just a nice intellectual exercise. It is the mandatory first step. The engineering design process begins with problem identification because everything else&mdash;conceptual design, prototyping, testing, optimization&mdash;is predicated on having the right target. Building the most elegant solution to the wrong problem is not engineering. It is expensive art.</p>
+
+        <p>Consider the history of engineering failures that were actually <em>problem identification</em> failures. The Challenger Space Shuttle disaster&mdash;at its root&mdash;was not an O-ring failure. It was a failure to correctly identify and act on a known risk at low temperatures. Engineers had raised concerns. The root cause was a systemic problem in organizational decision-making, not just a rubber seal.</p>
+
+        <p>Closer to home and to everyday experience: how many campus projects, business initiatives, or even personal decisions have failed not because the execution was poor, but because the team spent months solving a problem that was never actually the core issue?</p>
+
+        <h2>A Habit of Mind, Not a One-Time Tool</h2>
+
+        <p>The 5 Whys, the Fishbone Diagram, and the structured problem statement are not checklists to tick before moving on to the &ldquo;real&rdquo; work. They are habits of mind. The best engineers, researchers, and designers I have encountered share a common trait: a deep and genuine reluctance to accept the first explanation they are given. They probe. They question comfortable assumptions. They are comfortable sitting in uncertainty a little longer than most, because they know that clarity at the problem-definition stage saves enormous pain downstream.</p>
+
+        <p>The next time something goes wrong&mdash;whether it is a leaking pipe, a failed experiment, a project that keeps running over schedule&mdash;resist the urge to fix the first thing you can touch. Ask why. Then ask why again. You might be surprised how far down the rabbit hole the real answer lives.</p>
+
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 Dr. Mohd Azan Bin Mohammed Sapardi. All rights reserved.</p>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/scientific-fx.js"></script>
+</body>
+</html>
