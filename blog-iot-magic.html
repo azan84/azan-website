@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Magic of IoT: Teaching Old Things New Tricks | Dr. Mohd Azan Bin Mohammed Sapardi</title>
+  <meta name="description" content="A friendly intro to IoT, microcontrollers, and how MQTT works — with an interactive broker simulation." />
+  <link rel="canonical" href="https://azan.biomechemical.com/blog-iot-magic.html" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      line-height: 1.7;
+      color: #1f1f1f;
+      background: #fafaf7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 28px;
+      color: #2a9d8f;
+      text-decoration: none;
+      font-size: 15px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0.02em;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    .post-meta {
+      font-size: 14px;
+      color: #777;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 2.4rem;
+      line-height: 1.2;
+      margin: 0 0 12px;
+      color: #1a1a1a;
+      border-bottom: 3px solid #2a9d8f;
+      padding-bottom: 16px;
+    }
+
+    h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.6rem;
+      margin: 48px 0 14px;
+      color: #1a1a1a;
+      border-left: 4px solid #2a9d8f;
+      padding-left: 14px;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin: 28px 0 10px;
+      color: #2a9d8f;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    p { margin: 0 0 18px; }
+
+    .lead {
+      font-size: 1.18rem;
+      color: #444;
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+
+    code {
+      background: #eef2f1;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: "JetBrains Mono", "Courier New", monospace;
+      font-size: 0.9em;
+      color: #b45309;
+    }
+
+    /* Mermaid container */
+    .mermaid-wrap {
+      background: #ffffff;
+      border: 1px solid #e2e2e2;
+      border-radius: 8px;
+      padding: 24px 18px;
+      margin: 28px 0;
+      overflow-x: auto;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .diagram-fallback {
+      font-size: 13px;
+      color: #999;
+      text-align: center;
+      margin-top: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-style: italic;
+    }
+
+    /* Interactive simulation card */
+    .sim-card {
+      border: 2px solid #333;
+      border-radius: 10px;
+      padding: 22px;
+      max-width: 460px;
+      margin: 28px auto;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: #f4f4f9;
+    }
+    .sim-card h3 {
+      margin-top: 0;
+      color: #1a1a1a;
+      font-size: 1.1rem;
+    }
+    .sim-card label {
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .sim-card input[type="range"] {
+      width: 100%;
+      margin: 10px 0 14px;
+    }
+    .sim-display {
+      background: #ffffff;
+      padding: 18px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+    }
+    .sim-display p { margin: 0; }
+    .sim-display .topic { color: #666; font-size: 14px; }
+    .sim-display .value {
+      color: #2ecc71;
+      font-size: 3em;
+      margin: 10px 0;
+      font-weight: 700;
+      transition: color 0.2s ease;
+    }
+    .sim-display .unit { font-weight: 700; font-size: 14px; }
+
+    /* Highlight callout */
+    .callout {
+      background: #e8f6f4;
+      border-left: 5px solid #2a9d8f;
+      border-radius: 4px;
+      padding: 18px 22px;
+      margin: 26px 0;
+    }
+    .callout p { margin: 0; }
+    .callout strong { color: #1d6e64; }
+
+    ul { padding-left: 22px; }
+    ul li { margin-bottom: 8px; }
+
+    .footer-link {
+      margin-top: 50px;
+      text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 15px;
+    }
+    .footer-link a {
+      color: #2a9d8f;
+      text-decoration: none;
+      border-bottom: 1px solid #2a9d8f;
+      padding-bottom: 2px;
+    }
+    .footer-link a:hover { opacity: 0.8; }
+
+    @media (max-width: 600px) {
+      body { font-size: 17px; }
+      .wrap { padding: 28px 18px 60px; }
+      h1 { font-size: 1.8rem; }
+      h2 { font-size: 1.35rem; }
+      .sim-display .value { font-size: 2.2em; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <a href="blog.html" class="back-link">&larr; Back to Blog</a>
+
+    <p class="post-meta">May 2026 &middot; IoT &middot; Engineering</p>
+
+    <h1>The Magic of IoT: Teaching Old Things New Tricks &#129668;</h1>
+
+    <p class="lead">Have you ever looked at a perfectly good piece of equipment and thought, <em>"I wish you could just text me when you're done"</em>?</p>
+
+    <p>For decades, most of the things around us were "dumb." A thermostat just sat on the wall. A pump just pumped water. If you wanted to know what they were doing, you had to walk over and look at them. But thanks to the <strong>Internet of Things (IoT)</strong>, we can give those old-school items a brain and a voice.</p>
+
+    <p>So, what exactly is IoT?</p>
+
+    <h2>IoT in a Nutshell &#129373;</h2>
+
+    <p>The <strong>Internet of Things</strong> is just a fancy term for connecting everyday objects to the internet so they can send and receive data.</p>
+
+    <p>Think of it as giving your equipment a WhatsApp account. Instead of isolated islands of machinery, everything becomes part of a giant, chatting network.</p>
+
+    <h2>From "Dumb" to "Smart": The Ultimate Makeover</h2>
+
+    <p>How do we actually make something smart? It usually takes three ingredients:</p>
+
+    <ul>
+      <li><strong>A Microcontroller:</strong> A tiny, cheap computer (like an ESP32 or Raspberry Pi) that acts as the "brain."</li>
+      <li><strong>Sensors / Actuators:</strong> The "eyes, ears, and hands."</li>
+      <li><strong>Connectivity:</strong> Wi-Fi, Bluetooth, or cellular to get it online.</li>
+    </ul>
+
+    <p>Let's say you're running a tubular photobioreactor for microalgae cultivation. Traditionally, you'd manually check the sunlight levels to see if the algae are getting enough light.</p>
+
+    <p>To make it <em>smart</em>, you attach a microcontroller to an <code>SN300-AL-RA-01</code> pyranometer. Now, instead of just sitting there, the pyranometer constantly reads the solar radiation and feeds it to the microcontroller. The microcontroller connects to your Wi-Fi and beams that data straight to your laptop or phone. Suddenly, your algae tank is live-streaming its status!</p>
+
+    <h2>Enter MQTT: The Post Office of IoT &#128238;</h2>
+
+    <p>When you have dozens of sensors chatting at once, how do you prevent chaos? That's where <strong>MQTT</strong> comes in.</p>
+
+    <p>MQTT (Message Queuing Telemetry Transport) is the standard language of IoT. It's incredibly lightweight, making it perfect for tiny devices with weak Wi-Fi signals.</p>
+
+    <p>To understand MQTT, you just need to understand two things: <strong>Publish/Subscribe</strong> and the <strong>Broker</strong>.</p>
+
+    <ul>
+      <li><strong>The Broker:</strong> Think of the Broker as the central Post Office. It doesn't create data; it just sorts and delivers it.</li>
+      <li><strong>Publish (Sending):</strong> Your smart pyranometer <em>Publishes</em> a message to the Broker under a specific topic, like <code>bioreactor/light_level</code>.</li>
+      <li><strong>Subscribe (Receiving):</strong> Your computer dashboard <em>Subscribes</em> to <code>bioreactor/light_level</code>.</li>
+    </ul>
+
+    <div class="callout">
+      <p>The sensor doesn't know the dashboard exists, and the dashboard doesn't care where the sensor is. <strong>They both just talk to the Broker.</strong></p>
+    </div>
+
+    <h3>How the Broker Works (Visualized)</h3>
+
+    <div class="mermaid-wrap">
+      <div class="mermaid">
+graph LR
+    A[Pyranometer Sensor] -- "Publishes: 850 W/m&sup2;" --&gt; B((MQTT Broker))
+    C[Pump Speed Sensor] -- "Publishes: 120 RPM" --&gt; B
+    B -- "Delivers to Subscribers" --&gt; D{Your Dashboard}
+    B -- "Delivers to Subscribers" --&gt; E[Your Smartphone App]
+
+    style B fill:#f9f,stroke:#333,stroke-width:4px
+      </div>
+      <p class="diagram-fallback">If the diagram above doesn't load, your browser blocked the Mermaid script. Refresh or check your network.</p>
+    </div>
+
+    <h2>Try It Out: Interactive IoT Dashboard &#127919;&#65039;</h2>
+
+    <p>To really get a feel for how this works, play with the simulation below.</p>
+
+    <p>Imagine you're sliding the "Input Sensor" (publishing data to the broker). Watch how the "Dashboard Display" (the subscriber) instantly reacts to the changes.</p>
+
+    <div class="sim-card">
+      <h3>MQTT Interactive Simulation</h3>
+
+      <label for="sensorInput">Simulate Sensor Input (Light Intensity):</label>
+      <input type="range" id="sensorInput" min="0" max="1000" value="500" />
+
+      <div class="sim-display">
+        <p class="topic">Broker Topic: <code>bioreactor/light_level</code></p>
+        <p id="dashboardDisplay" class="value">500</p>
+        <p class="unit">W/m&sup2;</p>
+      </div>
+    </div>
+
+    <h2>The Future is Connected</h2>
+
+    <p>By throwing a cheap microcontroller and a few lines of code at a problem, we can transform static environments into dynamic, reactive systems. Whether it's optimizing algae growth, keeping an eye on a 3D printing farm, or just making sure your coffee is hot before you get out of bed, IoT makes the physical world as accessible as a webpage.</p>
+
+    <p>Ready to make your dumb stuff smart? Let's get building. &#128736;&#65039;</p>
+
+    <p class="footer-link">
+      More posts on engineering, energy, and life over at <a href="https://azan.biomechemical.com/blog.html">azan.biomechemical.com/blog</a>.
+    </p>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      window.mermaid.initialize({ startOnLoad: true, theme: "default", securityLevel: "loose" });
+    }
+
+    (function () {
+      var slider = document.getElementById("sensorInput");
+      var display = document.getElementById("dashboardDisplay");
+      if (!slider || !display) return;
+
+      function update() {
+        var v = parseInt(slider.value, 10);
+        display.textContent = v;
+        if (v < 300) {
+          display.style.color = "#e74c3c";
+        } else if (v > 800) {
+          display.style.color = "#f39c12";
+        } else {
+          display.style.color = "#2ecc71";
+        }
+      }
+
+      slider.addEventListener("input", update);
+      update();
+    })();
+  </script>
+
+</body>
+</html>
