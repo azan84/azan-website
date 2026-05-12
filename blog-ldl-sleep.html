@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="assets/images/Icon.png" />
+  <link rel="apple-touch-icon" href="assets/images/Icon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I Exercise, I Eat Less — So Why Is My LDL High? | Dr. Mohd Azan Bin Mohammed Sapardi</title>
+  <meta name="description" content="A personal health confession: good checkup results across the board, except for one stubborn number — LDL cholesterol. The suspect? Sleep deprivation." />
+  <link rel="canonical" href="https://azan.biomechemical.com/blog-ldl-sleep.html" />
+  <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0e1013" media="(prefers-color-scheme: dark)" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="I Exercise, I Eat Less — So Why Is My LDL High?" />
+  <meta property="og:description" content="A personal health confession: good checkup results across the board, except for one stubborn number — LDL cholesterol. The suspect? Sleep deprivation." />
+  <meta property="og:url" content="https://azan.biomechemical.com/blog-ldl-sleep.html" />
+  <meta property="og:image" content="https://azan.biomechemical.com/portrait_sapardi.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=4" />
+
+  <style>
+    /* ── LDL Blog extras ── */
+
+    /* ─ Callout box ─ */
+    .blog-callout {
+      border-left: 3px solid var(--accent-1, #c06b12);
+      padding: 1rem 1.25rem;
+      margin: 1.75rem 0;
+      background: var(--surface-2, rgba(255,255,255,0.04));
+      border-radius: 0 8px 8px 0;
+    }
+    .blog-callout p { margin: 0; font-style: italic; }
+    .blog-callout.blue { border-left-color: #2e86de; }
+    .blog-callout.green { border-left-color: #1a9060; }
+    .blog-callout.red { border-left-color: #c84040; }
+
+    /* ─ Stat cards row ─ */
+    .health-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .stat-chip {
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid var(--border, rgba(0,0,0,0.1));
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-chip.good  { background: rgba(26,144,96,0.08);  border-color: rgba(26,144,96,0.3); }
+    .stat-chip.warn  { background: rgba(200,64,64,0.08);  border-color: rgba(200,64,64,0.4); }
+    .stat-chip .stat-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.6; margin-bottom: 0.3rem; }
+    .stat-chip .stat-value { font-size: 1.45rem; font-weight: 700; line-height: 1; }
+    .stat-chip .stat-unit  { font-size: 0.68rem; opacity: 0.55; margin-top: 0.25rem; }
+    .stat-chip.good .stat-value { color: #1a9060; }
+    .stat-chip.warn .stat-value { color: #c84040; }
+    .stat-chip .stat-tag {
+      position: absolute; top: 6px; right: 6px;
+      font-size: 0.58rem; font-weight: 700; text-transform: uppercase;
+      padding: 2px 5px; border-radius: 4px;
+    }
+    .stat-chip.good .stat-tag { background: rgba(26,144,96,0.2); color: #1a9060; }
+    .stat-chip.warn .stat-tag { background: rgba(200,64,64,0.2); color: #c84040; }
+
+    /* ─ Sleep-LDL mechanism infographic ─ */
+    .mechanism-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .mech-card {
+      padding: 1.1rem 1.1rem 0.9rem;
+      border-radius: 12px;
+      border: 1px solid var(--border, rgba(0,0,0,0.1));
+      background: var(--surface-2, rgba(0,0,0,0.03));
+      position: relative;
+    }
+    .mech-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .mech-card h4 { font-size: 0.88rem; font-weight: 700; margin: 0 0 0.4rem; }
+    .mech-card p  { font-size: 0.83rem; margin: 0; opacity: 0.8; line-height: 1.5; }
+    .mech-num {
+      position: absolute; top: 0.7rem; right: 0.9rem;
+      font-size: 2.5rem; font-weight: 900; opacity: 0.05;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ─ Sleep cycle animation ─ */
+    .sleep-anim-wrap {
+      margin: 2rem 0;
+      border-radius: 14px;
+      border: 1px solid var(--border, rgba(0,0,0,0.1));
+      padding: 1.5rem;
+      background: var(--surface-2, rgba(0,0,0,0.03));
+      overflow: hidden;
+    }
+    .sleep-anim-wrap h4 {
+      font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; opacity: 0.5; margin: 0 0 1rem;
+    }
+    .sleep-chart { position: relative; width: 100%; height: 110px; }
+    .sleep-chart svg { width: 100%; height: 100%; overflow: visible; }
+
+    /* ─ Tips list ─ */
+    .sleep-tips {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+    }
+    .sleep-tips li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--border, rgba(0,0,0,0.08));
+      background: var(--surface-2, rgba(0,0,0,0.02));
+      font-size: 0.88rem;
+    }
+    .tip-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .tip-text strong { display: block; font-size: 0.82rem; margin-bottom: 0.1rem; }
+    .tip-text span { opacity: 0.7; font-size: 0.79rem; line-height: 1.45; }
+
+    /* ─ Cortisol pulse animation ─ */
+    @keyframes cortisol-pulse {
+      0%, 100% { opacity: 0.25; r: 4; }
+      50%       { opacity: 1;    r: 7; }
+    }
+    .cortisol-dot { animation: cortisol-pulse 2s ease-in-out infinite; }
+
+    /* ─ Floating Zzz particles ─ */
+    @keyframes floatUp {
+      0%   { transform: translateY(0)   scale(1);   opacity: 0.8; }
+      100% { transform: translateY(-60px) scale(1.3); opacity: 0; }
+    }
+    .zzz-particle {
+      animation: floatUp var(--dur, 2.5s) ease-in var(--delay, 0s) infinite;
+      font-style: italic;
+      font-weight: 700;
+      font-size: var(--sz, 14px);
+      position: absolute;
+      color: var(--accent-1, #c06b12);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ─ Progress bar for personal commitment ─ */
+    .commit-bar-wrap {
+      margin: 1.5rem 0;
+    }
+    .commit-bar-label {
+      display: flex; justify-content: space-between;
+      font-size: 0.8rem; font-weight: 600; margin-bottom: 0.4rem;
+    }
+    .commit-bar-track {
+      height: 8px; border-radius: 99px;
+      background: var(--border, rgba(0,0,0,0.1));
+      overflow: hidden;
+    }
+    .commit-bar-fill {
+      height: 100%; border-radius: 99px;
+      background: linear-gradient(90deg, #c06b12, #e8993a);
+      transform-origin: left;
+      animation: growBar 1.8s cubic-bezier(.22,.68,0,1.2) forwards;
+      transform: scaleX(0);
+    }
+    @keyframes growBar {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    .commit-bar-fill.green {
+      background: linear-gradient(90deg, #1a9060, #34d399);
+    }
+    .commit-bar-fill.blue {
+      background: linear-gradient(90deg, #2e86de, #60aaff);
+    }
+
+  </style>
+</head>
+<body class="has-tokens">
+
+  <div class="nav-progress" aria-hidden="true"></div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Dr. <span>Azan</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="academics.html">Academics</a></li>
+        <li><a href="students.html">Students</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="personal.html">Personal</a></li>
+      </ul>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE BANNER ===== -->
+  <section class="page-banner page-banner-v2">
+    <div class="glyph-layer" id="glyphLayer" aria-hidden="true">
+      <span class="sci-glyph g1" data-depth="1.2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+      <span class="sci-glyph g2 amber" data-depth="0.8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M12 12 m 0 -8 a 8 8 0 1 1 -8 8"/><path d="M12 12 m 0 -5 a 5 5 0 1 1 -5 5"/></svg></span>
+      <span class="sci-glyph g3" data-depth="1.6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></span>
+      <span class="sci-glyph g4" data-depth="1.0"><svg viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 12 Q 8 2, 14 12 T 26 12 T 38 12 T 46 12"/></svg></span>
+    </div>
+    <div class="container">
+      <p class="banner-desc"><a href="blog.html" style="color:var(--accent-1);text-decoration:none;">&larr; Back to Blog</a></p>
+      <h1>I Exercise. I Eat Less.<br/>So Why Is My LDL Still High?</h1>
+      <p class="banner-desc">May 2026 &nbsp;&middot;&nbsp; Health &amp; Lifestyle</p>
+      <div class="underline-accent"></div>
+    </div>
+  </section>
+
+  <!-- ===== ARTICLE ===== -->
+  <section class="blog-article">
+    <div class="container">
+      <article class="blog-article-content clay reveal drop-cap">
+
+        <p>I recently went for a medical checkup. The kind you keep postponing but eventually cannot avoid. When the results came back, I braced for the worst. Instead, I got something unexpected: almost everything looked fine. Blood pressure, blood glucose, kidney function, liver markers&mdash;all within healthy range. I should have been relieved. And I was, mostly.</p>
+
+        <p>Except for one number. My LDL cholesterol was elevated. And that one number has been nagging at me ever since, because it does not make sense on the surface.</p>
+
+        <h2>Wait&mdash;But I Run. I Lift. I Barely Eat.</h2>
+
+        <p>Here is my situation. I exercise&mdash;I run and do weight training, though not as regularly as I should. I live alone, which means I eat modestly; there is nobody to cook elaborate meals for, and I do not tend to overindulge. On paper, I am doing many of the things that are supposed to keep cholesterol in check. Yet the LDL reading disagreed.</p>
+
+        <!-- Checkup result cards -->
+        <div class="health-stats">
+          <div class="stat-chip good">
+            <div class="stat-tag">&#10003; OK</div>
+            <div class="stat-label">Blood Pressure</div>
+            <div class="stat-value">Normal</div>
+          </div>
+          <div class="stat-chip good">
+            <div class="stat-tag">&#10003; OK</div>
+            <div class="stat-label">Blood Glucose</div>
+            <div class="stat-value">Normal</div>
+          </div>
+          <div class="stat-chip good">
+            <div class="stat-tag">&#10003; OK</div>
+            <div class="stat-label">Liver Function</div>
+            <div class="stat-value">Normal</div>
+          </div>
+          <div class="stat-chip good">
+            <div class="stat-tag">&#10003; OK</div>
+            <div class="stat-label">Kidney</div>
+            <div class="stat-value">Normal</div>
+          </div>
+          <div class="stat-chip warn">
+            <div class="stat-tag">&#9888; High</div>
+            <div class="stat-label">LDL Cholesterol</div>
+            <div class="stat-value">Elevated</div>
+            <div class="stat-unit">the stubborn one</div>
+          </div>
+        </div>
+
+        <p>So I did what any engineer-by-training would do: I refused to accept the symptom and went looking for the root cause. The usual suspects&mdash;diet, inactivity, genetics&mdash;did not fully explain it. And then it hit me: <em>sleep</em>. Or rather, the consistent lack of it.</p>
+
+        <h2>The Underrated Villain: Sleep Deprivation</h2>
+
+        <p>I will be honest. Sleep is not something I have ever prioritized well. Late nights are normal for me&mdash;working, reading, thinking. The idea that this could be quietly sabotaging my cholesterol levels was both alarming and, strangely, validating. It gave me a suspect.</p>
+
+        <!-- Sleep cycle animation -->
+        <div class="sleep-anim-wrap">
+          <h4>Sleep Architecture: What You Lose When You Cut It Short</h4>
+          <div class="sleep-chart" aria-label="Diagram showing sleep stages over a night — REM cycles are compressed when sleep is cut short">
+            <svg viewBox="0 0 600 110" preserveAspectRatio="xMidYMid meet">
+              <!-- Y axis labels -->
+              <text x="0" y="14"  font-size="8" opacity="0.5" fill="currentColor">Awake</text>
+              <text x="0" y="40"  font-size="8" opacity="0.5" fill="currentColor">REM</text>
+              <text x="0" y="68"  font-size="8" opacity="0.5" fill="currentColor">Light</text>
+              <text x="0" y="96"  font-size="8" opacity="0.5" fill="currentColor">Deep</text>
+              <!-- Axis lines -->
+              <line x1="42" y1="8" x2="42" y2="100" stroke="currentColor" stroke-width="0.5" opacity="0.2"/>
+              <line x1="42" y1="100" x2="595" y2="100" stroke="currentColor" stroke-width="0.5" opacity="0.2"/>
+              <!-- Horizontal grid -->
+              <line x1="42" y1="32" x2="595" y2="32" stroke="currentColor" stroke-width="0.4" stroke-dasharray="3,4" opacity="0.12"/>
+              <line x1="42" y1="60" x2="595" y2="60" stroke="currentColor" stroke-width="0.4" stroke-dasharray="3,4" opacity="0.12"/>
+              <line x1="42" y1="88" x2="595" y2="88" stroke="currentColor" stroke-width="0.4" stroke-dasharray="3,4" opacity="0.12"/>
+
+              <!-- Good sleep path (green) -->
+              <polyline
+                points="42,12 70,60 100,88 130,60 160,36 190,60 220,88 250,60 280,36 310,60 340,88 370,60 400,36 430,60 460,88 490,60 520,36 560,60 595,12"
+                fill="none" stroke="#1a9060" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+              <!-- REM periods highlighted -->
+              <rect x="148" y="28" width="48" height="16" rx="4" fill="#1a9060" opacity="0.15"/>
+              <rect x="268" y="28" width="48" height="16" rx="4" fill="#1a9060" opacity="0.15"/>
+              <rect x="388" y="28" width="48" height="16" rx="4" fill="#1a9060" opacity="0.15"/>
+              <rect x="508" y="28" width="48" height="16" rx="4" fill="#1a9060" opacity="0.15"/>
+              <text x="172" y="40" font-size="7" text-anchor="middle" fill="#1a9060" opacity="0.9" font-weight="700">REM</text>
+              <text x="292" y="40" font-size="7" text-anchor="middle" fill="#1a9060" opacity="0.9" font-weight="700">REM</text>
+              <text x="412" y="40" font-size="7" text-anchor="middle" fill="#1a9060" opacity="0.9" font-weight="700">REM</text>
+              <text x="532" y="40" font-size="7" text-anchor="middle" fill="#1a9060" opacity="0.9" font-weight="700">REM</text>
+
+              <!-- Cut line (sleep deprivation) -->
+              <line x1="350" y1="6" x2="350" y2="100" stroke="#c84040" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.7"/>
+              <text x="354" y="18" font-size="8" fill="#c84040" opacity="0.9" font-weight="700">Woke up here</text>
+              <text x="354" y="28" font-size="7" fill="#c84040" opacity="0.7">(missed 2 REM cycles)</text>
+
+              <!-- Time labels -->
+              <text x="42"  y="108" font-size="7.5" text-anchor="middle" fill="currentColor" opacity="0.4">10 pm</text>
+              <text x="184" y="108" font-size="7.5" text-anchor="middle" fill="currentColor" opacity="0.4">12 am</text>
+              <text x="326" y="108" font-size="7.5" text-anchor="middle" fill="currentColor" opacity="0.4">2 am</text>
+              <text x="469" y="108" font-size="7.5" text-anchor="middle" fill="currentColor" opacity="0.4">4 am</text>
+              <text x="595" y="108" font-size="7.5" text-anchor="middle" fill="currentColor" opacity="0.4">6 am</text>
+
+              <!-- Cortisol dots -->
+              <circle cx="280" cy="36" r="4" fill="#c06b12" class="cortisol-dot" style="animation-delay:0s"/>
+              <circle cx="350" cy="36" r="4" fill="#c84040" class="cortisol-dot" style="animation-delay:0.6s"/>
+              <circle cx="420" cy="36" r="4" fill="#c84040" class="cortisol-dot" style="animation-delay:1.2s"/>
+            </svg>
+          </div>
+          <p style="font-size:0.78rem;opacity:0.5;margin:0.5rem 0 0;text-align:center;">
+            Green curve = full 7–8 hour sleep. Red dashed line = typical early wake-up. REM cycles in the second half of the night are the most restorative — and the ones most often sacrificed.
+          </p>
+        </div>
+
+        <p>Here is what the research says, and it is more compelling than most people expect. Sleep is not a passive state. While you are unconscious, your body is running critical maintenance routines&mdash;repairing tissue, consolidating memory, regulating hormones, and&mdash;crucially&mdash;managing lipid metabolism. Disrupting that process has measurable consequences for cholesterol.</p>
+
+        <h2>The Biology: How Poor Sleep Raises Your LDL</h2>
+
+        <p>There are at least four distinct mechanisms through which insufficient sleep drives up LDL cholesterol. Understanding them made the whole puzzle click for me.</p>
+
+        <div class="mechanism-grid">
+          <div class="mech-card">
+            <span class="mech-icon">&#127774;</span>
+            <div class="mech-num">01</div>
+            <h4>Cortisol Surge</h4>
+            <p>Sleep deprivation triggers a chronic low-grade stress response. Cortisol levels stay elevated. Chronically high cortisol signals the liver to ramp up VLDL production — which converts to LDL in the bloodstream.</p>
+          </div>
+          <div class="mech-card">
+            <span class="mech-icon">&#127973;</span>
+            <div class="mech-num">02</div>
+            <h4>Liver Working Overtime</h4>
+            <p>The liver performs most of its cholesterol regulation during deep sleep. If deep sleep is consistently cut short, the liver's ability to clear LDL from circulation is impaired — even if you are eating well.</p>
+          </div>
+          <div class="mech-card">
+            <span class="mech-icon">&#129504;</span>
+            <div class="mech-num">03</div>
+            <h4>Hunger Hormone Chaos</h4>
+            <p>Poor sleep dysregulates ghrelin and leptin. Even if you eat modestly overall, the types of food you crave shift toward high-fat and high-sugar options — which quietly bump dietary cholesterol intake.</p>
+          </div>
+          <div class="mech-card">
+            <span class="mech-icon">&#128167;</span>
+            <div class="mech-num">04</div>
+            <h4>Reduced HDL Activity</h4>
+            <p>HDL (the "good" cholesterol) actively removes LDL from arterial walls. Sleep deprivation reduces HDL's functionality, meaning less LDL gets cleared — even when HDL levels look normal on a report.</p>
+          </div>
+        </div>
+
+        <div class="blog-callout">
+          <p>A study published in <em>Sleep</em> (the journal, not the activity) found that adults sleeping fewer than 6 hours per night had significantly higher LDL levels compared to those sleeping 7&ndash;9 hours, independent of diet and physical activity. The association held even after controlling for BMI, smoking, and exercise.</p>
+        </div>
+
+        <p>That last part is what struck me most: <em>independent of diet and physical activity.</em> So yes, you can run. You can eat modestly. And you can still have elevated LDL if your sleep is chronically poor. The body does not award partial credit.</p>
+
+        <h2>Why Exercise Alone Is Not Enough</h2>
+
+        <p>Exercise is genuinely one of the best things you can do for cardiovascular health. Running raises HDL, improves arterial flexibility, and reduces inflammation. Weight training improves insulin sensitivity and metabolic rate. I am not dismissing any of that.</p>
+
+        <p>But here is the catch: exercise is a stressor. A good stressor, but still a stressor. It triggers cortisol. The body's way of recovering from that stress&mdash;of building muscle, repairing microtears, consolidating the cardiovascular gains&mdash;happens <em>during sleep</em>. If you exercise but sleep poorly, you are applying the stimulus without fully capturing the adaptation. You are also leaving the cortisol response partially unresolved.</p>
+
+        <div class="blog-callout blue">
+          <p>Think of exercise and sleep as a two-part process: exercise is the signal; sleep is where the body writes the response. Skipping sleep is like sending an email and immediately switching off your server before the reply arrives.</p>
+        </div>
+
+        <h2>What I Am Going to Do About It</h2>
+
+        <p>This reflection has moved me from vague awareness to a concrete commitment. The goal is simple: better sleep quality and better sleep discipline. Not necessarily more hours at first&mdash;though that too&mdash;but more intentional sleep hygiene. Here is my plan:</p>
+
+        <ul class="sleep-tips">
+          <li>
+            <span class="tip-icon">&#127769;</span>
+            <div class="tip-text">
+              <strong>Fixed bedtime window</strong>
+              <span>Lights out by 11:30 pm most nights. The body's circadian rhythm responds to consistency more than to duration alone.</span>
+            </div>
+          </li>
+          <li>
+            <span class="tip-icon">&#128267;</span>
+            <div class="tip-text">
+              <strong>No screens after 10:30 pm</strong>
+              <span>Blue light suppresses melatonin production by up to 50%. Switching to reading or journaling in the last hour makes a measurable difference.</span>
+            </div>
+          </li>
+          <li>
+            <span class="tip-icon">&#127978;</span>
+            <div class="tip-text">
+              <strong>Cool, dark room</strong>
+              <span>Core body temperature needs to drop ~1&deg;C for sleep to initiate properly. A cooler room accelerates this and deepens slow-wave sleep.</span>
+            </div>
+          </li>
+          <li>
+            <span class="tip-icon">&#9749;</span>
+            <div class="tip-text">
+              <strong>Caffeine cutoff at 2 pm</strong>
+              <span>Caffeine has a half-life of roughly 5&ndash;6 hours. A 4 pm coffee still has significant adenosine-blocking activity at midnight.</span>
+            </div>
+          </li>
+          <li>
+            <span class="tip-icon">&#127947;</span>
+            <div class="tip-text">
+              <strong>Keep exercising, but earlier</strong>
+              <span>Intense exercise within 2&ndash;3 hours of bedtime elevates cortisol and core temperature, delaying sleep onset. Morning or afternoon sessions are better.</span>
+            </div>
+          </li>
+          <li>
+            <span class="tip-icon">&#128203;</span>
+            <div class="tip-text">
+              <strong>Track &amp; recheck in 3 months</strong>
+              <span>The only way to know if sleep quality is the primary driver is to improve it consistently and retest. Science requires data, even on yourself.</span>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Self-assessment progress bars -->
+        <div class="commit-bar-wrap">
+          <div class="commit-bar-label"><span>Sleep consistency (target: 7&ndash;8 hrs)</span><span style="color:#c06b12">Starting now</span></div>
+          <div class="commit-bar-track"><div class="commit-bar-fill" style="width:25%"></div></div>
+        </div>
+        <div class="commit-bar-wrap">
+          <div class="commit-bar-label"><span>Exercise frequency (target: 4&times;/week)</span><span style="color:#2e86de">Moderate</span></div>
+          <div class="commit-bar-track"><div class="commit-bar-fill blue" style="width:55%"></div></div>
+        </div>
+        <div class="commit-bar-wrap">
+          <div class="commit-bar-label"><span>Dietary quality (already reasonable)</span><span style="color:#1a9060">On track</span></div>
+          <div class="commit-bar-track"><div class="commit-bar-fill green" style="width:72%"></div></div>
+        </div>
+
+        <h2>The Bigger Lesson</h2>
+
+        <p>I spend a lot of my professional life applying the 5 Whys and root cause analysis to engineering problems&mdash;asking why something is failing, digging past the obvious, finding the systemic cause. This medical result reminded me that I should apply the same discipline to my own physiology.</p>
+
+        <p>High LDL is a symptom. &ldquo;I need to eat less fat&rdquo; is a reflex, not necessarily the right answer. The actual root cause&mdash;for me, at least&mdash;may well be that the one thing I have consistently neglected is also the one thing the body needs most to regulate itself: deep, restorative sleep.</p>
+
+        <p>If you are someone who exercises, watches what you eat, and still gets surprising numbers on a blood panel, ask yourself honestly: how is your sleep? Not just the hours, but the quality. Whether you fall asleep at a consistent time. Whether your mind actually quiets down. The answers may be more revealing than any dietary adjustment you have been considering.</p>
+
+        <div class="blog-callout green">
+          <p>I plan to recheck my LDL in three months after prioritizing sleep hygiene. I will report back. Consider this an n=1 experiment in applying engineering logic to the machine I carry around every day.</p>
+        </div>
+
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 Dr. Mohd Azan Bin Mohammed Sapardi. All rights reserved.</p>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/scientific-fx.js"></script>
+
+  <script>
+    /* Animate progress bars on scroll-into-view */
+    (function () {
+      const bars = document.querySelectorAll('.commit-bar-fill');
+      const targets = [25, 55, 72]; // % widths matching the CSS
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.style.animationPlayState = 'running';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      bars.forEach(b => {
+        b.style.animationPlayState = 'paused';
+        io.observe(b);
+      });
+    })();
+  </script>
+</body>
+</html>
