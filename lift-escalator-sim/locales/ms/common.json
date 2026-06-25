@@ -1,0 +1,342 @@
+{
+  "app": {
+    "title": "Simulator Latihan Lif & Eskalator",
+    "subtitle": "DBKL — Rekabentuk, Penyelenggaraan & Pengurusan Tenaga",
+    "language": "Bahasa",
+    "english": "English",
+    "malay": "Bahasa Malaysia"
+  },
+  "nav": {
+    "home": "Utama",
+    "backToHome": "Semua simulator"
+  },
+  "difficulty": {
+    "beginner": "Asas",
+    "intermediate": "Pertengahan",
+    "advanced": "Lanjutan"
+  },
+  "common": {
+    "showFormula": "Tunjuk formula",
+    "hideFormula": "Sembunyi formula",
+    "trainerNotes": "Nota jurulatih",
+    "exportPng": "Eksport PNG",
+    "exportJson": "Eksport JSON",
+    "controls": "Kawalan",
+    "visualization": "Visualisasi",
+    "results": "Keputusan & Pandangan",
+    "whatThisMeans": "Apa maksudnya",
+    "source": "Sumber",
+    "estTime": "{{min}} min",
+    "perYear": "/tahun",
+    "kwh": "kWj",
+    "rm": "RM"
+  },
+  "tariff": {
+    "title": "Tarif elektrik",
+    "editHint": "Tarif TNB C1 (Komersial). Boleh diubah; disimpan pada peranti ini.",
+    "energyPeak": "Tenaga puncak (RM/kWj)",
+    "energyOffPeak": "Tenaga luar puncak (RM/kWj)",
+    "maxDemand": "Permintaan maksimum (RM/kW/bulan)",
+    "reset": "Set semula"
+  },
+  "landing": {
+    "intro": "Dua belas simulator interaktif untuk rekabentuk, operasi, penyelenggaraan dan pengurusan tenaga lif dan eskalator.",
+    "comingSoon": "Akan datang"
+  },
+  "sim1": {
+    "title": "Simulator Aliran Trafik",
+    "short": "Visualisasi aliran penumpang puncak; kira kapasiti dan masa menunggu.",
+    "standard": "CIBSE Guide D (2020); RTT puncak-naik Barney",
+    "inputs": {
+      "floors": "Tingkat atas",
+      "popPerFloor": "Populasi setiap tingkat",
+      "cars": "Bilangan lif",
+      "capacity": "Kapasiti kereta (orang)",
+      "speed": "Kelajuan kontrak (m/s)",
+      "doorType": "Jenis pintu",
+      "floorHeight": "Tinggi tingkat ke tingkat (m)",
+      "profile": "Profil trafik"
+    },
+    "doorType": { "centreOpening2Panel": "Bukaan tengah 2-panel", "sideOpening2Panel": "Bukaan tepi 2-panel", "centreOpening4Panel": "Bukaan tengah 4-panel" },
+    "profile": { "upPeak": "Puncak naik pagi", "twoWay": "Dua hala tengah hari", "downPeak": "Puncak turun petang", "interfloor": "Antara tingkat" },
+    "results": {
+      "interval": "Selang (INT)",
+      "hc": "Kapasiti pengendalian",
+      "awt": "Purata masa menunggu",
+      "rtt": "Masa perjalanan pergi-balik",
+      "stops": "Hentian dijangka",
+      "highest": "Tingkat patah balik tertinggi",
+      "seconds": "s"
+    },
+    "insight": "Dengan {{cars}} lif berkapasiti {{cap}} orang pada {{speed}} m/s, masa pergi-balik kira-kira {{rtt}} s, memberi selang {{int}} s dan kapasiti pengendalian 5-minit {{hc}}%. Purata masa menunggu puncak-naik lebih kurang {{awt}} s. Selang lebih pendek (lebih banyak/laju/besar kereta) bermakna menunggu lebih singkat; kapasiti pengendalian mesti melebihi kadar ketibaan puncak bangunan (biasanya 11–15% populasi untuk pejabat).",
+    "notes": "Gunakan dengan Modul 2. Selang dan kapasiti pengendalian ialah dua metrik utama. Petua: sasaran pejabat puncak-naik HC ≈ 11–15% dan INT ≤ 30 s. Perhati bagaimana menambah kereta, menaikkan kelajuan atau kapasiti mengubah RTT dan INT. Nota: populasi dilayan = populasi/tingkat × tingkat (lihat DECISIONS T1)."
+  },
+  "sim2": {
+    "title": "Perbandingan Kawalan Kumpulan",
+    "short": "Konvensional vs kawalan destinasi — hentian dan masa menunggu.",
+    "standard": "CIBSE Guide D (2020); Monte-Carlo puncak-naik",
+    "inputs": {
+      "floors": "Tingkat atas",
+      "cars": "Bilangan lif",
+      "capacity": "Kapasiti kereta (orang)",
+      "demand": "Penumpang dalam 5 minit",
+      "runs": "Larian Monte-Carlo"
+    },
+    "collective": "Kawalan kolektif",
+    "dcs": "Kawalan destinasi (DCS)",
+    "results": {
+      "awt": "Purata masa menunggu",
+      "stops": "Hentian setiap perjalanan",
+      "totalStops": "Jumlah hentian (5 min)",
+      "journey": "Purata masa perjalanan",
+      "awtReduction": "Penjimatan masa menunggu DCS",
+      "stopReduction": "Pengurangan hentian DCS"
+    },
+    "insight": "Sepanjang {{runs}} larian puncak-naik disimulasi, kawalan destinasi mengumpul penumpang mengikut tingkat jadi setiap kereta membuat {{dcsStops}} hentian setiap perjalanan berbanding {{collStops}} untuk kawalan kolektif — {{stopRed}}% hentian lebih sedikit. Itu memendekkan perjalanan pergi-balik dan mengurangkan purata masa menunggu sebanyak {{awtRed}}% ({{collAwt}} s → {{dcsAwt}} s). Hentian lebih sedikit juga bermakna tenaga lebih rendah setiap perjalanan.",
+    "notes": "Gunakan dengan Modul 2. DCS bertanya destinasi penumpang di lobi dan mengumpul mereka yang ke tingkat sama dalam satu kereta — jadi kereta membuat jauh lebih sedikit hentian. Paparan terbahagi menjalankan aliran penumpang rawak yang sama melalui kedua-dua algoritma. Jangkakan ≥20% menunggu lebih rendah dan ≥25% hentian lebih sedikit. Tukar ganti: penumpang mesti masukkan tingkat sebelum menaiki (perubahan tingkah laku)."
+  },
+  "sim3": {
+    "title": "Bestari Saiz Lif",
+    "short": "Cadangkan konfigurasi lif daripada ringkasan bangunan.",
+    "standard": "CIBSE Guide D (2020) §4 jadual saiz",
+    "inputs": {
+      "buildingType": "Jenis bangunan",
+      "gfa": "Luas lantai kasar (m²)",
+      "floors": "Tingkat atas aras bumi",
+      "density": "Ketumpatan penghuni (m²/orang)",
+      "hcTarget": "Sasaran kapasiti pengendalian (%)"
+    },
+    "buildingType": { "office": "Pejabat", "hotel": "Hotel", "hospital": "Hospital", "residential": "Kediaman", "mixed": "Guna campuran", "mall": "Pusat beli-belah" },
+    "occupants": "Anggaran penghuni",
+    "table": { "rank": "#", "config": "Konfigurasi", "cars": "Kereta", "load": "Beban", "speed": "Kelajuan", "int": "INT", "hc": "HC%", "drive": "Pemacu", "group": "Kawalan kumpulan", "best": "Disyorkan" },
+    "noResults": "Tiada konfigurasi memenuhi sasaran. Rendahkan sasaran kapasiti pengendalian atau kurangkan penghuni.",
+    "insight": "Untuk {{occupants}} penghuni merentas {{floors}} tingkat, konfigurasi disyorkan ialah {{cars}} kereta {{load}} kg pada {{speed}} m/s, dengan mesin {{drive}} dan kawalan kumpulan {{group}} — selang {{int}} s, kapasiti pengendalian {{hc}}%. Lebih sedikit aci bersaiz baik mengatasi banyak kereta kecil: setiap aci memakan ruang teras bangunan yang berharga.",
+    "notes": "Gunakan dengan Modul 2. Bestari mencari gabungan bilangan kereta × kapasiti × kelajuan dan menyusun yang boleh laksana. Titik pengajaran utama: minimumkan bilangan aci (ruang teras mahal), kemudian sesuaikan saiz kereta dan kelajuan dengan ketinggian bangunan. Untuk bangunan zon tunggal tinggi selang puncak-naik semestinya lebih panjang — sebab itu reka bentuk sebenar memperkenalkan zon atau lobi langit."
+  },
+  "sim5": {
+    "title": "Bayaran Balik Mod Tidur",
+    "short": "Sentiasa hidup vs auto-sedia; bayaran balik dan penjimatan.",
+    "standard": "Model sedia ISO 25745-2",
+    "inputs": {
+      "powerBefore": "Kuasa sedia semasa (W)",
+      "powerAfter": "Kuasa sedia mod tidur (W)",
+      "idleHours": "Jam melahu/hari",
+      "rate": "Kadar tenaga (RM/kWj)",
+      "capex": "Kos persediaan sekali (RM)"
+    },
+    "results": {
+      "energySaved": "Tenaga dijimat",
+      "costSaved": "Kos dijimat",
+      "payback": "Bayaran balik mudah",
+      "npv": "NPV 10-tahun @ 6%",
+      "co2": "CO₂ dielak",
+      "years": "{{n}} tahun",
+      "immediate": "Serta-merta"
+    },
+    "chart": { "title": "Penggunaan kuasa 24-jam", "alwaysOn": "Sentiasa hidup", "sleepMode": "Dengan mod tidur", "hour": "Jam hari", "watts": "Kuasa (W)" },
+    "insight": "Mengaktifkan mod tidur mengurangkan kuasa sedia dari {{before}} W kepada {{after}} W. Sepanjang {{idle}} jam melahu sehari ini menjimatkan kira-kira {{kwh}} kWj dan RM {{cost}} setahun, mengelak {{co2}} kg CO₂. Kerana perubahan ini biasanya tetapan pengawal, bayaran balik adalah {{payback}}.",
+    "notes": "Gunakan dengan Modul 4. Kuasa sedia berjalan 24/7, jadi walau kuasa kecil pun terkumpul. Tanya: lif melahu 20 j/hari pada 300 W terbazir — berapa kWj/tahun? (≈2,190.) Kebanyakan pengawal moden menyokong mod tidur sebagai tetapan, jadi bayaran balik selalunya serta-merta."
+  },
+  "sim6": {
+    "title": "VVVF vs Pemacu Lama",
+    "short": "Penjimatan tenaga daripada pemacu frekuensi boleh ubah.",
+    "standard": "CIBSE Guide D (2020) Jadual 6.3",
+    "inputs": {
+      "ratedPower": "Nilai motor (kW)",
+      "baselineDrive": "Pemacu sedia ada",
+      "upgradeDrive": "Naik taraf kepada",
+      "tripsPerDay": "Perjalanan/hari",
+      "avgTravel": "Purata perjalanan (m)"
+    },
+    "drive": {
+      "singleSpeedAC": "AC 1-kelajuan",
+      "twoSpeedAC": "AC 2-kelajuan",
+      "acvv": "ACVV (voltan boleh ubah)",
+      "vvvfGeared": "VVVF bergear",
+      "vvvfGearless": "VVVF tanpa gear PMSM"
+    },
+    "results": {
+      "baselineEnergy": "Pemacu sedia ada",
+      "upgradeEnergy": "Pemacu dinaik taraf",
+      "saving": "Penjimatan tenaga",
+      "savingKwh": "kWj dijimat",
+      "costSaved": "Kos dijimat",
+      "co2": "CO₂ dielak"
+    },
+    "chart": { "title": "Penggunaan kuasa sepanjang satu perjalanan", "time": "Kemajuan perjalanan", "power": "Kuasa (× nilai)" },
+    "insight": "Bertukar dari {{from}} kepada {{to}} mengurangkan tenaga traksi tahunan kira-kira {{pct}}% — lebih kurang {{kwh}} kWj dan RM {{cost}} setahun, mengelak {{co2}} kg CO₂. Pemacu 1-kelajuan menarik denyut segi empat tepat yang kasar; VVVF menaikkan kuasa dengan lancar, jadi ia membazir jauh lebih sedikit dan memberi perjalanan lebih selesa.",
+    "notes": "Gunakan dengan Modul 4/6. Carta beban-lawan-masa ialah tumpuan pengajaran: motor 1-kelajuan melonjak ke kuasa penuh (denyut segi empat), manakala VVVF menaik (trapezoid). Kurang puncak, kurang haba, kurang tenaga terbazir, perjalanan lebih lancar. Perhatikan sebahagian penggunaan adalah tetap (kawalan/tambahan) dan tidak dikurangkan oleh naik taraf pemacu."
+  },
+  "sim7": {
+    "title": "Pemacu Janakuasa Semula",
+    "short": "Visualisasi tenaga dipulih apabila motor menjana.",
+    "standard": "Imbangan tenaga traksi; konteks ISO 25745-2",
+    "inputs": {
+      "carMass": "Jisim kereta (kg)",
+      "ratedLoad": "Beban nilai (kg)",
+      "balanceRatio": "Imbangan pemberat lawan",
+      "travel": "Purata perjalanan (m)",
+      "regenEff": "Kecekapan pemacu regen",
+      "profile": "Corak trafik",
+      "gridFeedIn": "Suapan grid dibenarkan"
+    },
+    "profile": { "mixed": "Dua hala campuran", "upPeak": "Puncak naik pagi", "downPeak": "Puncak turun petang" },
+    "results": {
+      "reduction": "Pengurangan tenaga bersih",
+      "recovered": "Tenaga dipulih",
+      "consumed": "Penggunaan kasar",
+      "netWith": "Bersih dengan regen",
+      "netWithout": "Bersih tanpa regen",
+      "costSaved": "Kos dijimat",
+      "co2": "CO₂ dielak"
+    },
+    "viz": { "title": "Aliran tenaga", "motoring": "Memotor — grid kuasakan kereta", "regenerating": "Janakuasa semula — kereta suap grid", "car": "Kereta", "cwt": "Pemberat lawan", "load": "Beban" },
+    "insight": "Dengan pemberat lawan mengimbangi kereta tambah {{balance}} beban nilai, lif ini menjana semula pada {{regenPct}} perjalanan dimodel. Pemacu regen memulih kira-kira {{recovered}} kWj/tahun, mengurangkan tenaga bersih sebanyak {{reduction}}% — RM {{cost}} dan {{co2}} kg CO₂ dijimat. Tanpanya, tenaga itu dibakar sebagai haba dalam perintang brek.",
+    "notes": "Gunakan dengan Modul 6. Idea utama: lif seimbang menghabiskan kira-kira separuh perjalanan dengan sisi berat menurun — tenaga itu boleh dipulih bukan dibazir sebagai haba. Togol suapan grid untuk tunjuk penjimatan hilang. Pengurangan 20–35% sepadan kajian kes KONE/TKE/Mitsubishi. Nota: kehilangan geseran dan inersia tidak boleh dipulih."
+  },
+  "sim8": {
+    "title": "Kalkulator Naik Taraf LED",
+    "short": "Penjimatan lampu kabin dan aci serta bayaran balik.",
+    "standard": "Tenaga lampu; faktor CO₂ grid MyHIJAU",
+    "inputs": {
+      "lampCount": "Bilangan lampu",
+      "lampType": "Jenis lampu semasa",
+      "wattageEach": "Watt setiap lampu (kini)",
+      "ledWattageEach": "Watt setiap lampu LED",
+      "onHours": "Jam hidup/hari",
+      "unitCost": "Kos unit LED (RM)",
+      "labour": "Kos buruh (RM)"
+    },
+    "lampType": { "incandescent": "Pijar", "halogen": "Halogen", "cfl": "CFL", "led": "LED" },
+    "results": {
+      "before": "Sebelum",
+      "after": "Selepas (LED)",
+      "energySaved": "Tenaga dijimat",
+      "costSaved": "Kos dijimat",
+      "payback": "Bayaran balik",
+      "co2": "CO₂ dielak",
+      "years": "{{n}} tahun",
+      "cumulativeTitle": "Penjimatan terkumpul 10-tahun"
+    },
+    "chart": { "year": "Tahun", "rm": "RM terkumpul dijimat", "wattsTitle": "Beban lampu (W)" },
+    "insight": "Menggantikan {{count}} × {{wBefore}} W lampu {{type}} dengan LED {{wAfter}} W mengurangkan beban lampu kabin dari {{loadBefore}} W kepada {{loadAfter}} W. Berjalan {{hours}} j/hari ini menjimatkan {{kwh}} kWj dan RM {{cost}} setahun, mengelak {{co2}} kg CO₂, dan bayaran balik dalam {{payback}}.",
+    "notes": "Gunakan dengan Modul 4. Lampu kabin selalunya berjalan 24/7. Penggantian LED antara langkah tenaga termurah dengan bayaran balik terpantas dan turut mengurangkan beban haba dan penyelenggaraan (hayat lampu lebih panjang). Tanya: jika lampu berjalan 24 j vs 12 j, bagaimana bayaran balik berubah?"
+  },
+  "sim9": {
+    "title": "Mod Operasi Eskalator",
+    "short": "Berterusan vs auto-perlahan vs atas-permintaan.",
+    "standard": "EN 115-1 Lampiran H; ISO 25745-3",
+    "inputs": {
+      "stepWidth": "Lebar tapak (mm)",
+      "rise": "Ketinggian (m)",
+      "speed": "Kelajuan nominal (m/s)",
+      "ratedMotor": "Nilai motor (kW)",
+      "operatingHours": "Jam operasi/hari",
+      "profile": "Ketibaan penumpang",
+      "mode": "Mod operasi"
+    },
+    "profile": { "uniform": "Seragam (mantap)", "peaky": "Puncak (mal)", "sparse": "Jarang (sunyi)" },
+    "mode": { "continuous": "Berterusan", "autoSlowdown": "Auto-perlahan", "onDemand": "Mula atas-permintaan" },
+    "results": {
+      "dailyEnergy": "Tenaga harian (mod ini)",
+      "annualEnergy": "Tenaga tahunan",
+      "reduction": "Penjimatan vs berterusan",
+      "cost": "Kos tahunan",
+      "co2": "CO₂/tahun",
+      "passengers": "Penumpang/hari",
+      "compareTitle": "Tenaga harian mengikut mod"
+    },
+    "insight": "Dalam mod {{mode}} eskalator ini menggunakan kira-kira {{daily}} kWj/hari ({{annual}} kWj/tahun). Berbanding berjalan berterusan itu penjimatan {{reduction}}% — RM {{cost}} dan {{co2}} kg CO₂ setahun. Kuasa tanpa beban (berpusing kosong) mendominasi, jadi memperlahankan atau menghentikan apabila tiada penunggang ialah sumber penjimatan.",
+    "notes": "Gunakan dengan Modul 4/9. Idea utama: eskalator berpusing kosong masih menarik 30–55% kuasa nilai. Auto-perlahan menurun ke rangkak apabila melahu (~30–45% penjimatan); atas-permintaan berhenti sepenuhnya dan mula semula pada penderia (~50–70% penjimatan). Dengan trafik mal puncak ada banyak masa melahu untuk dimanfaatkan. Tanya: mengapa atas-permintaan kurang sesuai untuk eskalator aliran berterusan yang sangat sibuk?"
+  },
+  "sim10": {
+    "title": "Jurulatih Diagnosis Kerosakan",
+    "short": "Pokok keputusan bercabang untuk sepuluh kerosakan biasa.",
+    "standard": "Modul 3; MS EN 81-20 / MS EN 81-50",
+    "selectFault": "Pilih kerosakan untuk didiagnosis",
+    "question": "Soalan",
+    "step": "Langkah {{n}}",
+    "back": "Kembali",
+    "restart": "Mula semula",
+    "diagnosis": "Diagnosis",
+    "cause": "Punca utama berkemungkinan",
+    "action": "Tindakan pertama disyorkan",
+    "escalate": "Bila perlu dinaikkan",
+    "clause": "Klausa berkaitan",
+    "safety": "Peringatan keselamatan",
+    "notes": "Gunakan dengan Modul 3. Biarkan peserta memandu pokok dan menerangkan setiap pilihan. Setiap kerosakan tamat dalam enam soalan. Tekankan peringatan keselamatan — beberapa kerosakan memerlukan lif dihentikan perkhidmatan segera."
+  },
+  "sim11": {
+    "title": "Perancang Penyelenggaraan",
+    "short": "Jana jadual penyelenggaraan berkanun dan kalendar.",
+    "standard": "MS EN 81-20, MS 2473, DOSH/JKKP (PMA)",
+    "inputs": { "liftType": "Jenis lif", "age": "Usia (tahun)", "usageCategory": "Kategori penggunaan", "lastPMA": "Pemeriksaan PMA terakhir" },
+    "liftType": { "passenger": "Penumpang", "goods": "Barang", "hospital": "Hospital", "observation": "Pemerhatian" },
+    "frequency": { "daily": "Harian", "weekly": "Mingguan", "monthly": "Bulanan", "quarterly": "Suku tahunan", "annual": "Tahunan", "statutory": "Berkanun" },
+    "skill": { "operator": "Operator", "technician": "Juruteknik", "engineer": "Jurutera" },
+    "results": { "visits": "Lawatan disyorkan/tahun", "totalTasks": "Tugas dalam jadual", "gapTitle": "Analisis jurang", "exportIcs": "Eksport iCal", "exportPdf": "Cetak senarai semak" },
+    "gap": { "overdue": "Pemeriksaan PMA LEWAT {{days}} hari — tempah pemeriksaan semula DOSH/JKKP sekarang.", "dueSoon": "Pemeriksaan PMA perlu dalam {{days}} hari — jadualkan pemeriksaan DOSH/JKKP.", "ok": "Pemeriksaan PMA sah — seterusnya dalam {{days}} hari." },
+    "calendarTitle": "Jadual penyelenggaraan",
+    "notes": "Gunakan dengan Modul 5. Jadual disusun dari pustaka tugas bertanda ditapis mengikut jenis lif. Pemeriksaan berkanun PMA (DOSH/JKKP) adalah tahunan — analisis jurang memberi amaran bila ia perlu atau lewat. Eksport ke iCal untuk masukkan pelan ke kalendar fasiliti. Lif lebih lama / lebih banyak digunakan mendapat lebih banyak lawatan disyorkan setahun."
+  },
+  "sim12": {
+    "title": "Memburu Bahaya",
+    "short": "Klik-untuk-kenal pasti bahaya dalam adegan keselamatan.",
+    "standard": "OSHA 1994; MS EN 81-20 / EN 115-1",
+    "selectScene": "Pilih adegan",
+    "instruction": "Klik setiap bahaya yang anda nampak.",
+    "found": "Jumpa {{n}} daripada {{total}}",
+    "hazard": "Bahaya",
+    "control": "Kawalan",
+    "controlType": { "engineering": "Kejuruteraan", "administrative": "Pentadbiran", "ppe": "PPE" },
+    "responsible": "Bertanggungjawab",
+    "risk": "Skor risiko",
+    "band": { "low": "Rendah", "medium": "Sederhana", "high": "Tinggi", "critical": "Kritikal" },
+    "reportTitle": "Laporan adegan",
+    "totalRisk": "Jumlah risiko baki",
+    "complete": "Semua bahaya dijumpai!",
+    "notes": "Gunakan dengan Modul 7 (keselamatan). Biarkan peserta klik untuk cari setiap bahaya, kemudian bincang skor risiko (kebarangkalian × keterukan) dan hierarki kawalan — kawalan kejuruteraan mengatasi pentadbiran mengatasi PPE. Tanya siapa bertanggungjawab untuk setiap pembaikan. Laporan adegan menjumlahkan risiko baki."
+  },
+  "sim4": {
+    "title": "Kalkulator Pai Tenaga",
+    "short": "Pecahkan tenaga tahunan lif kepada motor, sedia, pintu dan tambahan.",
+    "standard": "ISO 25745-2:2015",
+    "inputs": {
+      "ratedLoad": "Beban nilai (kg)",
+      "speed": "Kelajuan kontrak (m/s)",
+      "travel": "Ketinggian perjalanan (m)",
+      "drivetrain": "Jenis pemacu",
+      "usageCategory": "Kategori penggunaan",
+      "standbyPower": "Kuasa sedia pengawal (W)",
+      "lightingPower": "Kuasa lampu kabin (W)",
+      "lightingHours": "Jam lampu/hari",
+      "fanPower": "Kuasa kipas kabin (W)",
+      "fanHours": "Jam kipas/hari"
+    },
+    "drivetrain": {
+      "geared": "Traksi bergear",
+      "gearlessPMSM": "Tanpa gear PMSM",
+      "hydraulic": "Hidraulik"
+    },
+    "results": {
+      "annualTotal": "Tenaga tahunan",
+      "annualCost": "Kos tahunan",
+      "co2": "CO₂ dilepaskan",
+      "class": "Kelas prestasi",
+      "specific": "Tenaga spesifik",
+      "motor": "Motor (traksi)",
+      "standby": "Sedia",
+      "door": "Pemacu pintu",
+      "auxiliary": "Lampu & kipas",
+      "classVsRange": "Lif ini vs kelas ISO A–G"
+    },
+    "insight": "Lif ini menggunakan kira-kira {{total}} kWj/tahun, berkos sekitar RM {{cost}} dan melepaskan {{co2}} kg CO₂. {{driver}} mendominasi penggunaan tenaga. Kategori penggunaan lebih tinggi mengalihkan keseimbangan kepada motor; tempoh melahu yang panjang menjadikan kuasa sedia lebih penting — sebab itu mod auto-sedia dan pengawal cekap berbaloi.",
+    "driver": {
+      "motor": "Tenaga traksi (motor)",
+      "standby": "Tenaga sedia",
+      "auxiliary": "Tenaga lampu dan kipas",
+      "door": "Tenaga pemacu pintu"
+    },
+    "notes": "Gunakan dengan Modul 4 (Prestasi Tenaga). Tanya peserta: untuk lif kediaman penggunaan rendah (kategori 1), apa yang mendominasi — motor atau sedia? Salah tanggapan biasa: orang andaikan motor sentiasa pengguna terbesar. Untuk lif trafik rendah, tenaga sedia dan lampu boleh melebihi tenaga traksi dalam setahun. Cuba kategori 1 vs kategori 6 dan perhati perubahan pai."
+  }
+}

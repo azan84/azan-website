@@ -1,0 +1,342 @@
+{
+  "app": {
+    "title": "Lift & Escalator Training Simulators",
+    "subtitle": "DBKL — Design, Maintenance & Energy Management",
+    "language": "Language",
+    "english": "English",
+    "malay": "Bahasa Malaysia"
+  },
+  "nav": {
+    "home": "Home",
+    "backToHome": "All simulators"
+  },
+  "difficulty": {
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
+  },
+  "common": {
+    "showFormula": "Show formula",
+    "hideFormula": "Hide formula",
+    "trainerNotes": "Trainer notes",
+    "exportPng": "Export PNG",
+    "exportJson": "Export JSON",
+    "controls": "Controls",
+    "visualization": "Visualisation",
+    "results": "Results & Insights",
+    "whatThisMeans": "What this means",
+    "source": "Source",
+    "estTime": "{{min}} min",
+    "perYear": "/year",
+    "kwh": "kWh",
+    "rm": "RM"
+  },
+  "tariff": {
+    "title": "Electricity tariff",
+    "editHint": "TNB Tariff C1 (Commercial). Editable; saved on this device.",
+    "energyPeak": "Peak energy (RM/kWh)",
+    "energyOffPeak": "Off-peak energy (RM/kWh)",
+    "maxDemand": "Max demand (RM/kW/month)",
+    "reset": "Reset to default"
+  },
+  "landing": {
+    "intro": "Twelve interactive simulators for the design, operation, maintenance and energy management of lifts and escalators.",
+    "comingSoon": "Coming soon"
+  },
+  "sim1": {
+    "title": "Traffic Flow Simulator",
+    "short": "Visualise peak passenger flow; compute handling capacity and waiting time.",
+    "standard": "CIBSE Guide D (2020); Barney up-peak RTT",
+    "inputs": {
+      "floors": "Upper floors",
+      "popPerFloor": "Population per floor",
+      "cars": "Number of lifts",
+      "capacity": "Car capacity (persons)",
+      "speed": "Contract speed (m/s)",
+      "doorType": "Door type",
+      "floorHeight": "Floor-to-floor height (m)",
+      "profile": "Traffic profile"
+    },
+    "doorType": { "centreOpening2Panel": "Centre-opening 2-panel", "sideOpening2Panel": "Side-opening 2-panel", "centreOpening4Panel": "Centre-opening 4-panel" },
+    "profile": { "upPeak": "Morning up-peak", "twoWay": "Lunch two-way", "downPeak": "Evening down-peak", "interfloor": "Inter-floor" },
+    "results": {
+      "interval": "Interval (INT)",
+      "hc": "Handling capacity",
+      "awt": "Avg waiting time",
+      "rtt": "Round-trip time",
+      "stops": "Expected stops",
+      "highest": "Highest reversal floor",
+      "seconds": "s"
+    },
+    "insight": "With {{cars}} lifts of {{cap}} persons at {{speed}} m/s, the round-trip time is about {{rtt}} s, giving an interval of {{int}} s and a 5-minute handling capacity of {{hc}}%. Average up-peak waiting time is roughly {{awt}} s. A shorter interval (more/faster/bigger cars) means shorter waits; handling capacity must exceed the building's peak arrival rate (typically 11–15% of population for offices).",
+    "notes": "Use with Module 2. Interval and handling capacity are the two headline metrics. Rule of thumb: office up-peak target HC ≈ 11–15% and INT ≤ 30 s. Watch how adding a car, raising speed or increasing capacity changes RTT and INT. Note: served population = population/floor × floors (see DECISIONS T1 on the brief's 12–14% band)."
+  },
+  "sim2": {
+    "title": "Group Control Comparison",
+    "short": "Conventional vs destination control — stops and waiting time.",
+    "standard": "CIBSE Guide D (2020); Monte-Carlo up-peak",
+    "inputs": {
+      "floors": "Upper floors",
+      "cars": "Number of lifts",
+      "capacity": "Car capacity (persons)",
+      "demand": "Passengers in 5 min",
+      "runs": "Monte-Carlo runs"
+    },
+    "collective": "Collective control",
+    "dcs": "Destination control (DCS)",
+    "results": {
+      "awt": "Avg waiting time",
+      "stops": "Stops per trip",
+      "totalStops": "Total stops (5 min)",
+      "journey": "Avg journey time",
+      "awtReduction": "DCS waiting-time saving",
+      "stopReduction": "DCS stop reduction"
+    },
+    "insight": "Over {{runs}} simulated up-peak runs, destination control groups passengers by floor so each car makes {{dcsStops}} stops per trip versus {{collStops}} for collective control — {{stopRed}}% fewer stops. That shortens the round trip and cuts average waiting time by {{awtRed}}% ({{collAwt}} s → {{dcsAwt}} s). Fewer stops also means lower energy per trip.",
+    "notes": "Use with Module 2. DCS asks passengers for their destination at the lobby and batches those going to the same floors into one car — so cars make far fewer stops. The split view runs the same random passenger stream through both algorithms. Expect ≥20% lower waiting and ≥25% fewer stops. Trade-off: passengers must enter their floor before boarding (a behaviour change)."
+  },
+  "sim3": {
+    "title": "Lift Sizing Wizard",
+    "short": "Recommend a lift configuration from a building brief.",
+    "standard": "CIBSE Guide D (2020) §4 sizing tables",
+    "inputs": {
+      "buildingType": "Building type",
+      "gfa": "Gross floor area (m²)",
+      "floors": "Floors above ground",
+      "density": "Occupancy density (m²/person)",
+      "hcTarget": "Handling-capacity target (%)"
+    },
+    "buildingType": { "office": "Office", "hotel": "Hotel", "hospital": "Hospital", "residential": "Residential", "mixed": "Mixed-use", "mall": "Mall" },
+    "occupants": "Estimated occupants",
+    "table": { "rank": "#", "config": "Configuration", "cars": "Cars", "load": "Load", "speed": "Speed", "int": "INT", "hc": "HC%", "drive": "Drive", "group": "Group control", "best": "Recommended" },
+    "noResults": "No configuration meets the target. Lower the handling-capacity target or reduce occupants.",
+    "insight": "For {{occupants}} occupants over {{floors}} floors, the recommended configuration is {{cars}} cars of {{load}} kg at {{speed}} m/s, with a {{drive}} machine and {{group}} group control — interval {{int}} s, handling capacity {{hc}}%. Fewer, well-sized shafts beat many small cars: each shaft consumes valuable building core area.",
+    "notes": "Use with Module 2. The wizard searches car-count × capacity × speed combinations and ranks the feasible ones. Key teaching point: minimise the number of shafts (core area is expensive), then right-size the car and speed to the building height. For tall single-zone buildings the up-peak interval is necessarily longer — which is why real designs introduce zoning or sky-lobbies."
+  },
+  "sim5": {
+    "title": "Sleep-Mode Payback",
+    "short": "Compare always-on vs auto-standby; payback and savings.",
+    "standard": "ISO 25745-2 standby model",
+    "inputs": {
+      "powerBefore": "Current standby power (W)",
+      "powerAfter": "Sleep-mode standby power (W)",
+      "idleHours": "Idle hours/day",
+      "rate": "Energy rate (RM/kWh)",
+      "capex": "One-time setup cost (RM)"
+    },
+    "results": {
+      "energySaved": "Energy saved",
+      "costSaved": "Cost saved",
+      "payback": "Simple payback",
+      "npv": "10-year NPV @ 6%",
+      "co2": "CO₂ avoided",
+      "years": "{{n}} years",
+      "immediate": "Immediate"
+    },
+    "chart": { "title": "24-hour power draw", "alwaysOn": "Always on", "sleepMode": "With sleep mode", "hour": "Hour of day", "watts": "Power (W)" },
+    "insight": "Enabling sleep mode cuts standby draw from {{before}} W to {{after}} W. Over {{idle}} idle hours a day that saves about {{kwh}} kWh and RM {{cost}} per year, avoiding {{co2}} kg CO₂. Because the change is usually a controller setting, payback is {{payback}}.",
+    "notes": "Use with Module 4. Standby power runs 24/7, so even a small wattage adds up. Ask: a lift idle 20 h/day at 300 W wasted — how many kWh/year? (≈2,190.) Most modern controllers support sleep mode as a configuration, so the payback is often immediate."
+  },
+  "sim6": {
+    "title": "VVVF vs Old-Drive",
+    "short": "Energy savings from variable-frequency drives.",
+    "standard": "CIBSE Guide D (2020) Table 6.3",
+    "inputs": {
+      "ratedPower": "Motor rating (kW)",
+      "baselineDrive": "Existing drive",
+      "upgradeDrive": "Upgrade to",
+      "tripsPerDay": "Trips/day",
+      "avgTravel": "Average travel (m)"
+    },
+    "drive": {
+      "singleSpeedAC": "1-speed AC",
+      "twoSpeedAC": "2-speed AC",
+      "acvv": "ACVV (variable voltage)",
+      "vvvfGeared": "VVVF geared",
+      "vvvfGearless": "VVVF gearless PMSM"
+    },
+    "results": {
+      "baselineEnergy": "Existing drive",
+      "upgradeEnergy": "Upgraded drive",
+      "saving": "Energy saving",
+      "savingKwh": "kWh saved",
+      "costSaved": "Cost saved",
+      "co2": "CO₂ avoided"
+    },
+    "chart": { "title": "Power draw over one trip", "time": "Trip progress", "power": "Power (× rated)" },
+    "insight": "Switching from {{from}} to {{to}} cuts annual traction energy by about {{pct}}% — roughly {{kwh}} kWh and RM {{cost}} per year, avoiding {{co2}} kg CO₂. The 1-speed drive draws a blunt rectangular pulse; the VVVF ramps power smoothly, so it wastes far less and gives a more comfortable ride.",
+    "notes": "Use with Module 4/6. The load-vs-time chart is the teaching centrepiece: a 1-speed motor slams to full power (rectangular pulse), while VVVF ramps (trapezoid). Less peak, less heat, less wasted energy, smoother ride. Note that part of consumption is fixed (controls/aux) and isn't reduced by the drive upgrade."
+  },
+  "sim7": {
+    "title": "Regenerative Drive",
+    "short": "Visualise energy recovered when the motor generates.",
+    "standard": "Traction energy balance; ISO 25745-2 context",
+    "inputs": {
+      "carMass": "Car mass (kg)",
+      "ratedLoad": "Rated load (kg)",
+      "balanceRatio": "Counterweight balance",
+      "travel": "Average travel (m)",
+      "regenEff": "Regen drive efficiency",
+      "profile": "Traffic pattern",
+      "gridFeedIn": "Grid feed-in allowed"
+    },
+    "profile": { "mixed": "Mixed two-way", "upPeak": "Morning up-peak", "downPeak": "Evening down-peak" },
+    "results": {
+      "reduction": "Net energy reduction",
+      "recovered": "Energy recovered",
+      "consumed": "Gross consumption",
+      "netWith": "Net with regen",
+      "netWithout": "Net without regen",
+      "costSaved": "Cost saved",
+      "co2": "CO₂ avoided"
+    },
+    "viz": { "title": "Energy flow", "motoring": "Motoring — grid powers the car", "regenerating": "Regenerating — car feeds the grid", "car": "Car", "cwt": "Counterweight", "load": "Load" },
+    "insight": "With a counterweight balancing the car plus {{balance}} of rated load, this lift regenerates on {{regenPct}} of the modelled trips. A regen drive recovers about {{recovered}} kWh/year, cutting net energy by {{reduction}}% — RM {{cost}} and {{co2}} kg CO₂ saved. Without it, that energy is burned as heat in a braking resistor.",
+    "notes": "Use with Module 6. Key idea: a balanced lift spends roughly half its trips with the heavy side descending — that energy can be recovered instead of wasted as heat. Toggle grid feed-in off to show the savings vanish. Reductions of 20–35% match KONE/TKE/Mitsubishi case studies. Note: friction and inertia losses are never recoverable."
+  },
+  "sim8": {
+    "title": "LED Retrofit Calculator",
+    "short": "Cabin and shaft lighting savings and payback.",
+    "standard": "Lighting energy; MyHIJAU grid CO₂ factor",
+    "inputs": {
+      "lampCount": "Number of lamps",
+      "lampType": "Current lamp type",
+      "wattageEach": "Watts per lamp (now)",
+      "ledWattageEach": "Watts per LED lamp",
+      "onHours": "On-hours/day",
+      "unitCost": "LED unit cost (RM)",
+      "labour": "Labour cost (RM)"
+    },
+    "lampType": { "incandescent": "Incandescent", "halogen": "Halogen", "cfl": "CFL", "led": "LED" },
+    "results": {
+      "before": "Before",
+      "after": "After (LED)",
+      "energySaved": "Energy saved",
+      "costSaved": "Cost saved",
+      "payback": "Payback",
+      "co2": "CO₂ avoided",
+      "years": "{{n}} years",
+      "cumulativeTitle": "10-year cumulative saving"
+    },
+    "chart": { "year": "Year", "rm": "Cumulative RM saved", "wattsTitle": "Lighting load (W)" },
+    "insight": "Replacing {{count}} × {{wBefore}} W {{type}} lamps with {{wAfter}} W LEDs cuts the cabin lighting load from {{loadBefore}} W to {{loadAfter}} W. Running {{hours}} h/day that saves {{kwh}} kWh and RM {{cost}} per year, avoids {{co2}} kg CO₂, and pays back in {{payback}}.",
+    "notes": "Use with Module 4. Cabin lights often run 24/7. LED swaps are among the cheapest, fastest-payback energy measures and also cut heat load and maintenance (longer lamp life). Ask: if lamps run 24 h vs 12 h, how does payback change?"
+  },
+  "sim9": {
+    "title": "Escalator Operating Modes",
+    "short": "Continuous vs auto-slowdown vs on-demand energy use.",
+    "standard": "EN 115-1 Annex H; ISO 25745-3",
+    "inputs": {
+      "stepWidth": "Step width (mm)",
+      "rise": "Rise (m)",
+      "speed": "Nominal speed (m/s)",
+      "ratedMotor": "Motor rating (kW)",
+      "operatingHours": "Operating hours/day",
+      "profile": "Passenger arrival",
+      "mode": "Operating mode"
+    },
+    "profile": { "uniform": "Uniform (steady)", "peaky": "Peaky (mall)", "sparse": "Sparse (quiet)" },
+    "mode": { "continuous": "Continuous run", "autoSlowdown": "Auto-slowdown", "onDemand": "On-demand start" },
+    "results": {
+      "dailyEnergy": "Daily energy (this mode)",
+      "annualEnergy": "Annual energy",
+      "reduction": "Saving vs continuous",
+      "cost": "Annual cost",
+      "co2": "CO₂/year",
+      "passengers": "Passengers/day",
+      "compareTitle": "Daily energy by mode"
+    },
+    "insight": "In {{mode}} mode this escalator uses about {{daily}} kWh/day ({{annual}} kWh/year). Versus running continuously that is a {{reduction}}% saving — RM {{cost}} and {{co2}} kg CO₂ a year. No-load power (turning empty) dominates, so slowing or stopping when no one is riding is where the savings come from.",
+    "notes": "Use with Module 4/9. The big idea: an escalator turning empty still draws 30–55% of rated power. Auto-slowdown drops to a crawl when idle (~30–45% saving); on-demand stops entirely and restarts on a sensor (~50–70% saving). With peaky mall traffic there is lots of idle time to exploit. Ask: why is on-demand less suitable for very busy, continuous-flow escalators?"
+  },
+  "sim10": {
+    "title": "Fault Diagnosis Trainer",
+    "short": "Branching decision trees for the top ten common faults.",
+    "standard": "Module 3; MS EN 81-20 / MS EN 81-50",
+    "selectFault": "Choose a fault to diagnose",
+    "question": "Question",
+    "step": "Step {{n}}",
+    "back": "Back",
+    "restart": "Restart",
+    "diagnosis": "Diagnosis",
+    "cause": "Likely root cause",
+    "action": "Recommended first action",
+    "escalate": "When to escalate",
+    "clause": "Related clause",
+    "safety": "Safety reminder",
+    "notes": "Use with Module 3. Let trainees drive the tree and explain each choice. Every fault terminates within six questions. Emphasise the safety reminders — several faults (safety gear, brake, alarm) require taking the lift out of service immediately. Discuss when to stop and escalate rather than continue."
+  },
+  "sim11": {
+    "title": "Maintenance Planner",
+    "short": "Generate a statutory maintenance schedule and calendar.",
+    "standard": "MS EN 81-20, MS 2473, DOSH/JKKP (PMA)",
+    "inputs": { "liftType": "Lift type", "age": "Age (years)", "usageCategory": "Usage category", "lastPMA": "Last PMA inspection" },
+    "liftType": { "passenger": "Passenger", "goods": "Goods", "hospital": "Hospital", "observation": "Observation" },
+    "frequency": { "daily": "Daily", "weekly": "Weekly", "monthly": "Monthly", "quarterly": "Quarterly", "annual": "Annual", "statutory": "Statutory" },
+    "skill": { "operator": "Operator", "technician": "Technician", "engineer": "Engineer" },
+    "results": { "visits": "Recommended visits/year", "totalTasks": "Tasks in schedule", "gapTitle": "Gap analysis", "exportIcs": "Export iCal", "exportPdf": "Print checklist" },
+    "gap": { "overdue": "PMA inspection OVERDUE by {{days}} days — book DOSH/JKKP re-inspection now.", "dueSoon": "PMA inspection due in {{days}} days — schedule the DOSH/JKKP inspection.", "ok": "PMA inspection valid — next due in {{days}} days." },
+    "calendarTitle": "Maintenance schedule",
+    "notes": "Use with Module 5. The schedule is composed from a tagged task library filtered by lift type. The statutory PMA inspection (DOSH/JKKP) is annual — the gap analysis warns when it is due or overdue. Export to iCal to drop the plan into a facilities calendar. Older / heavier-used lifts get more recommended visits per year."
+  },
+  "sim12": {
+    "title": "Hazard Hunt",
+    "short": "Click-to-identify hazards in staged safety scenes.",
+    "standard": "OSHA 1994; MS EN 81-20 / EN 115-1",
+    "selectScene": "Choose a scene",
+    "instruction": "Click each hazard you can spot.",
+    "found": "Found {{n}} of {{total}}",
+    "hazard": "Hazard",
+    "control": "Control",
+    "controlType": { "engineering": "Engineering", "administrative": "Administrative", "ppe": "PPE" },
+    "responsible": "Responsible",
+    "risk": "Risk score",
+    "band": { "low": "Low", "medium": "Medium", "high": "High", "critical": "Critical" },
+    "reportTitle": "Scene report",
+    "totalRisk": "Total residual risk",
+    "complete": "All hazards found!",
+    "notes": "Use with Module 7 (safety). Let trainees click to find each hazard, then discuss the risk score (likelihood × severity) and the control hierarchy — engineering controls beat administrative beat PPE. Ask who is responsible for each fix. The scene report totals residual risk."
+  },
+  "sim4": {
+    "title": "Energy Pie Calculator",
+    "short": "Break a lift's annual energy into motor, standby, door and auxiliary.",
+    "standard": "ISO 25745-2:2015",
+    "inputs": {
+      "ratedLoad": "Rated load (kg)",
+      "speed": "Contract speed (m/s)",
+      "travel": "Travel height (m)",
+      "drivetrain": "Drive type",
+      "usageCategory": "Usage category",
+      "standbyPower": "Controller standby power (W)",
+      "lightingPower": "Cabin lighting power (W)",
+      "lightingHours": "Lighting hours/day",
+      "fanPower": "Cabin fan power (W)",
+      "fanHours": "Fan hours/day"
+    },
+    "drivetrain": {
+      "geared": "Geared traction",
+      "gearlessPMSM": "Gearless PMSM",
+      "hydraulic": "Hydraulic"
+    },
+    "results": {
+      "annualTotal": "Annual energy",
+      "annualCost": "Annual cost",
+      "co2": "CO₂ emitted",
+      "class": "Performance class",
+      "specific": "Specific energy",
+      "motor": "Motor (traction)",
+      "standby": "Standby",
+      "door": "Door operator",
+      "auxiliary": "Lighting & fan",
+      "classVsRange": "This lift vs ISO classes A–G"
+    },
+    "insight": "This lift uses about {{total}} kWh/year, costing roughly RM {{cost}} and emitting {{co2}} kg CO₂. {{driver}} dominates the energy use. Higher usage categories shift the balance toward the motor; long idle periods make standby power matter more — which is why auto-standby and efficient controllers pay off.",
+    "driver": {
+      "motor": "Traction (motor) energy",
+      "standby": "Standby energy",
+      "auxiliary": "Lighting and fan energy",
+      "door": "Door-operator energy"
+    },
+    "notes": "Use this with Module 4 (Energy Performance). Ask trainees: for a lightly-used residential lift (category 1), what dominates — motor or standby? Common misconception: people assume the motor is always the biggest consumer. For low-traffic lifts, standby and lighting can exceed traction energy over a year. Try category 1 vs category 6 and watch the donut change."
+  }
+}

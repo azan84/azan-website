@@ -1,0 +1,1 @@
+function o(n,t,e){return Math.max(0,n-t)*e*365/1e3}function s(n,t){return n*t}function i(n,t){return n<=0?0:t<=0?1/0:n/t}function f(n,t,e,a){let u=0;for(let r=1;r<=t;r++)u+=n/Math.pow(1+e,r);return u-a}function c(n,t){return n*t}export{s as a,o as b,c,f as n,i as s};
