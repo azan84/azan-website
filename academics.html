@@ -298,6 +298,77 @@
           </a>
         </figcaption>
       </figure>
+
+      <!-- Interactive App 3: Image to Keychain maker -->
+      <!-- TODO after deploying the Hugging Face Space: replace AZAN-HF-USERNAME
+           (appears twice below) with your real Hugging Face username. -->
+      <figure class="sim-figure clay reveal">
+        <a class="sim-media caturmatik-poster" href="https://huggingface.co/spaces/AZAN-HF-USERNAME/image-to-keychain" target="_blank" rel="noopener" aria-label="Open the Image to Keychain maker">
+          <svg class="sim-gif" viewBox="0 0 480 300" role="img" aria-label="Image to keychain maker — a portrait turned into a multi-color 3D-printed keychain with a name plate">
+            <defs>
+              <linearGradient id="kcBg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#0f766e"/>
+                <stop offset="1" stop-color="#134e4a"/>
+              </linearGradient>
+              <filter id="kcShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.28"/>
+              </filter>
+            </defs>
+            <rect width="480" height="300" fill="url(#kcBg)"/>
+
+            <!-- the keychain object: silhouette body + key ring + name plate -->
+            <g filter="url(#kcShadow)">
+              <!-- key ring -->
+              <circle cx="138" cy="60" r="16" fill="none" stroke="#eaf2f0" stroke-width="6"/>
+              <!-- body -->
+              <rect x="86" y="74" width="150" height="150" rx="20" fill="#eaf2f0"/>
+              <!-- name plate -->
+              <rect x="92" y="232" width="138" height="38" rx="10" fill="#eaf2f0"/>
+            </g>
+            <!-- minimal chibi face on the body -->
+            <path d="M112 132 q49 -54 98 0" fill="none" stroke="#12211f" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="141" cy="150" r="7" fill="#12211f"/>
+            <circle cx="181" cy="150" r="7" fill="#12211f"/>
+            <path d="M138 182 q23 20 46 0" fill="none" stroke="#c82b27" stroke-width="6" stroke-linecap="round"/>
+            <!-- name plate text -->
+            <text x="161" y="258" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="700" text-anchor="middle" fill="#0f766e">LUQMAN</text>
+
+            <!-- result card: 3MF + AMS filament chips -->
+            <g filter="url(#kcShadow)">
+              <rect x="276" y="66" width="168" height="168" rx="16" fill="#ffffff"/>
+            </g>
+            <text x="296" y="92" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#0f766e">EXPORT</text>
+            <text x="294" y="150" font-family="'Instrument Serif', Georgia, serif" font-size="52" font-weight="700" fill="#0f766e">3MF</text>
+            <text x="296" y="172" font-family="'Inter', sans-serif" font-size="12.5" font-weight="600" fill="#12211f">+ STL parts</text>
+            <g>
+              <rect x="296" y="190" width="22" height="14" rx="3" fill="#c82b27"/>
+              <rect x="322" y="190" width="22" height="14" rx="3" fill="#d1a275"/>
+              <rect x="348" y="190" width="22" height="14" rx="3" fill="#1e1e21"/>
+              <rect x="374" y="190" width="22" height="14" rx="3" fill="#f4f4f4" stroke="#d8d8d8" stroke-width="1"/>
+              <rect x="400" y="190" width="22" height="14" rx="3" fill="#8c3a35"/>
+            </g>
+            <text x="296" y="222" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#475569">Bambu Studio &#183; AMS-ready</text>
+          </svg>
+          <span class="sim-badge"><span class="sim-dot"></span>Runs in browser</span>
+        </a>
+
+        <figcaption class="sim-caption">
+          <h3 style="margin:0 0 0.4rem;font-size:1.05rem;font-weight:600;color:var(--ink)">Image &rarr; 3D Keychain Maker</h3>
+          <p class="sim-desc">
+            Drop in a stylized <b>portrait or chibi PNG</b> and get a <b>multi-color 3D-printable keychain</b> back &mdash; the tool separates colors into AMS layers, traces the outline art, adds a <em>keyring tab</em>, and can stamp a <b>name plate</b> (Disney-style font included) below the image. Live top-down preview, then one-click <b>3MF + STL</b> export ready to drop straight into <b>Bambu Studio</b>.
+          </p>
+          <ul class="sim-meta">
+            <li><span class="k">Input</span><span class="v">PNG portrait</span></li>
+            <li><span class="k">Output</span><span class="v">3MF &middot; STL</span></li>
+            <li><span class="k">Color</span><span class="v">Multi-part &middot; AMS</span></li>
+            <li><span class="k">Cost</span><span class="v">Free</span></li>
+          </ul>
+          <a class="caturmatik-play" href="https://huggingface.co/spaces/AZAN-HF-USERNAME/image-to-keychain" target="_blank" rel="noopener" aria-label="Open the Image to Keychain maker">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Launch Maker
+          </a>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
