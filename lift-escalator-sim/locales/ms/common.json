@@ -306,6 +306,7 @@
       "speed": "Kelajuan kontrak (m/s)",
       "travel": "Ketinggian perjalanan (m)",
       "drivetrain": "Jenis pemacu",
+      "regenerativeDrive": "Pemacu janakuasa semula",
       "usageCategory": "Kategori penggunaan",
       "standbyPower": "Kuasa sedia pengawal (W)",
       "lightingPower": "Kuasa lampu kabin (W)",

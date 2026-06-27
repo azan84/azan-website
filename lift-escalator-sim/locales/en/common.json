@@ -306,6 +306,7 @@
       "speed": "Contract speed (m/s)",
       "travel": "Travel height (m)",
       "drivetrain": "Drive type",
+      "regenerativeDrive": "Regenerative drive",
       "usageCategory": "Usage category",
       "standbyPower": "Controller standby power (W)",
       "lightingPower": "Cabin lighting power (W)",
