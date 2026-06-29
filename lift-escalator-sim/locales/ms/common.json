@@ -278,7 +278,7 @@
     "results": { "visits": "Lawatan disyorkan/tahun", "totalTasks": "Tugas dalam jadual", "gapTitle": "Analisis jurang", "exportIcs": "Eksport iCal", "exportPdf": "Cetak senarai semak" },
     "gap": { "overdue": "Pemeriksaan PMA LEWAT {{days}} hari — tempah pemeriksaan semula DOSH/JKKP sekarang.", "dueSoon": "Pemeriksaan PMA perlu dalam {{days}} hari — jadualkan pemeriksaan DOSH/JKKP.", "ok": "Pemeriksaan PMA sah — seterusnya dalam {{days}} hari." },
     "calendarTitle": "Jadual penyelenggaraan",
-    "notes": "Gunakan dengan Modul 5. Jadual disusun dari pustaka tugas bertanda ditapis mengikut jenis lif. Pemeriksaan berkanun PMA (DOSH/JKKP) adalah tahunan — analisis jurang memberi amaran bila ia perlu atau lewat. Eksport ke iCal untuk masukkan pelan ke kalendar fasiliti. Lif lebih lama / lebih banyak digunakan mendapat lebih banyak lawatan disyorkan setahun."
+    "notes": "Gunakan dengan Modul 5. Jadual disusun dari pustaka tugas bertanda ditapis mengikut jenis lif. Pemeriksaan berkanun PMA (DOSH/JKKP) mengikut kitaran Perakuan Kelayakan 15 bulan (bukan tahunan) — analisis jurang memberi amaran bila ia perlu atau lewat. Eksport ke iCal untuk masukkan pelan ke kalendar fasiliti. Lif lebih lama / lebih banyak digunakan mendapat lebih banyak lawatan disyorkan setahun."
   },
   "sim12": {
     "title": "Memburu Bahaya",
@@ -308,6 +308,7 @@
       "travel": "Ketinggian perjalanan (m)",
       "drivetrain": "Jenis pemacu",
       "regenerativeDrive": "Pemacu janakuasa semula",
+      "regenHint": "Mesin VVVF tanpa gear sahaja — pemacu bergear hilang tenaga brek dalam gear.",
       "usageCategory": "Kategori penggunaan",
       "standbyPower": "Kuasa sedia pengawal (W)",
       "lightingPower": "Kuasa lampu kabin (W)",

@@ -278,7 +278,7 @@
     "results": { "visits": "Recommended visits/year", "totalTasks": "Tasks in schedule", "gapTitle": "Gap analysis", "exportIcs": "Export iCal", "exportPdf": "Print checklist" },
     "gap": { "overdue": "PMA inspection OVERDUE by {{days}} days — book DOSH/JKKP re-inspection now.", "dueSoon": "PMA inspection due in {{days}} days — schedule the DOSH/JKKP inspection.", "ok": "PMA inspection valid — next due in {{days}} days." },
     "calendarTitle": "Maintenance schedule",
-    "notes": "Use with Module 5. The schedule is composed from a tagged task library filtered by lift type. The statutory PMA inspection (DOSH/JKKP) is annual — the gap analysis warns when it is due or overdue. Export to iCal to drop the plan into a facilities calendar. Older / heavier-used lifts get more recommended visits per year."
+    "notes": "Use with Module 5. The schedule is composed from a tagged task library filtered by lift type. The statutory PMA inspection (DOSH/JKKP) runs on a 15-month Certificate-of-Fitness cycle (not annual) — the gap analysis warns when it is due or overdue. Export to iCal to drop the plan into a facilities calendar. Older / heavier-used lifts get more recommended visits per year."
   },
   "sim12": {
     "title": "Hazard Hunt",
@@ -308,6 +308,7 @@
       "travel": "Travel height (m)",
       "drivetrain": "Drive type",
       "regenerativeDrive": "Regenerative drive",
+      "regenHint": "Gearless VVVF machines only — geared drives lose the braking energy in the gearbox.",
       "usageCategory": "Usage category",
       "standbyPower": "Controller standby power (W)",
       "lightingPower": "Cabin lighting power (W)",
