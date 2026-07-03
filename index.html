@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=6" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=8" />
 
   <!-- Structured data: Person (rich, for Google Knowledge Panel) -->
   <script type="application/ld+json">
@@ -121,6 +121,7 @@
 </head>
 <body class="has-tokens">
 
+  <a class="skip-link" href="#hero">Skip to content</a>
   <div class="nav-progress" aria-hidden="true"></div>
 
   <nav class="navbar" id="navbar">
@@ -144,7 +145,7 @@
   </nav>
 
   <!-- ===== HERO (v2 — editorial + antigravity) ===== -->
-  <section class="hero hero-v2" id="hero" data-antigravity>
+  <section class="hero hero-v2" id="hero" tabindex="-1" data-antigravity>
 
     <!-- Curl-noise flow-field canvas (wake around a virtual cylinder) -->
     <canvas id="flowCanvas" class="flow-canvas" aria-hidden="true"></canvas>

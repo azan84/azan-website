@@ -1868,3 +1868,102 @@ body.has-tokens .footer p { color: var(--ink-4); }
     transition: none !important;
   }
 }
+
+/* ============================================================
+   STAGE D — 10/10 polish pass (additive, identity-preserving)
+   Purely-additive layer: refined micro-interactions, hardened
+   focus/skip a11y, and print styles. Gated on body.has-tokens to
+   match the existing architecture; every motion rule respects
+   prefers-reduced-motion. Nothing here alters layout, palette,
+   fonts or content — it only elevates feel + accessibility.
+   ============================================================ */
+
+/* --- Accessible skip link (visually hidden until focused) --- */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateY(-120%);
+  z-index: 10000;
+  padding: 0.7rem 1.15rem;
+  background: var(--accent-1, #0a4d6e);
+  color: #fff;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 0 0 12px 0;
+  box-shadow: var(--shadow-lg, 0 20px 40px -16px rgba(0,0,0,.3));
+  transition: transform var(--dur-base, 250ms) var(--ease-out-expo, cubic-bezier(.22,1,.36,1));
+}
+.skip-link:focus { transform: translateY(0); outline: none; }
+
+/* --- Focus-visible fallback for any page (has-tokens adds its own) --- */
+:focus-visible {
+  outline: 2px solid var(--accent-2, #c26a12);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --- Premium hover micro-interactions (feel, not layout) --- */
+body.has-tokens .research-card,
+body.has-tokens .quick-card,
+body.has-tokens .blog-card,
+body.has-tokens .stat-card,
+body.has-tokens .keyword-tag,
+body.has-tokens .hero-photo {
+  transition:
+    transform var(--dur-base, 250ms) var(--ease-out-expo, cubic-bezier(.22,1,.36,1)),
+    box-shadow var(--dur-base, 250ms) var(--ease-out-expo, cubic-bezier(.22,1,.36,1));
+  will-change: transform;
+}
+body.has-tokens .research-card:hover,
+body.has-tokens .quick-card:hover,
+body.has-tokens .blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg, 0 20px 40px -16px rgba(15,20,25,.12));
+}
+body.has-tokens .stat-card:hover { transform: translateY(-3px); }
+body.has-tokens .keyword-tag:hover { transform: translateY(-2px); }
+body.has-tokens .hero-photo:hover { transform: scale(1.015); }
+
+@media (prefers-reduced-motion: reduce) {
+  body.has-tokens .research-card,
+  body.has-tokens .quick-card,
+  body.has-tokens .blog-card,
+  body.has-tokens .stat-card,
+  body.has-tokens .keyword-tag,
+  body.has-tokens .hero-photo,
+  .skip-link {
+    transition: none !important;
+  }
+  body.has-tokens .research-card:hover,
+  body.has-tokens .quick-card:hover,
+  body.has-tokens .blog-card:hover,
+  body.has-tokens .stat-card:hover,
+  body.has-tokens .keyword-tag:hover,
+  body.has-tokens .hero-photo:hover {
+    transform: none;
+  }
+}
+
+/* --- Print: a clean B&W profile / CV output (screen untouched) --- */
+@media print {
+  .navbar, .nav-toggle, .theme-toggle, .cursor-glow, .spotlight,
+  .skip-link, .footer, .scroll-top, .nav-progress, video, .sim-badge {
+    display: none !important;
+  }
+  html, body { background: #fff !important; }
+  *, *::before, *::after {
+    background: transparent !important;
+    color: #111 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+  section, .hero { padding: 0.6rem 0 !important; min-height: 0 !important; page-break-inside: avoid; }
+  .hero-grid { grid-template-columns: 1fr 1.6fr !important; }
+  a { text-decoration: underline; }
+  h1, h2, h3 { page-break-after: avoid; }
+  img { max-width: 42mm; }
+  @page { margin: 16mm; }
+}
