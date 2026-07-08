@@ -160,3 +160,57 @@ function handleContactSubmit(e) {
     counters.forEach(el => countObs.observe(el));
   }
 })();
+
+/* ===== Sim videos: autoplay in view, pause out of view =====
+   Muted + playsinline videos may autoplay programmatically, so each .sim-media
+   video starts when ~a third of it is visible and pauses when scrolled away.
+   A pause the USER makes is respected (no restart on re-entry) — scripted
+   play/pause is marked with a per-video flag that the queued media event
+   consumes, distinguishing it from clicks on the controls. Reduced-motion
+   users keep click-to-play only. */
+(function () {
+  const videos = document.querySelectorAll('.sim-media video');
+  if (!videos.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  videos.forEach((v) => {
+    v.addEventListener('pause', () => {
+      if (v.dataset.scriptedPause) {
+        delete v.dataset.scriptedPause;
+      } else if (!v.ended) {
+        v.dataset.userPaused = '1';
+      }
+    });
+    v.addEventListener('play', () => {
+      if (v.dataset.scriptedPlay) {
+        delete v.dataset.scriptedPlay;
+      } else {
+        delete v.dataset.userPaused; // user pressed play — resume auto behaviour
+      }
+    });
+  });
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const v = entry.target;
+      if (entry.isIntersecting) {
+        if (v.paused && !v.dataset.userPaused) {
+          v.dataset.scriptedPlay = '1';
+          v.dataset.autoplayAttempted = '1';
+          const p = v.play();
+          if (p && p.catch) {
+            p.catch(() => {
+              // Autoplay vetoed (rare with muted) — leave the controls to the user.
+              delete v.dataset.scriptedPlay;
+            });
+          }
+        }
+      } else if (!v.paused) {
+        v.dataset.scriptedPause = '1';
+        v.pause();
+      }
+    });
+  }, { threshold: 0.35 });
+
+  videos.forEach((v) => obs.observe(v));
+})();
