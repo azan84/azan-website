@@ -1967,3 +1967,18 @@ body.has-tokens .hero-photo:hover { transform: scale(1.015); }
   img { max-width: 42mm; }
   @page { margin: 16mm; }
 }
+
+/* Sage variant badge dot for the DrivAer aero slice */
+.sim-dot.sage {
+  background: var(--accent-3, #6f9a67);
+  box-shadow: 0 0 0 0 rgba(121, 162, 113, 0.55);
+  animation: simPulseSage 2.1s ease-in-out infinite;
+}
+@keyframes simPulseSage {
+  0%   { box-shadow: 0 0 0 0   rgba(121, 162, 113, 0.55); }
+  70%  { box-shadow: 0 0 0 8px rgba(121, 162, 113, 0); }
+  100% { box-shadow: 0 0 0 0   rgba(121, 162, 113, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sim-dot.sage { animation: none; }
+}

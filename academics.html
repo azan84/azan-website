@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=8" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=9" />
   <!-- Caturmatik featured-app card (scoped styles) -->
   <style>
     .caturmatik-poster { display: block; text-decoration: none; cursor: pointer; }
@@ -156,6 +156,40 @@
             <li><span class="k">Method</span><span class="v">VOF</span></li>
             <li><span class="k">Fluid</span><span class="v">Water / Air</span></li>
             <li><span class="k">Interface</span><span class="v">Free-surface</span></li>
+          </ul>
+        </figcaption>
+      </figure>
+
+      <!-- Simulation 3: DrivAer fastback DDES aerodynamics -->
+      <figure class="sim-figure clay reveal">
+        <div class="sim-media">
+          <video
+            class="sim-gif"
+            controls
+            muted
+            loop
+            preload="metadata"
+            playsinline
+            aria-label="DrivAer fastback detached-eddy simulation: spanwise vorticity on the centreline slice, showing shear layers feeding the unsteady base wake"
+          >
+            <source src="assets/video/driveaer_aero_slice.mp4" type="video/mp4" />
+            Your browser does not support HTML5 video.
+          </video>
+          <span class="sim-badge"><span class="sim-dot sage"></span>DrivAer DDES</span>
+        </div>
+
+        <figcaption class="sim-caption">
+          <h3 style="margin:0 0 0.4rem;font-size:1.05rem;font-weight:600;color:var(--ink)">DrivAer Fastback — Vehicle Aerodynamics</h3>
+          <p class="sim-desc">
+            External aerodynamics of the <b>DrivAer fastback</b> road-car benchmark at 144&nbsp;km/h (Re&nbsp;≈&nbsp;1.2&nbsp;×&nbsp;10⁷), solved as a transient <b>k–ω SST delayed detached-eddy simulation</b> in OpenFOAM with a moving ground belt and rotating wheels. The centreline slice shows <em>spanwise vorticity</em> — A-pillar and roof shear layers feeding an asymmetric base wake shedding at ~8–9&nbsp;Hz. Mean drag C<sub>d</sub>&nbsp;≈&nbsp;0.31, inside the published DrivAer reference band.
+          </p>
+          <ul class="sim-meta">
+            <li><span class="k">Solver</span><span class="v">OpenFOAM · DDES</span></li>
+            <li><span class="k">Model</span><span class="v">k–ω SST</span></li>
+            <li><span class="k">Reynolds</span><span class="v">1.2 × 10⁷</span></li>
+            <li><span class="k">Mesh</span><span class="v">0.74M cells</span></li>
+            <li><span class="k">Cd (mean)</span><span class="v">0.311</span></li>
+            <li><span class="k">Post</span><span class="v">PyVista + Blender</span></li>
           </ul>
         </figcaption>
       </figure>
