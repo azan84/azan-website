@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="assets/images/Icon.png" />
+  <link rel="apple-touch-icon" href="assets/images/Icon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Apps — Dr. Mohd Azan Bin Mohammed Sapardi</title>
+  <meta name="description" content="Free interactive web apps you can run right in your browser — Caturmatik (chess x times-tables), the DBKL Lift & Escalator simulator suite, and an image-to-3D-keychain maker. By Dr. Mohd Azan Bin Mohammed Sapardi, IIUM." />
+  <meta name="keywords" content="Caturmatik, chess sifir app, DBKL lift escalator simulator, ISO 25745 lift energy, image to keychain 3D print, Dr Azan Sapardi web apps, IIUM interactive tools" />
+  <link rel="canonical" href="https://azan.biomechemical.com/webapp.html" />
+  <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0e1013" media="(prefers-color-scheme: dark)" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Web Apps — Dr. Mohd Azan Bin Mohammed Sapardi" />
+  <meta property="og:description" content="Free interactive web apps you can run right in your browser — Caturmatik, a 12-simulator lift & escalator training suite, and an image-to-3D-keychain maker." />
+  <meta property="og:url" content="https://azan.biomechemical.com/webapp.html" />
+  <meta property="og:image" content="https://azan.biomechemical.com/portrait_sapardi.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=9" />
+  <!-- Featured-app card (scoped styles) -->
+  <style>
+    .caturmatik-poster { display: block; text-decoration: none; cursor: pointer; }
+    .caturmatik-play {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.72rem 1.3rem;
+      border-radius: 999px;
+      background: #0f766e;
+      color: #ffffff;
+      font-family: var(--font-body, 'Inter Tight', sans-serif);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      box-shadow: 0 10px 24px -10px rgba(15, 118, 110, 0.65);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .caturmatik-play:hover {
+      transform: translateY(-2px);
+      background: #115e59;
+      box-shadow: 0 14px 30px -10px rgba(15, 118, 110, 0.7);
+    }
+    .caturmatik-play svg { width: 18px; height: 18px; display: block; }
+    :root[data-theme="dark"] body.has-tokens .caturmatik-play { background: #14b8a6; color: #06231f; }
+    :root[data-theme="dark"] body.has-tokens .caturmatik-play:hover { background: #2dd4bf; }
+    @media (prefers-reduced-motion: reduce) {
+      .caturmatik-play { transition: none; }
+      .caturmatik-play:hover { transform: none; }
+    }
+  </style>
+</head>
+<body class="has-tokens">
+
+  <a class="skip-link" href="#apps">Skip to content</a>
+  <div class="nav-progress" aria-hidden="true"></div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Dr. <span>Azan</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="academics.html">Academics</a></li>
+        <li><a href="webapp.html">Apps</a></li>
+        <li><a href="students.html">Students</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="personal.html">Personal</a></li>
+      </ul>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+        <svg class="sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== BANNER ===== -->
+  <div class="page-banner page-banner-v2">
+    <div class="glyph-layer" id="glyphLayer" aria-hidden="true">
+      <span class="sci-glyph g1" data-depth="1.2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></span>
+      <span class="sci-glyph g2 amber" data-depth="0.8"><svg viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 12 L 8 4 L 14 12 L 8 20 Z"/><path d="M14 12 L 20 6 L 26 12 L 20 18 Z" opacity="0.6"/></svg></span>
+      <span class="sci-glyph g3" data-depth="1.6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+      <span class="sci-glyph g4" data-depth="1.0"><svg viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 12 Q 8 2, 14 12 T 26 12 T 38 12 T 46 12"/></svg></span>
+    </div>
+    <div class="container">
+      <h1>Web Apps</h1>
+      <p class="banner-desc">Interactive tools you can run right in your browser — free, no install</p>
+      <div class="underline-accent"></div>
+    </div>
+  </div>
+
+  <!-- ===== INTERACTIVE APP (Caturmatik) ===== -->
+  <section class="sim-showcase" id="apps">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-subtitle">Interactive Apps</p>
+        <h2 class="section-title">Run Them in Your Browser</h2>
+        <div class="underline-accent"></div>
+      </div>
+
+      <figure class="sim-figure clay reveal">
+        <a class="sim-media caturmatik-poster" href="caturmatik/" aria-label="Open and play Caturmatik">
+          <svg class="sim-gif" viewBox="0 0 480 300" role="img" aria-label="Caturmatik — a chessboard with a times-table question card">
+            <defs>
+              <linearGradient id="catBg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#0f766e"/>
+                <stop offset="1" stop-color="#134e4a"/>
+              </linearGradient>
+              <pattern id="catBoard" width="56" height="56" patternUnits="userSpaceOnUse">
+                <rect width="56" height="56" fill="#eaf2f0"/>
+                <rect width="28" height="28" fill="#2f8f84"/>
+                <rect x="28" y="28" width="28" height="28" fill="#2f8f84"/>
+              </pattern>
+              <filter id="catShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.28"/>
+              </filter>
+            </defs>
+
+            <rect width="480" height="300" fill="url(#catBg)"/>
+
+            <!-- chessboard -->
+            <rect x="40" y="38" width="224" height="224" rx="6" fill="url(#catBoard)" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+
+            <!-- pieces (Unicode chess glyphs) -->
+            <text x="82"  y="80"  font-size="30" text-anchor="middle" dominant-baseline="central" fill="#ffffff">&#9819;</text>
+            <text x="194" y="108" font-size="34" text-anchor="middle" dominant-baseline="central" fill="#ffffff">&#9818;</text>
+            <text x="166" y="164" font-size="30" text-anchor="middle" dominant-baseline="central" fill="#12211f">&#9823;</text>
+            <text x="110" y="192" font-size="34" text-anchor="middle" dominant-baseline="central" fill="#12211f">&#9822;</text>
+
+            <!-- sifir question card -->
+            <g filter="url(#catShadow)">
+              <rect x="298" y="74" width="150" height="104" rx="18" fill="#ffffff"/>
+            </g>
+            <text x="318" y="100" font-family="'JetBrains Mono', monospace" font-size="12" letter-spacing="2" fill="#0f766e">SIFIR</text>
+            <text x="318" y="135" font-family="'JetBrains Mono', monospace" font-size="30" font-weight="700" fill="#12211f">7 &#215; 8</text>
+            <text x="318" y="163" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="600" fill="#12211f">= 56</text>
+            <text x="396" y="163" font-size="20" fill="#f59e0b">&#10003;</text>
+          </svg>
+          <span class="sim-badge"><span class="sim-dot"></span>Play in browser</span>
+        </a>
+
+        <figcaption class="sim-caption">
+          <h3 style="margin:0 0 0.4rem;font-size:1.05rem;font-weight:600;color:var(--ink)">Caturmatik &mdash; Chess &times; Sifir</h3>
+          <p class="sim-desc">
+            A teaching twist on chess: <b>every move must be unlocked by a times-table (sifir) question</b>. Choose a move, answer the multiplication prompt correctly, and the piece advances &mdash; turning ordinary play into rapid mental-arithmetic drill. Built as an installable <em>Progressive Web App</em> that runs fully <b>offline</b>, with same-device two-player mode and an optional online room for cross-device matches.
+          </p>
+          <ul class="sim-meta">
+            <li><span class="k">Concept</span><span class="v">Chess &times; Sifir</span></li>
+            <li><span class="k">Platform</span><span class="v">PWA &middot; Offline</span></li>
+            <li><span class="k">Players</span><span class="v">2P local / online</span></li>
+            <li><span class="k">Cost</span><span class="v">Free</span></li>
+          </ul>
+          <a class="caturmatik-play" href="caturmatik/" aria-label="Open and play Caturmatik">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Play Caturmatik
+          </a>
+        </figcaption>
+      </figure>
+
+      <!-- Interactive App 2: DBKL Lift & Escalator Simulator Suite -->
+      <figure class="sim-figure clay reveal">
+        <a class="sim-media caturmatik-poster" href="lift-escalator-sim/" target="_blank" rel="noopener" aria-label="Open the Lift and Escalator simulator suite">
+          <svg class="sim-gif" viewBox="0 0 480 300" role="img" aria-label="Lift and escalator energy simulator — a building with lifts and an A to G energy grade">
+            <defs>
+              <linearGradient id="ltBg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#0f766e"/>
+                <stop offset="1" stop-color="#123f3d"/>
+              </linearGradient>
+              <filter id="ltShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.28"/>
+              </filter>
+            </defs>
+            <rect width="480" height="300" fill="url(#ltBg)"/>
+
+            <!-- building with two lift shafts -->
+            <rect x="40" y="42" width="196" height="220" rx="6" fill="#0c3536" stroke="rgba(255,255,255,0.32)" stroke-width="1.5"/>
+            <g stroke="rgba(255,255,255,0.14)" stroke-width="1">
+              <line x1="46" y1="92" x2="230" y2="92"/>
+              <line x1="46" y1="138" x2="230" y2="138"/>
+              <line x1="46" y1="184" x2="230" y2="184"/>
+              <line x1="46" y1="230" x2="230" y2="230"/>
+            </g>
+            <rect x="70" y="54" width="58" height="196" rx="3" fill="rgba(0,0,0,0.25)"/>
+            <rect x="78" y="100" width="42" height="42" rx="2" fill="#2dd4bf"/>
+            <rect x="148" y="54" width="58" height="196" rx="3" fill="rgba(0,0,0,0.25)"/>
+            <rect x="156" y="186" width="42" height="42" rx="2" fill="#f59e0b"/>
+            <text x="138" y="246" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" text-anchor="middle" fill="rgba(255,255,255,0.6)">TRAFFIC</text>
+
+            <!-- result card: 12 simulators + energy grade -->
+            <g filter="url(#ltShadow)">
+              <rect x="266" y="66" width="178" height="168" rx="16" fill="#ffffff"/>
+            </g>
+            <text x="286" y="92" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#0f766e">DBKL SUITE</text>
+            <text x="284" y="150" font-family="'Instrument Serif', Georgia, serif" font-size="58" font-weight="700" fill="#0f766e">12</text>
+            <text x="348" y="134" font-family="'Inter', sans-serif" font-size="13" font-weight="600" fill="#12211f">interactive</text>
+            <text x="348" y="152" font-family="'Inter', sans-serif" font-size="13" font-weight="600" fill="#12211f">simulators</text>
+            <g>
+              <rect x="286" y="180" width="22" height="10" rx="2" fill="#15803d"/>
+              <rect x="312" y="180" width="22" height="10" rx="2" fill="#65a30d"/>
+              <rect x="338" y="180" width="22" height="10" rx="2" fill="#eab308"/>
+              <rect x="364" y="180" width="22" height="10" rx="2" fill="#f59e0b"/>
+              <rect x="390" y="180" width="22" height="10" rx="2" fill="#ea580c"/>
+              <rect x="416" y="180" width="13" height="10" rx="2" fill="#dc2626"/>
+            </g>
+            <text x="286" y="214" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#475569">ISO 25745 &#183; A &#8594; G grade</text>
+          </svg>
+          <span class="sim-badge"><span class="sim-dot amber"></span>Runs in browser</span>
+        </a>
+
+        <figcaption class="sim-caption">
+          <h3 style="margin:0 0 0.4rem;font-size:1.05rem;font-weight:600;color:var(--ink)">Lift &amp; Escalator Simulator Suite &mdash; DBKL</h3>
+          <p class="sim-desc">
+            A hands-on training toolkit of <b>12 interactive simulators</b> spanning lift <b>traffic &amp; sizing</b>, <b>energy &amp; cost</b> (ISO&nbsp;25745), regenerative &amp; VVVF drives, escalator eco-modes, fault diagnosis, maintenance planning and <em>hazard / risk assessment</em>. Runs entirely <b>in your browser</b>, bilingual <em>(BM&nbsp;/&nbsp;EN)</em>, with every figure cited to a standard.
+          </p>
+          <ul class="sim-meta">
+            <li><span class="k">Suite</span><span class="v">12 simulators</span></li>
+            <li><span class="k">Covers</span><span class="v">Energy &middot; Traffic &middot; Safety</span></li>
+            <li><span class="k">Standards</span><span class="v">ISO 25745 &middot; EN 81</span></li>
+            <li><span class="k">Use</span><span class="v">BM / EN &middot; Free</span></li>
+          </ul>
+          <a class="caturmatik-play" href="lift-escalator-sim/" target="_blank" rel="noopener" aria-label="Open the Lift and Escalator simulator suite">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            Launch Simulator
+          </a>
+        </figcaption>
+      </figure>
+
+      <!-- Interactive App 3: Image to Keychain maker -->
+      <figure class="sim-figure clay reveal">
+        <a class="sim-media caturmatik-poster" href="https://huggingface.co/spaces/azan84/image-to-keychain" target="_blank" rel="noopener" aria-label="Open the Image to Keychain maker">
+          <svg class="sim-gif" viewBox="0 0 480 300" role="img" aria-label="Image to keychain maker — a portrait turned into a multi-color 3D-printed keychain with a name plate">
+            <defs>
+              <linearGradient id="kcBg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#0f766e"/>
+                <stop offset="1" stop-color="#134e4a"/>
+              </linearGradient>
+              <filter id="kcShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.28"/>
+              </filter>
+            </defs>
+            <rect width="480" height="300" fill="url(#kcBg)"/>
+
+            <!-- the keychain object: silhouette body + key ring + name plate -->
+            <g filter="url(#kcShadow)">
+              <!-- key ring -->
+              <circle cx="138" cy="60" r="16" fill="none" stroke="#eaf2f0" stroke-width="6"/>
+              <!-- body -->
+              <rect x="86" y="74" width="150" height="150" rx="20" fill="#eaf2f0"/>
+              <!-- name plate -->
+              <rect x="92" y="232" width="138" height="38" rx="10" fill="#eaf2f0"/>
+            </g>
+            <!-- minimal chibi face on the body -->
+            <path d="M112 132 q49 -54 98 0" fill="none" stroke="#12211f" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="141" cy="150" r="7" fill="#12211f"/>
+            <circle cx="181" cy="150" r="7" fill="#12211f"/>
+            <path d="M138 182 q23 20 46 0" fill="none" stroke="#c82b27" stroke-width="6" stroke-linecap="round"/>
+            <!-- name plate text -->
+            <text x="161" y="258" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="700" text-anchor="middle" fill="#0f766e">LUQMAN</text>
+
+            <!-- result card: 3MF + AMS filament chips -->
+            <g filter="url(#kcShadow)">
+              <rect x="276" y="66" width="168" height="168" rx="16" fill="#ffffff"/>
+            </g>
+            <text x="296" y="92" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="2" fill="#0f766e">EXPORT</text>
+            <text x="294" y="150" font-family="'Instrument Serif', Georgia, serif" font-size="52" font-weight="700" fill="#0f766e">3MF</text>
+            <text x="296" y="172" font-family="'Inter', sans-serif" font-size="12.5" font-weight="600" fill="#12211f">+ STL parts</text>
+            <g>
+              <rect x="296" y="190" width="22" height="14" rx="3" fill="#c82b27"/>
+              <rect x="322" y="190" width="22" height="14" rx="3" fill="#d1a275"/>
+              <rect x="348" y="190" width="22" height="14" rx="3" fill="#1e1e21"/>
+              <rect x="374" y="190" width="22" height="14" rx="3" fill="#f4f4f4" stroke="#d8d8d8" stroke-width="1"/>
+              <rect x="400" y="190" width="22" height="14" rx="3" fill="#8c3a35"/>
+            </g>
+            <text x="296" y="222" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#475569">Bambu Studio &#183; AMS-ready</text>
+          </svg>
+          <span class="sim-badge"><span class="sim-dot"></span>Runs in browser</span>
+        </a>
+
+        <figcaption class="sim-caption">
+          <h3 style="margin:0 0 0.4rem;font-size:1.05rem;font-weight:600;color:var(--ink)">Image &rarr; 3D Keychain Maker</h3>
+          <p class="sim-desc">
+            Drop in a stylized <b>portrait or chibi PNG</b> and get a <b>multi-color 3D-printable keychain</b> back &mdash; the tool separates colors into AMS layers, traces the outline art, adds a <em>keyring tab</em>, and can stamp a <b>name plate</b> (Disney-style font included) below the image. Live top-down preview, then one-click <b>3MF + STL</b> export ready to drop straight into <b>Bambu Studio</b>.
+          </p>
+          <ul class="sim-meta">
+            <li><span class="k">Input</span><span class="v">PNG portrait</span></li>
+            <li><span class="k">Output</span><span class="v">3MF &middot; STL</span></li>
+            <li><span class="k">Color</span><span class="v">Multi-part &middot; AMS</span></li>
+            <li><span class="k">Cost</span><span class="v">Free</span></li>
+          </ul>
+          <a class="caturmatik-play" href="https://huggingface.co/spaces/azan84/image-to-keychain" target="_blank" rel="noopener" aria-label="Open the Image to Keychain maker">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Launch Maker
+          </a>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 Dr. Mohd Azan Bin Mohammed Sapardi. All rights reserved.</p>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/scientific-fx.js"></script>
+</body>
+</html>
