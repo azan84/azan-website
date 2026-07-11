@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=9" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=10" />
 </head>
 <body class="has-tokens">
 
@@ -158,6 +158,40 @@
             <li><span class="k">Mesh</span><span class="v">0.74M cells</span></li>
             <li><span class="k">Cd (mean)</span><span class="v">0.311</span></li>
             <li><span class="k">Post</span><span class="v">PyVista + Blender</span></li>
+          </ul>
+        </figcaption>
+      </figure>
+
+      <!-- Simulation 4: HCCI piston reacting-flow autoignition -->
+      <figure class="sim-figure clay reveal">
+        <div class="sim-media">
+          <video
+            class="sim-gif"
+            controls
+            muted
+            loop
+            preload="metadata"
+            playsinline
+            aria-label="HCCI piston autoignition simulation: a lean n-heptane/air charge compressed by a moving piston until it autoignites, with the OH radical marking the ignition front"
+          >
+            <source src="assets/video/hcci_showcase_1080p60.mp4" type="video/mp4" />
+            Your browser does not support HTML5 video.
+          </video>
+          <span class="sim-badge"><span class="sim-dot ember"></span>HCCI Combustion</span>
+        </div>
+
+        <figcaption class="sim-caption">
+          <h3 style="margin:0 0 0.4rem;font-size:1.05rem;font-weight:600;color:var(--ink)">HCCI Engine — Compression Autoignition</h3>
+          <p class="sim-desc">
+            A 2D <b>HCCI</b> (homogeneous-charge compression-ignition) run — a lean n-heptane/air charge compressed by a moving piston until it <b>autoignites without a spark</b>. A custom OpenFOAM solver couples <b>detailed chemistry to a moving (ALE) mesh</b>, using a 90-species skeletal mechanism DRGEP-reduced from the 544-species LLNL reference and validated against <em>Cantera</em> to under 1&nbsp;% on 0-D ignition delay. It captures the <em>two-stage NTC cool-flame</em> then main autoignition at &minus;19.8&deg; ATDC (peak 2293&nbsp;K, 44.3&nbsp;bar); the OH radical marks the ignition front.
+          </p>
+          <ul class="sim-meta">
+            <li><span class="k">Solver</span><span class="v">OpenFOAM · ALE</span></li>
+            <li><span class="k">Fuel</span><span class="v">n-heptane</span></li>
+            <li><span class="k">Mechanism</span><span class="v">90 sp · 754 rxn</span></li>
+            <li><span class="k">Peak T</span><span class="v">2293 K</span></li>
+            <li><span class="k">Peak P</span><span class="v">44.3 bar</span></li>
+            <li><span class="k">Ignition</span><span class="v">−19.8° ATDC</span></li>
           </ul>
         </figcaption>
       </figure>

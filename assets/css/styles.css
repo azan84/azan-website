@@ -1982,3 +1982,18 @@ body.has-tokens .hero-photo:hover { transform: scale(1.015); }
 @media (prefers-reduced-motion: reduce) {
   .sim-dot.sage { animation: none; }
 }
+
+/* Ember variant badge dot for the HCCI combustion showcase */
+.sim-dot.ember {
+  background: #e0532a;
+  box-shadow: 0 0 0 0 rgba(224, 83, 42, 0.55);
+  animation: simPulseEmber 2.1s ease-in-out infinite;
+}
+@keyframes simPulseEmber {
+  0%   { box-shadow: 0 0 0 0   rgba(224, 83, 42, 0.55); }
+  70%  { box-shadow: 0 0 0 8px rgba(224, 83, 42, 0); }
+  100% { box-shadow: 0 0 0 0   rgba(224, 83, 42, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sim-dot.ember { animation: none; }
+}
