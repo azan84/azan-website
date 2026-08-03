@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="assets/images/Icon.png" />
+  <link rel="apple-touch-icon" href="assets/images/Icon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The One Number Data Centres Brag About | Dr. Mohd Azan Bin Mohammed Sapardi</title>
+  <meta name="description" content="A friendly, jargon-free explainer on PUE — the efficiency number every data centre shows off — why immersion cooling makes it look great, and how the same test rig gave PUE from 1.05 to 7.81." />
+  <link rel="canonical" href="https://azan.biomechemical.com/blog-data-centre-pue.html" />
+  <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0e1013" media="(prefers-color-scheme: dark)" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The One Number Data Centres Brag About — Dr. Mohd Azan Bin Mohammed Sapardi" />
+  <meta property="og:description" content="Every data centre pays two electricity bills, and PUE is the ratio everyone shows off. A friendly look at what it really means — and when it fools you." />
+  <meta property="og:url" content="https://azan.biomechemical.com/blog-data-centre-pue.html" />
+  <meta property="og:image" content="https://azan.biomechemical.com/portrait_sapardi.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=10" />
+  <style>
+    /* ── Blog-specific extras ── */
+    .blog-callout {
+      border-left: 3px solid var(--accent-1, #c06b12);
+      padding: 1rem 1.25rem;
+      margin: 1.75rem 0;
+      background: var(--bg-sunk, rgba(0,0,0,0.03));
+      border-radius: 0 8px 8px 0;
+    }
+    .blog-callout p { margin: 0; font-style: italic; }
+
+    /* Two electricity bills */
+    .two-bills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.75rem 0;
+    }
+    @media (max-width: 600px) { .two-bills { grid-template-columns: 1fr; } }
+    .tb-box {
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      border: 1px solid var(--hairline, rgba(0,0,0,0.1));
+      background: var(--bg-sunk, rgba(0,0,0,0.03));
+    }
+    .tb-box h4 {
+      margin: 0 0 0.45rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .tb-box.compute h4 { color: #1a9060; }
+    .tb-box.cool h4 { color: #e0532a; }
+    .tb-box p { margin: 0; font-size: 0.93rem; }
+
+    /* PUE formula chip */
+    .pue-formula {
+      text-align: center;
+      font-family: var(--font-mono, 'JetBrains Mono', monospace);
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--ink, inherit);
+      background: var(--bg-sunk, rgba(0,0,0,0.03));
+      border: 1px solid var(--hairline, rgba(0,0,0,0.1));
+      border-radius: 10px;
+      padding: 0.95rem 1rem;
+      margin: 1.5rem 0;
+    }
+
+    /* Same-rig PUE range bar */
+    .pue-range { margin: 1.9rem 0; }
+    .pue-ends {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--font-mono, 'JetBrains Mono', monospace);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .pue-ends .lo { color: #1a9060; font-size: 1.5rem; }
+    .pue-ends .hi { color: #c8362a; font-size: 1.5rem; }
+    .pue-bar {
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #1a9060, #eab308 45%, #e0532a 80%, #c8362a);
+    }
+    .pue-cap {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--ink-3, #6b7280);
+      font-style: italic;
+      margin: 0.55rem 0 0;
+    }
+  </style>
+</head>
+<body class="has-tokens">
+
+  <a class="skip-link" href="#blog-article">Skip to content</a>
+  <div class="nav-progress" aria-hidden="true"></div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Dr. <span>Azan</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="academics.html">Academics</a></li>
+        <li><a href="webapp.html">Apps</a></li>
+        <li><a href="students.html">Students</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="personal.html">Personal</a></li>
+      </ul>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
+        <svg class="sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE BANNER ===== -->
+  <section class="page-banner page-banner-v2">
+    <div class="glyph-layer" id="glyphLayer" aria-hidden="true">
+      <span class="sci-glyph g1 amber" data-depth="1.2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 12 m 0 -8 a 8 8 0 1 1 -8 8"/><path d="M12 12 m 0 -5 a 5 5 0 1 1 -5 5"/></svg></span>
+      <span class="sci-glyph g2" data-depth="0.8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 12h8M8 15h5"/></svg></span>
+      <span class="sci-glyph g3" data-depth="1.6"><svg viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 12 Q 8 2, 14 12 T 26 12 T 38 12 T 46 12"/></svg></span>
+      <span class="sci-glyph g4" data-depth="1.0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20v-5a8 8 0 0 1 16 0v5" /><path d="M2 20h20M9 20v-4M15 20v-4"/></svg></span>
+    </div>
+    <div class="container">
+      <p class="banner-desc"><a href="blog.html" style="color:var(--accent-1);text-decoration:none;">&larr; Back to Blog</a></p>
+      <h1>The One Number Data Centres Brag About</h1>
+      <p class="banner-desc">July 2026 &nbsp;&middot;&nbsp; What &ldquo;PUE&rdquo; Really Measures</p>
+      <div class="underline-accent"></div>
+    </div>
+  </section>
+
+  <!-- ===== ARTICLE ===== -->
+  <section class="blog-article" id="blog-article">
+    <div class="container">
+      <article class="blog-article-content clay reveal drop-cap">
+
+        <p>Every time you stream a film, send a voice note, or ask an AI a question, a building full of computers somewhere springs into action on your behalf. We call it a <strong>data centre</strong> &mdash; picture a warehouse packed wall-to-wall with servers, humming 24/7 and running <em>hot</em>. And here is the thing about hot computers: keeping them cool can cost nearly as much electricity as the computing itself.</p>
+
+        <p>So every data centre really pays <strong>two electricity bills at once</strong>:</p>
+
+        <div class="two-bills">
+          <div class="tb-box compute">
+            <h4>Bill 1 &middot; The actual work</h4>
+            <p>The servers doing your computing &mdash; loading the page, running the model, storing your photos.</p>
+          </div>
+          <div class="tb-box cool">
+            <h4>Bill 2 &middot; The overhead</h4>
+            <p>Everything that keeps those servers alive and cold &mdash; fans, pumps, chillers, power losses, lighting.</p>
+          </div>
+        </div>
+
+        <p>To grade themselves, the industry simply divides one bill by the other and calls the result <strong>PUE</strong> &mdash; Power Usage Effectiveness:</p>
+
+        <div class="pue-formula">PUE&nbsp; = &nbsp;Total energy &nbsp;&divide;&nbsp; Computing energy</div>
+
+        <p>A perfect score is <strong>1.0</strong>: every watt goes to computing, nothing wasted on cooling. A PUE of <strong>1.5</strong> means that for every 2 units of useful computing, you burn 1 extra unit just keeping the room cold and the lights on. Lower is better &mdash; and everyone wants bragging rights to the smallest number.</p>
+
+        <h2>Enter the servers&rsquo; bubble bath</h2>
+
+        <p>One of the coolest (sorry) ways to chase a low PUE is <strong>immersion cooling</strong>: instead of blowing cold air over the servers, you literally <em>dunk them in a special liquid</em> that whisks heat away but doesn&rsquo;t conduct electricity &mdash; a bit like giving your PC a bath in oil. The noisy fans disappear, and vendors love to advertise dazzling PUEs like <strong>1.07</strong>.</p>
+
+        <h2>The catch: one number, many meanings</h2>
+
+        <p>Here is the puzzle my colleagues and I dug into. <strong>A PUE number, all by itself, can quietly fool you.</strong> In our study, a <em>single</em> test rig &mdash; same hardware, same climate, same textbook definition of PUE &mdash; produced numbers anywhere from&hellip;</p>
+
+        <div class="pue-range">
+          <div class="pue-ends"><span class="lo">1.05</span><span class="hi">7.81</span></div>
+          <div class="pue-bar"></div>
+          <p class="pue-cap">Same rig, one unchanged definition &mdash; a sevenfold swing, just from how it was run and measured.</p>
+        </div>
+
+        <p>Nothing changed but the operating settings and exactly where you draw the line around &ldquo;computing.&rdquo; If one machine can score anywhere from wonderful to awful without changing the technology, then a bare number tells you surprisingly little.</p>
+
+        <div class="blog-callout">
+          <p>It&rsquo;s a bit like a car&rsquo;s fuel-economy sticker. &ldquo;20&nbsp;km/L&rdquo; sounds great &mdash; but was that city or highway, uphill or down, and whose test? Two data centres both boasting &ldquo;PUE&nbsp;1.1&rdquo; might not be doing remotely the same thing.</p>
+        </div>
+
+        <h2>So what should you ask?</h2>
+
+        <p>Our review&rsquo;s friendly takeaway: never trust a lone PUE number. Ask the four questions hiding behind it &mdash; <strong>where</strong> did they draw the boundary, <strong>what</strong> counted as computing, was it truly <strong>measured</strong> (or just simulated, or a vendor&rsquo;s claim), and <strong>over what period</strong>? We even built a five-level scale for when two PUE figures can honestly be compared, plus a short checklist that makes any figure trustworthy.</p>
+
+        <p>A single efficiency score is a headline, not the whole story. So the next time you spot a shiny <strong>&ldquo;PUE&nbsp;1.1,&rdquo;</strong> give it a friendly smile and ask: <em>compared to what &mdash; and measured how?</em></p>
+
+        <div class="blog-callout">
+          <p>This is a plain-language taste of a review paper I wrote with collaborators at Monash University and Curtin University. Curious about the full engineering version &mdash; the boundaries, the standards, all of it? That&rsquo;s what the <a href="academics.html" style="color:var(--accent-1);">academic side</a> of this site is for.</p>
+        </div>
+
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 Dr. Mohd Azan Bin Mohammed Sapardi. All rights reserved.</p>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/scientific-fx.js"></script>
+</body>
+</html>
